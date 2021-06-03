@@ -1,0 +1,137 @@
+#wrap{ 
+    max-width: 1200px;
+}
+.global_menu_wrap>div>ul>li>a{ 
+    color: black;
+    text-decoration:none;
+    font-size:14px; 
+    line-height: 1;
+    letter-spacing: -.4px;
+}
+.global_menu_wrap{
+    width: 100%;
+    height: 48px;
+    margin: 0 auto;
+}
+.fr{
+    position: relative;
+    float: right;
+}
+.fl{
+    position: relative;
+    float: left;
+}
+.local_menu_wrap .private_menu {
+    float: left;
+}
+.local_menu_wrap .private_menu > ul > li {
+    float: left;
+    margin: 2px 0 0 24px;
+}
+.global_menu_wrap ul{ 
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+div{
+    display: block;
+}
+ul{
+    list-style: none;
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-inline-start: 40px;
+}
+.global_menu_wrap li{
+    height: 48px;
+    float: left;
+    line-height: 45px;
+    margin-left: 14px;
+    position: relative;
+    display: list-item;
+    list-style: none;
+    text-align: -webkit-match-parent;
+}
+.logo {
+    display: block;
+    width: 230px;
+    height: 100px;
+    margin-top: 0px;
+    float: left;
+}
+.logo>a {
+    display: block;
+    height: 100px;
+    font-size: 0px;
+    overflow:hidden;
+    line-height: 100px;
+    background: url(../images/logo.png);
+    background-size: 100%;
+    border-radius: 0%;
+}
+a{
+    color: black;
+    text-decoration:none;
+}
+.sub_menu{
+    display: flex;
+    flex-flow:column;
+    justify-content: space-evenly;
+    text-align: center;
+
+}
+.local_menu_wrap .my{
+    font-size: 14px;
+}
+
+.list_menu{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content:flex-start;
+    width: 100%;
+    height: 60px;
+    text-align: center;
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #111;
+}
+.total_menu{
+    width: 140px;
+    line-height: 60px;
+    border: 1px solid #ddd;
+}
+.total_sub_menu{
+    width: 12%;
+    line-height: 60px;
+    font-size: 14px;
+}
+.footer{
+    margin: 0 auto;
+    padding-top: 80px;
+    height: 400px;
+    max-width: 1200px;
+}
+.footer_licensee span{
+    padding-right: 15px;
+    line-height: 13px;
+}
+.fl address>span, .fl p>span{
+    display: inline-block;
+    position: relative;
+    font-size: 13px;
+    font-style: normal;
+}
+.guide_txt{
+    margin-top: 12px;
+    font-size: 12px;
+    line-height: 20px;
+}
+.copy{
+    margin-top: 12px;
+    font-size: 12px;
+    line-height: 22px;
+    letter-spacing: 0;
+}

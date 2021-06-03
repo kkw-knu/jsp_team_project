@@ -160,7 +160,7 @@ public class Controller extends HttpServlet {
 
 	    RequestDispatcher dispatcher =
 
-	      	request.getRequestDispatcher(view+".jsp");
+	      	request.getRequestDispatcher(view);
 
 	   dispatcher.forward(request, response);
 
