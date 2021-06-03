@@ -19,12 +19,12 @@
     <link href="css/Header.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-    <div id="wrap">
+    <div>
         <div class="global_menu_wrap">
             <div class="fr">
                 <ul>
                     <li><a href="loginform.do">로그인</a></li>
-                    <li><a href="#none">회원가입</a></li>
+                    <li><a href="joinform.do">회원가입</a></li>
                     <li><a href="#none">고객센터</a></li>
                 </ul>
             </div>
@@ -40,12 +40,12 @@
                     <ul>
                         <li>
                             <a href="#" class="sub_menu">
-                                <i class="far fa-user-circle fa-2x"></i><div class="my">내 정보</div>
+                                <i class="far fa-user-circle fa-2x"></i><div>내 정보</div>
                             </a>
                         </li>
                         <li>
                             <a href="#" class="sub_menu">
-                                <i class="far fa-edit fa-2x"></i><div class="my">리뷰관리</div>
+                                <i class="far fa-edit fa-2x"></i><div>리뷰관리</div>
                             </a>
                         </li>
                     </ul>
@@ -63,17 +63,17 @@
         <div class="total_sub_menu"><a href="#">공지사항</a></div>
     </div>
     <div class="container mt-3" style="max-width:550px;">
-    	<from action="login.do" method=post>
+    	<form action="login.do" method="post">
+    		<br><h1 style="text-align:center; font-size:60px;">로그인</h1><br>
     		<div class="form-group">
-    			<label>아이디</label>
-    			<input type="text" name="userID" class="form-control">	
+    			<input type="text" name="user_id" class="form-control" id="inputid" placeholder="아이디">	
     		</div>
     		<div class="form-group">
-    			<label>비밀번호</label>
-    			<input type="password" name="userpassword" class="form-control">	
+    			<input type="password" name="user_password" class="form-control mt-3" id="inputpassword" placeholder="비밀번호">	
     		</div>
-    		<button type="submit" class="btn btn-primary mt-3">로그인</button>
-    	</from>
+	    	<button type="submit" class="btn btn-primary btn-block mt-3">로그인</button>
+	    	<a onclick="location.href='joinform.do'" class="btn btn-primary mt-3">회원가입</a>	
+    	</form>
     </div><!--메인 div-->
     <div class="footer">
         <div class="fl">

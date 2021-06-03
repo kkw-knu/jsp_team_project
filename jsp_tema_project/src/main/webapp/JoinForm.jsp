@@ -17,6 +17,27 @@
     <script type="text/javascript" src="js/pooper.js"></script>
 	<link href="css/init.css" rel="stylesheet" type="text/css">
     <link href="css/Header.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript">
+    	function chk(){
+    		if(!frm.user_id.value){//id란에 아무것도 입력 안됐을 때
+    			alert('아이디를 입력하세요!');
+    			frm.user_id.focus();
+    			return false;
+    		}else{
+    			$post.("confirm.do", "id="+frm.user_id.value, function(data){
+    				$('#err'),html(data);
+    			})
+    		}
+    	}
+    	function chk2(){
+    		if(frm.user_password.value != frm.confirmpass.value){
+    			alert('암호와 암호확인이 다릅니다.');
+    			frm.user_password.focus();
+    			frm.user_password.value="";
+    			return false;
+    		}
+    	}
+    </script>
 </head>
 <body>
     <div>
@@ -40,12 +61,12 @@
                     <ul>
                         <li>
                             <a href="#" class="sub_menu">
-                                <i class="far fa-user-circle fa-2x"></i><div class="my">내 정보</div>
+                                <i class="far fa-user-circle fa-2x"></i><div>내 정보</div>
                             </a>
                         </li>
                         <li>
                             <a href="#" class="sub_menu">
-                                <i class="far fa-edit fa-2x"></i><div class="my">리뷰관리</div>
+                                <i class="far fa-edit fa-2x"></i><div>리뷰관리</div>
                             </a>
                         </li>
                     </ul>
@@ -62,7 +83,35 @@
         <div class="total_sub_menu"><a href="#">QnA</a></div>
         <div class="total_sub_menu"><a href="#">공지사항</a></div>
     </div>
-    <div><h1>여기에 내용</h1></div><!--메인 div-->
+    <div class="container mt-3" style="max-width:550px;">
+    	<form action="join.do" method="post" name="frm" onsubmit="return chk2()">
+    		<br><h1 style="text-align:center; font-size:60px;">회원가입</h1><br>
+    		<div class="form-group" style="display:flex; flex-flow:row;">
+    			<input type="text" name="user_id" class="form-control" id="inputid" placeholder="아이디">
+    			<input type="button" value="중복체크 " onclick="chk()" class="btn btn-default" style="border:1px solid #ddd; font-size:12px;"><div id="err"></div>
+    		</div>
+    		<div class="form-group">
+    			<input type="password" name="user_password" class="form-control mt-3" id="inputpassword" placeholder="비밀번호">	
+    		</div>
+    		<div class="form-group">
+    			<input type="password" name="confirmpass" class="form-control mt-3" id="inputpassword" placeholder="비밀번호재입력">	
+    		</div>
+    		<div class="form-group">
+    			<input type="text" name="user_name" class="form-control mt-3" placeholder="이름">	
+    		</div>
+    		<div class="form-group">
+    			<input type="text" name="user_tel" class="form-control mt-3" placeholder="전화번호 010-1234-5678 형식 입력" title="전화형식 3-3,4-4" pattern="\d{3}-\d{3,4}-\d{4}">	
+    		</div>
+    		<div class="form-group">
+    			<input type="text" name="user_adress" class="form-control mt-3" placeholder="주소">	
+    		</div>
+    		<div class="form-group">
+    			<input type="text" name="user_email" class="form-control mt-3" placeholder="이메일">	
+    		</div>
+    		<button type="submit" class="btn btn-primary btn-block mt-3">회원가입</button>
+    		<a onclick="location.href='loginform.do'" class="btn btn-primary btn-block mt-3">로그인화면</a>
+    	</form>
+    </div><!--메인 div-->
     <div class="footer">
         <div class="fl">
             <div>
