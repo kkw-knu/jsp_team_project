@@ -62,8 +62,8 @@
         <div class="total_sub_menu"><a href="#">QnA</a></div>
         <div class="total_sub_menu"><a href="#">공지사항</a></div>
     </div>
-    <div class="container mt-3" style="max-width:600px;">
-    	<from action="loginAction.do" method=post>
+    <div class="container mt-3" style="max-width:550px;">
+    	<from action="login.do" method=post>
     		<div class="form-group">
     			<label>아이디</label>
     			<input type="text" name="userID" class="form-control">	
