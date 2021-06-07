@@ -16,7 +16,7 @@
     <script type="text/javascript" src="js/pooper.js"></script>
 	<link href="css/init.css" rel="stylesheet" type="text/css">
     <link href="css/Header.css" rel="stylesheet" type="text/css">
-    <script type="text/javascript" src="js/jqurey.js"></script>
+    <script type="text/javascript" src="js/jquery.js"></script>
     <script type="text/javascript">
     	function chk(){
     		if(!frm.user_id.value){//id란에 아무것도 입력 안됐을 때
@@ -24,16 +24,16 @@
     			frm.user_id.focus();
     			return false;
     		}else{
-    			$post.("confirm.do", "id="+frm.user_id.value, function(data){
-    				$('#err'),html(data);
-    			})
+    			$.post("confirm.do", "user_id="+frm.user_id.value, function(data){
+    				$('#err').html(data);
+    			});
     		}
     	}
     	function chk2(){
     		if(frm.user_password.value != frm.confirmpass.value){
     			alert('암호와 암호확인이 다릅니다.');
     			frm.user_password.focus();
-    			frm.user_password.value="";
+    			frm.user_password.value = "";
     			return false;
     		}
     	}
@@ -87,15 +87,15 @@
     	<form action="join.do" method="post" name="frm" onsubmit="return chk2()">
     		<br><h1 style="text-align:center; font-size:60px;">회원가입</h1><br>
     		<div class="form-group" style="display:flex; flex-flow:row;">
-    			<input type="text" name="user_id" class="form-control" id="inputid" placeholder="아이디">
+    			<input type="text" name="user_id" class="form-control" placeholder="아이디">
     			<input type="button" value="중복체크 " onclick="chk()" class="btn btn-default" style="border:1px solid #ddd; font-size:12px;">
     		</div>
     		<div id="err"></div>
     		<div class="form-group">
-    			<input type="password" name="user_password" class="form-control mt-3" id="inputpassword" placeholder="비밀번호">	
+    			<input type="password" name="user_password" class="form-control mt-3" placeholder="비밀번호">	
     		</div>
     		<div class="form-group">
-    			<input type="password" name="confirmpass" class="form-control mt-3" id="inputpassword" placeholder="비밀번호재입력">	
+    			<input type="password" name="confirmpass" class="form-control mt-3" placeholder="비밀번호재입력">	
     		</div>
     		<div class="form-group">
     			<input type="text" name="user_name" class="form-control mt-3" placeholder="이름">	
@@ -109,7 +109,7 @@
     		<div class="form-group">
     			<input type="text" name="user_email" class="form-control mt-3" placeholder="이메일">	
     		</div>
-    		<button type="submit" class="btn btn-primary btn-block mt-3">회원가입</button>
+    		<input type="submit" class="btn btn-primary btn-block mt-3" value="회원가입">
     		<a onclick="location.href='loginform.do'" class="btn btn-primary btn-block mt-3">로그인화면</a>
     	</form>
     </div><!--메인 div-->
