@@ -16,13 +16,15 @@ create table admin(
 insert into admin values ('admin', '1234');
 -- admin Á¤º¸ »ğÀÔ
 
-create table userinfo(
+create table member(
 	user_id varchar2(20) primary key,
 	user_password varchar2(20) not null,
 	user_name varchar2(20) not null,
 	user_tel varchar2(20) not null,
 	user_address varchar2(20) not null,
 	user_email varchar2(40) not null,
-	user_date date,
+	user_date date not null,
 	user_del varchar2(20) not null
 );
+
+drop table member;

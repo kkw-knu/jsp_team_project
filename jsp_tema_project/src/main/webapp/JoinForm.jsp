@@ -12,11 +12,11 @@
 	<link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
     <script src="https://kit.fontawesome.com/012d5a0fd2.js" crossorigin="anonymous"></script>
-    <script type="text/javascript" src="js/jqurey.js"></script>
     <script type="text/javascript" src="js/bootstrap.min.js"></script>
     <script type="text/javascript" src="js/pooper.js"></script>
 	<link href="css/init.css" rel="stylesheet" type="text/css">
     <link href="css/Header.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="js/jqurey.js"></script>
     <script type="text/javascript">
     	function chk(){
     		if(!frm.user_id.value){//id란에 아무것도 입력 안됐을 때
@@ -88,8 +88,9 @@
     		<br><h1 style="text-align:center; font-size:60px;">회원가입</h1><br>
     		<div class="form-group" style="display:flex; flex-flow:row;">
     			<input type="text" name="user_id" class="form-control" id="inputid" placeholder="아이디">
-    			<input type="button" value="중복체크 " onclick="chk()" class="btn btn-default" style="border:1px solid #ddd; font-size:12px;"><div id="err"></div>
+    			<input type="button" value="중복체크 " onclick="chk()" class="btn btn-default" style="border:1px solid #ddd; font-size:12px;">
     		</div>
+    		<div id="err"></div>
     		<div class="form-group">
     			<input type="password" name="user_password" class="form-control mt-3" id="inputpassword" placeholder="비밀번호">	
     		</div>
@@ -103,7 +104,7 @@
     			<input type="text" name="user_tel" class="form-control mt-3" placeholder="전화번호 010-1234-5678 형식 입력" title="전화형식 3-3,4-4" pattern="\d{3}-\d{3,4}-\d{4}">	
     		</div>
     		<div class="form-group">
-    			<input type="text" name="user_adress" class="form-control mt-3" placeholder="주소">	
+    			<input type="text" name="user_address" class="form-control mt-3" placeholder="주소">	
     		</div>
     		<div class="form-group">
     			<input type="text" name="user_email" class="form-control mt-3" placeholder="이메일">	

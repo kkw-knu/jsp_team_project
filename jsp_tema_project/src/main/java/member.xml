@@ -3,9 +3,16 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="memberns">
 	<select id="select" parameterType="String" resultType="member">
-		select * from member2 where id=#{id}
+		select * from member where user_id=#{user_id}
 	</select>
 	<insert id="insert" parameterType="member">
-		insert into insert into member2 values(#{id},#{password},#{name},#{address},#{tel},sysdate,'n')
+		insert into member values(#{user_id},
+		#{user_password, jdbcType=VARCHAR},
+		#{user_name, jdbcType=VARCHAR},
+		#{user_tel, jdbcType=VARCHAR},
+		#{user_address, jdbcType=VARCHAR},
+		#{user_email, jdbcType=VARCHAR},
+		sysdate,
+		'n')
 	</insert>
 </mapper>

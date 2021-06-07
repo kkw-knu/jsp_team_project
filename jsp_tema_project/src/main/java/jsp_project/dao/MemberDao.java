@@ -7,6 +7,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
+import jsp_project.model.Member;
 public class MemberDao {
 	//singleton
 	private static MemberDao instance = new MemberDao();
@@ -24,6 +25,14 @@ public class MemberDao {
 		} catch (Exception e) {
 			System.out.println("에러 : "+e.getMessage());
 		}
+	}
+	
+	public Member select(String user_id) {
+		return (Member)session.selectOne("memberns.select", user_id); 
+	}
+	
+	public int insert(Member member) {
+		return session.insert("memberns.insert",member);
 	}
 	//기본 연결 틀
 }
