@@ -39,7 +39,7 @@
                 <div class="private_menu">
                     <ul>
                         <li>
-                            <a href="#" class="sub_menu">
+                            <a href="mypage.do" class="sub_menu">
                                 <i class="far fa-user-circle fa-2x"></i><div>내 정보</div>
                             </a>
                         </li>

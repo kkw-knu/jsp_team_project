@@ -101,7 +101,8 @@
     			<input type="text" name="user_name" class="form-control mt-3" placeholder="이름" required="required">	
     		</div>
     		<div class="form-group">
-    			<input type="text" name="user_tel" class="form-control mt-3" placeholder="핸드폰 번호" title="전화형식 3-3,4-4" pattern="\d{3}-\d{3,4}-\d{4}" required="required">
+    			<input type="text" name="user_tel" class="form-control mt-3" placeholder="핸드폰 번호" 
+    			title="010-1234-5678 과 같은 형식으로 입력하세요" pattern="\d{3}-\d{3,4}-\d{4}" required="required">
     			<span  aria-describedby="helpBlock" style="font-color:#111; font-size:10px;" class="mt-3">※ 010-1234-5678 과 같은 형태로 입력해 주세요.</span>    	
     		</div>
     		<div class="form-group">

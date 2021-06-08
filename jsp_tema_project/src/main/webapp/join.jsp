@@ -10,19 +10,19 @@
 <body>
 <c:if test="${result > 0 }">
 	<script type="text/javascript">
-		alert("회원가입 성공");
+		alert("회원가입에 성공하였습니다.");
 		location.href="loginform.do";
 	</script>
 </c:if>
 <c:if test="${result == 0 }">
 	<script type="text/javascript">
-		alert("회원가입 실패");
+		alert("회원가입에 실패하였습니다.");
 		history.back();
 	</script>
 </c:if>
 <c:if test="${result < 0 }">
 	<script type="text/javascript">
-		alert("아이디가 있습니다.");
+		alert("이미 존재하는 아이디입니다.");
 		history.back();
 	</script>
 </c:if>

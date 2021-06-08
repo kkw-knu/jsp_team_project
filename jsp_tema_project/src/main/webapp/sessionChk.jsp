@@ -12,7 +12,7 @@
 <c:if test="${empty user_id }">
 	<script type="text/javascript">
 		alert('로그인이 필요한 페이지입니다.');
-		location.href="loginForm.do";
+		location.href="loginform.do";
 	</script>
 </c:if>
 </body>
