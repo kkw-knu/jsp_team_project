@@ -87,29 +87,30 @@
     	<form action="join.do" method="post" name="frm" onsubmit="return chk2()">
     		<br><h1 style="text-align:center; font-size:60px;">회원가입</h1><br>
     		<div class="form-group" style="display:flex; flex-flow:row;">
-    			<input type="text" name="user_id" class="form-control" placeholder="아이디">
+    			<input type="text" name="user_id" class="form-control" placeholder="아이디" required="required">
     			<input type="button" value="중복체크 " onclick="chk()" class="btn btn-default" style="border:1px solid #ddd; font-size:12px;">
     		</div>
     		<div id="err"></div>
     		<div class="form-group">
-    			<input type="password" name="user_password" class="form-control mt-3" placeholder="비밀번호">	
+    			<input type="password" name="user_password" class="form-control mt-3" placeholder="비밀번호" required="required">	
     		</div>
     		<div class="form-group">
-    			<input type="password" name="confirmpass" class="form-control mt-3" placeholder="비밀번호재입력">	
+    			<input type="password" name="confirmpass" class="form-control mt-3" placeholder="비밀번호재입력" required="required">	
     		</div>
     		<div class="form-group">
-    			<input type="text" name="user_name" class="form-control mt-3" placeholder="이름">	
+    			<input type="text" name="user_name" class="form-control mt-3" placeholder="이름" required="required">	
     		</div>
     		<div class="form-group">
-    			<input type="text" name="user_tel" class="form-control mt-3" placeholder="전화번호 010-1234-5678 형식 입력" title="전화형식 3-3,4-4" pattern="\d{3}-\d{3,4}-\d{4}">	
+    			<input type="text" name="user_tel" class="form-control mt-3" placeholder="핸드폰 번호" title="전화형식 3-3,4-4" pattern="\d{3}-\d{3,4}-\d{4}" required="required">
+    			<span  aria-describedby="helpBlock" style="font-color:#111; font-size:10px;" class="mt-3">※ 010-1234-5678 과 같은 형태로 입력해 주세요.</span>    	
     		</div>
     		<div class="form-group">
-    			<input type="text" name="user_address" class="form-control mt-3" placeholder="주소">	
+    			<input type="text" name="user_address" class="form-control mt-3" placeholder="주소" required="required">	
     		</div>
     		<div class="form-group">
-    			<input type="text" name="user_email" class="form-control mt-3" placeholder="이메일">	
+    			<input type="text" name="user_email" class="form-control mt-3" placeholder="이메일" required="required">	
     		</div>
-    		<input type="submit" class="btn btn-primary btn-block mt-3" value="회원가입">
+    		<input type="submit" class="btn btn-primary btn-block mt-3 " value="회원가입" >
     		<a onclick="location.href='loginform.do'" class="btn btn-primary btn-block mt-3">로그인화면</a>
     	</form>
     </div><!--메인 div-->

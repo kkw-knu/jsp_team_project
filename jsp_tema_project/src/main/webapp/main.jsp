@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -23,9 +24,16 @@
         <div class="global_menu_wrap">
             <div class="fr">
                 <ul>
-                    <li><a href="loginform.do">로그인</a></li>
+                <c:set var="user_id" value="${sessionScope.user_id }"></c:set>
+                <c:if test="${empty user_id }">
+					<li><a href="loginform.do">로그인</a></li>
                     <li><a href="joinform.do">회원가입</a></li>
                     <li><a href="#none">고객센터</a></li>
+				</c:if>
+                <c:if test="${not empty user_id }">
+					<li><%=session.getAttribute("user_id") %> 님 반갑습니다</li>
+                    <li><a href="#none">로그아웃</a></li>
+				</c:if>
                 </ul>
             </div>
         </div>
