@@ -104,10 +104,6 @@
 
 			<p>백범길, 명상산책길, 송림숲길 등 3개 코스로 구성된 마곡사 솔바람길이 조성되어있고 봄의 풍경이 가장 예쁘다	</p>
 	
-		<div id="ma_review">
-			<h1>리뷰</h1>
-			<input id="review" type="text">
-		</div>
 	<div class="footer">
         <div class="fl">
             <div>
