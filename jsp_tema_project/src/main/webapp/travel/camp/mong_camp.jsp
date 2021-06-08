@@ -102,10 +102,7 @@
 		<img class="slide1" src="../images/camp/mong3.JPG" height="300" width="300"/>
 	</div>
 	<p> 몽산포해수욕장과 소나무 숲속에서 자연을 즐길수 있다.</p>
-	<div id="mong_review">
-		<h1>리뷰</h1>
-		<input id="review" type="text">
-	</div>
+
 	 <div class="footer">
         <div class="fl">
             <div>

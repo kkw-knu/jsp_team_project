@@ -74,11 +74,7 @@
                                 <i class="far fa-user-circle fa-2x"></i><div class="my">내 정보</div>
                             </a>
                         </li>
-                        <li>
-                            <a href="#" class="sub_menu">
-                                <i class="far fa-edit fa-2x"></i><div class="my">리뷰관리</div>
-                            </a>
-                        </li>
+
                     </ul>
                 </div>
             </div>
@@ -102,10 +98,8 @@
 		<img class="slide1" src="../images/camp/bi3.JPG" height="300" width="300"/>
 	</div>
 	<p> 우도에서도 손꼽히는 캠핑 스팟으로, 제주 그리고 우도의 아름다운 풍경을 제대로 감상할 수 있는 곳이라서 수많은 캠퍼들이 지속적으로 찾아오는 곳</p>
-	<div id="bi_review">
-		<h1>리뷰</h1>
-		<input id="review" type="text">
-	</div>
+	
+
 	 <div class="footer">
         <div class="fl">
             <div>
