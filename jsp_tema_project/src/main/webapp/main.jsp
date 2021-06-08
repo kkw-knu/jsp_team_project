@@ -27,12 +27,15 @@
                 <c:set var="user_id" value="${sessionScope.user_id }"></c:set>
                 <c:if test="${empty user_id }">
 					<li><a href="loginform.do">로그인</a></li>
+					<li><a>ㅣ</a></li>
                     <li><a href="joinform.do">회원가입</a></li>
+                    <li><a>ㅣ</a></li>
                     <li><a href="#none">고객센터</a></li>
 				</c:if>
                 <c:if test="${not empty user_id }">
 					<li><a><%=session.getAttribute("user_id") %> 님 반갑습니다</a></li>
-                    <li><a href="#none">로그아웃</a></li>
+					<li><a>ㅣ</a></li>
+                    <li><a href="logout.do">로그아웃</a></li>
 				</c:if>
                 </ul>
             </div>
