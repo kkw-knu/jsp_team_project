@@ -36,7 +36,7 @@ import jsp_project.service.CommandProcess;
 
 	initParams={@WebInitParam(name="config",value="/WEB-INF/command.properties")})
 
-public class Controller extends HttpServlet {
+public class MainController extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 

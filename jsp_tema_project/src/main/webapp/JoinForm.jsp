@@ -10,13 +10,13 @@
     <title>관광곳곳</title>
     <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding:wght@700&family=Noto+Sans+KR:wght@700&display=swap" rel="stylesheet">
 	<link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="css/bootstrap1.min.css" rel="stylesheet" type="text/css">
     <script src="https://kit.fontawesome.com/012d5a0fd2.js" crossorigin="anonymous"></script>
-    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/bootstrap1.min.js"></script>
     <script type="text/javascript" src="js/pooper.js"></script>
 	<link href="css/init.css" rel="stylesheet" type="text/css">
     <link href="css/Header.css" rel="stylesheet" type="text/css">
-    <script type="text/javascript" src="js/jquery.js"></script>
     <script type="text/javascript">
     	function chk(){
     		if(!frm.user_id.value){//id란에 아무것도 입력 안됐을 때
@@ -60,13 +60,13 @@
                 <div class="private_menu">
                     <ul>
                         <li>
-                            <a href="#" class="sub_menu">
-                                <i class="far fa-user-circle fa-2x"></i><div>내 정보</div>
+                            <a href="mypage.do" class="sub_menu">
+                                <i class="far fa-user-circle fa-2x"></i><div class="my">내 정보</div>
                             </a>
                         </li>
                         <li>
-                            <a href="#" class="sub_menu">
-                                <i class="far fa-edit fa-2x"></i><div>리뷰관리</div>
+                            <a href="myreview.do" class="sub_menu">
+                                <i class="far fa-edit fa-2x"></i><div class="my">리뷰관리</div>
                             </a>
                         </li>
                     </ul>

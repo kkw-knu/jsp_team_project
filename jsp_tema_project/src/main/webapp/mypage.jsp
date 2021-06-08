@@ -5,16 +5,17 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="Description" content="관광지를 한눈에 찾아보고 숙박시스템까지 연계가 가능한 웹페이지.">
 	<meta name="Keyword" content="웹개발, 프론트엔드, 백엔드, 여행, 관광, html, css, java, javascript, tomcat, jsp">
     <title>관광곳곳</title>
     <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding:wght@700&family=Noto+Sans+KR:wght@700&display=swap" rel="stylesheet">
 	<link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
     <script src="https://kit.fontawesome.com/012d5a0fd2.js" crossorigin="anonymous"></script>
-    <script type="text/javascript" src="js/jquery.js"></script>
-    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <link href="css/bootstrap1.min.css" rel="stylesheet">
+    <script src="js/jquery.js"></script>
+    <script src="js/bootstrap1.min.js"></script>
     <script type="text/javascript" src="js/pooper.js"></script>
 	<link href="css/init.css" rel="stylesheet" type="text/css">
     <link href="css/Header.css" rel="stylesheet" type="text/css">
@@ -41,12 +42,12 @@
                     <ul>
                         <li>
                             <a href="mypage.do" class="sub_menu">
-                                <i class="far fa-user-circle fa-2x"></i><div class="my">내 정보</div>
+                                <i class="far fa-user-circle fa-2x"></i><div>내 정보</div>
                             </a>
                         </li>
                         <li>
-                            <a href="#" class="sub_menu">
-                                <i class="far fa-edit fa-2x"></i><div class="my">리뷰관리</div>
+                            <a href="myreview.do" class="sub_menu">
+                                <i class="far fa-edit fa-2x"></i><div>리뷰관리</div>
                             </a>
                         </li>
                     </ul>
@@ -63,7 +64,85 @@
         <div class="total_sub_menu"><a href="#">QnA</a></div>
         <div class="total_sub_menu"><a href="#">공지사항</a></div>
     </div>
-    <div><h1>여기에 내용</h1></div><!--메인 div-->
+   	<div class="container">
+    	<div style="max-width:600px; margin:0 auto; margin-top:30px;">
+   			<br><h1 style="text-align:center; font-size:60px;">내 정보</h1><br>
+    		<table class="table">
+				<tr><th>아이디</th><td>${member.user_id}</td>
+				<tr><th>이름</th><td>${member.user_name}</td>
+				<tr><th>전화</th><td>${member.user_tel}</td>
+				<tr><th>주소</th><td>${member.user_address}</td>
+				<tr><th>이메일</th><td>${member.user_email}</td>
+				<tr><th>가입일</th><td>${member.user_date}</td>
+			</table>
+			<button class="btn btn-primary mt-3" data-toggle="modal" data-target="#myModal">정보수정</button>
+			<button class="btn btn-primary mt-3" data-toggle="modal" data-target="#myModal1">비밀번호변경</button>
+			<a onclick="#" class="btn btn-primary mt-3">회원탈퇴</a>
+			<!-- Modal -->
+			<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">
+							<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+						</button>
+						<h4 class="modal-title" id="myModalLabel">회원 정보 수정</h4>
+					</div>
+					<div class="modal-body">
+					<table class="table">
+						<tr><th>이름</th><td>
+						<div class="form-group">
+    						<input type="text" name="user_name" id="user_name" class="form-control mt-3" placeholder="이름" required="required" value="${member.user_name}">	
+    					</div></td>
+						<tr><th>전화</th><td>
+							<div class="form-group">
+			    			<input type="text" name="user_tel" class="form-control mt-3" placeholder="핸드폰 번호" 
+			    			title="010-1234-5678 과 같은 형식으로 입력하세요" pattern="\d{3}-\d{3,4}-\d{4}" required="required" value="${member.user_tel}">
+			    			<span  aria-describedby="helpBlock" style="font-color:#111; font-size:10px;" class="mt-3">※ 010-1234-5678 과 같은 형태로 입력해 주세요.</span>    	
+			    		</div></td>
+						<tr><th>주소</th><td>
+						<div class="form-group">
+			    			<input type="text" name="user_address" class="form-control mt-3" placeholder="주소" required="required" value="${member.user_address}">	
+			    		</div></td>
+						<tr><th>이메일</th><td>
+						<div class="form-group">
+			    			<input type="text" name="user_email" class="form-control mt-3" placeholder="이메일" required="required" value="${member.user_email}">	
+			    		</div></td>
+					</table>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+						<button type="button" class="btn btn-primary">변경 사항 저장</button>
+					</div>
+				</div>
+				<!-- 모달 콘텐츠 -->
+			</div>
+			<!-- 모달 다이얼로그 -->
+		</div>
+		<!-- 모달 젂체 윈도우 -->
+		<div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">
+							<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+						</button>
+						<h4 class="modal-title" id="myModalLabel">비밀번호변경</h4>
+					</div>
+					<div class="modal-body">
+    					
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+						<button type="button" class="btn btn-primary">변경 사항 저장</button>
+					</div>
+				</div>
+				<!-- 모달 콘텐츠 -->
+			</div>
+			<!-- 모달 다이얼로그 -->
+		</div>
+    	</div>
+	</div>
     <div class="footer">
         <div class="fl">
             <div>

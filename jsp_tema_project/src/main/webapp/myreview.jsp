@@ -4,39 +4,29 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="Description" content="관광지를 한눈에 찾아보고 숙박시스템까지 연계가 가능한 웹페이지.">
-	<meta name="Keyword" content="웹개발, 프론트엔드, 백엔드, 여행, 관광, html, css, java, javascript, tomcat, jsp">
-    <title>관광곳곳</title>
-    <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding:wght@700&family=Noto+Sans+KR:wght@700&display=swap" rel="stylesheet">
-	<link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="css/bootstrap1.min.css" rel="stylesheet" type="text/css">
-    <script src="https://kit.fontawesome.com/012d5a0fd2.js" crossorigin="anonymous"></script>
-    <script type="text/javascript" src="js/jquery.js"></script>
-    <script type="text/javascript" src="js/bootstrap1.min.js"></script>
-    <script type="text/javascript" src="js/pooper.js"></script>
-	<link href="css/init.css" rel="stylesheet" type="text/css">
-    <link href="css/Header.css" rel="stylesheet" type="text/css">
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="Keyword" content="웹개발, 프론트엔드, 백엔드, 여행, 관광, html, css, java, javascript, tomcat, jsp">
+<meta name="Description" content="관광지를 한눈에 찾아보고 숙박시스템까지 연계가 가능한 웹페이지.">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>관광곳곳</title>
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding:wght@700&family=Noto+Sans+KR:wght@700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<script src="https://kit.fontawesome.com/012d5a0fd2.js" crossorigin="anonymous"></script>
+<link href="css/bootstrap1.min.css" rel="stylesheet">
+<script src="js/jquery.js"></script>
+<link href="css/init.css" rel="stylesheet" type="text/css">
+<link href="css/Header.css" rel="stylesheet" type="text/css">
+<script src="js/bootstrap1.min.js"></script>
 </head>
 <body>
     <div>
         <div class="global_menu_wrap">
             <div class="fr">
                 <ul>
-                <c:set var="user_id" value="${sessionScope.user_id }"></c:set>
-                <c:if test="${empty user_id }">
-					<li><a href="loginform.do">로그인</a></li>
-					<li><a>ㅣ</a></li>
-                    <li><a href="joinform.do">회원가입</a></li>
-                    <li><a>ㅣ</a></li>
-                    <li><a href="#none">고객센터</a></li>
-				</c:if>
-                <c:if test="${not empty user_id }">
 					<li><a><%=session.getAttribute("user_id") %> 님 반갑습니다</a></li>
 					<li><a>ㅣ</a></li>
                     <li><a href="logout.do">로그아웃</a></li>
-				</c:if>
                 </ul>
             </div>
         </div>
@@ -73,7 +63,9 @@
         <div class="total_sub_menu"><a href="#">QnA</a></div>
         <div class="total_sub_menu"><a href="#">공지사항</a></div>
     </div>
-    <div><h1>여기에 내용</h1></div><!--메인 div-->
+    <div style="max-width:600px; margin:0 auto; margin-top:30px;">
+    <br><h1 style="text-align:center; font-size:60px;">내 리뷰</h1><br>
+    </div>
     <div class="footer">
         <div class="fl">
             <div>

@@ -10,10 +10,10 @@
     <title>관광곳곳</title>
     <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding:wght@700&family=Noto+Sans+KR:wght@700&display=swap" rel="stylesheet">
 	<link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="css/bootstrap1.min.css" rel="stylesheet" type="text/css">
     <script src="https://kit.fontawesome.com/012d5a0fd2.js" crossorigin="anonymous"></script>
     <script type="text/javascript" src="js/jquery.js"></script>
-    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap1.min.js"></script>
     <script type="text/javascript" src="js/pooper.js"></script>
 	<link href="css/init.css" rel="stylesheet" type="text/css">
     <link href="css/Header.css" rel="stylesheet" type="text/css">
@@ -40,12 +40,12 @@
                     <ul>
                         <li>
                             <a href="mypage.do" class="sub_menu">
-                                <i class="far fa-user-circle fa-2x"></i><div>내 정보</div>
+                                <i class="far fa-user-circle fa-2x"></i><div class="my">내 정보</div>
                             </a>
                         </li>
                         <li>
-                            <a href="#" class="sub_menu">
-                                <i class="far fa-edit fa-2x"></i><div>리뷰관리</div>
+                            <a href="myreview.do" class="sub_menu">
+                                <i class="far fa-edit fa-2x"></i><div class="my">리뷰관리</div>
                             </a>
                         </li>
                     </ul>
@@ -72,7 +72,7 @@
     			<input type="password" name="user_password" class="form-control mt-3" id="inputpassword" placeholder="비밀번호">	
     		</div>
 	    	<button type="submit" class="btn btn-primary btn-block mt-3">로그인</button>
-	    	<a onclick="location.href='joinform.do'" class="btn btn-primary mt-3">회원가입</a>	
+	    	<a onclick="location.href='joinform.do'" class="btn btn-primary mt-3 btn-block">회원가입</a>	
     	</form>
     </div><!--메인 div-->
     <div class="footer">

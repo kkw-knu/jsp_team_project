@@ -7,7 +7,7 @@ public class Member {
 	private String user_tel;
 	private String user_address;
 	private String user_email;
-	private Date usesr_date;
+	private Date user_date;
 	private String user_del;
 	public String getUser_id() {
 		return user_id;
@@ -45,11 +45,11 @@ public class Member {
 	public void setUser_email(String user_email) {
 		this.user_email = user_email;
 	}
-	public Date getUsesr_date() {
-		return usesr_date;
+	public Date getUser_date() {
+		return user_date;
 	}
-	public void setUsesr_date(Date usesr_date) {
-		this.usesr_date = usesr_date;
+	public void setUser_date(Date user_date) {
+		this.user_date = user_date;
 	}
 	public String getUser_del() {
 		return user_del;
