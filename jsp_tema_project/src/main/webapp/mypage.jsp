@@ -112,7 +112,7 @@
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
-						<button type="button" class="btn btn-primary">변경 사항 저장</button>
+						<button type="button" class="btn btn-primary" onclick="location.update.do">변경 사항 저장</button>
 					</div>
 				</div>
 				<!-- 모달 콘텐츠 -->
