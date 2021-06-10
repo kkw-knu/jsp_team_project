@@ -38,4 +38,7 @@ public class MemberDao {
 	public int update(Member member) {
 		return session.update("memberns.update",member);
 	}
+	public int updatepass(Member member) {
+		return session.update("memberns.updatepass",member);
+	}
 }

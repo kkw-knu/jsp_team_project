@@ -19,6 +19,17 @@
     <script type="text/javascript" src="js/pooper.js"></script>
 	<link href="css/init.css" rel="stylesheet" type="text/css">
     <link href="css/Header.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript">
+    	function chk2(){
+    		if(frm.user_password1.value != frm.confirmpass.value){
+    			alert('암호와 암호확인이 다릅니다.');
+    			frm.user_password1.focus();
+    			frm.user_password1.value = "";
+    			frm.confirmpass.value = "";
+    			return false;
+    		}
+    	}
+    </script>
 </head>
 <body>
     <div>
@@ -114,7 +125,7 @@
 						</div>
 						<div class="modal-footer">
 							<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
-							<input type="submit" class="btn btn-primary" value="저장하기"onclick="location.update.do">
+							<input type="submit" class="btn btn-primary" value="저장하기">
 						</div>
 					</form>
 				</div>
@@ -132,13 +143,29 @@
 						</button>
 						<h4 class="modal-title" id="myModalLabel">비밀번호변경</h4>
 					</div>
-					<div class="modal-body">
-    					
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
-						<button type="button" class="btn btn-primary">변경 사항 저장</button>
-					</div>
+					<form action="updatepass.do" method="post" name="frm" onsubmit="return chk2()">
+						<input type="text" name="user_id" required="required" value="${member.user_id}" hidden="hidden">
+						<div class="modal-body">
+	    					<table class="table">
+								<tr><th>현재 비밀번호</th><td>
+								<div class="form-group">
+		    						<input type="password" name="user_password" class="form-control mt-3" placeholder="현재 비밀번호" required="required">	
+		    					</div></td>
+								<tr><th>변경 비밀번호</th><td>
+								<div class="form-group">
+		    						<input type="password" name="user_password1" class="form-control mt-3" placeholder="변경 비밀번호" required="required">	
+		    					</div></td>
+		    					<tr><th>변경 비밀번호 재입력</th><td>
+								<div class="form-group">
+		    						<input type="password" name="confirmpass" class="form-control mt-3" placeholder="변경 비밀번호 재입력" required="required">	
+		    					</div></td>
+							</table>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+							<input type="submit" class="btn btn-primary" value="저장하기">
+						</div>
+					</form>
 				</div>
 				<!-- 모달 콘텐츠 -->
 			</div>

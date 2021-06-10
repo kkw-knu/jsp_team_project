@@ -22,4 +22,7 @@
 					  user_email=#{user_email}
 					  where user_id=#{user_id}
 	</update>
+	<update id="updatepass" parameterType="member">
+	update member set user_password=#{user_password} where user_id=#{user_id}
+	</update>
 </mapper>
