@@ -25,6 +25,7 @@ public class UpdateAction implements CommandProcess {
 			member.setUser_email(user_email);
 			MemberDao md = MemberDao.getInstance();
 			int result = md.update(member);
+			request.setAttribute("result", result);
 			return "update.jsp";
 		}else {
 			return "sessionChk.jsp";

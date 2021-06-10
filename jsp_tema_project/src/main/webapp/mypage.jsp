@@ -88,32 +88,35 @@
 						</button>
 						<h4 class="modal-title" id="myModalLabel">회원 정보 수정</h4>
 					</div>
-					<div class="modal-body">
-					<table class="table">
-						<tr><th>이름</th><td>
-						<div class="form-group">
-    						<input type="text" name="user_name" id="user_name" class="form-control mt-3" placeholder="이름" required="required" value="${member.user_name}">	
-    					</div></td>
-						<tr><th>전화</th><td>
+					<form action="update.do" method="post">
+					<input type="text" name="user_id" required="required" value="${member.user_id}" hidden="hidden">
+						<div class="modal-body">
+						<table class="table">
+							<tr><th>이름</th><td>
 							<div class="form-group">
-			    			<input type="text" name="user_tel" class="form-control mt-3" placeholder="핸드폰 번호" 
-			    			title="010-1234-5678 과 같은 형식으로 입력하세요" pattern="\d{3}-\d{3,4}-\d{4}" required="required" value="${member.user_tel}">
-			    			<span  aria-describedby="helpBlock" style="font-color:#111; font-size:10px;" class="mt-3">※ 010-1234-5678 과 같은 형태로 입력해 주세요.</span>    	
-			    		</div></td>
-						<tr><th>주소</th><td>
-						<div class="form-group">
-			    			<input type="text" name="user_address" class="form-control mt-3" placeholder="주소" required="required" value="${member.user_address}">	
-			    		</div></td>
-						<tr><th>이메일</th><td>
-						<div class="form-group">
-			    			<input type="text" name="user_email" class="form-control mt-3" placeholder="이메일" required="required" value="${member.user_email}">	
-			    		</div></td>
-					</table>
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
-						<button type="button" class="btn btn-primary" onclick="location.update.do">변경 사항 저장</button>
-					</div>
+	    						<input type="text" name="user_name" id="user_name" class="form-control mt-3" placeholder="이름" required="required" value="${member.user_name}">	
+	    					</div></td>
+							<tr><th>전화</th><td>
+								<div class="form-group">
+				    			<input type="text" name="user_tel" class="form-control mt-3" placeholder="핸드폰 번호" 
+				    			title="010-1234-5678 과 같은 형식으로 입력하세요" pattern="\d{3}-\d{3,4}-\d{4}" required="required" value="${member.user_tel}">
+				    			<span  aria-describedby="helpBlock" style="font-color:#111; font-size:10px;" class="mt-3">※ 010-1234-5678 과 같은 형태로 입력해 주세요.</span>    	
+				    		</div></td>
+							<tr><th>주소</th><td>
+							<div class="form-group">
+				    			<input type="text" name="user_address" class="form-control mt-3" placeholder="주소" required="required" value="${member.user_address}">	
+				    		</div></td>
+							<tr><th>이메일</th><td>
+							<div class="form-group">
+				    			<input type="text" name="user_email" class="form-control mt-3" placeholder="이메일" required="required" value="${member.user_email}">	
+				    		</div></td>
+						</table>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+							<input type="submit" class="btn btn-primary" value="저장하기"onclick="location.update.do">
+						</div>
+					</form>
 				</div>
 				<!-- 모달 콘텐츠 -->
 			</div>

@@ -35,4 +35,7 @@ public class MemberDao {
 		return session.insert("memberns.insert",member);
 	}
 	//기본 연결 틀
+	public int update(Member member) {
+		return session.update("memberns.update",member);
+	}
 }

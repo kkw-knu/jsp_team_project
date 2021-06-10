@@ -15,4 +15,11 @@
 		sysdate,
 		'n')
 	</insert>
+	<update id="update" parameterType="member">
+	update member set user_name=#{user_name},
+					  user_tel=#{user_tel},
+					  user_address=#{user_address},
+					  user_email=#{user_email}
+					  where user_id=#{user_id}
+	</update>
 </mapper>
