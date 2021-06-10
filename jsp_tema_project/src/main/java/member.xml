@@ -23,6 +23,9 @@
 					  where user_id=#{user_id}
 	</update>
 	<update id="updatepass" parameterType="member">
-	update member set user_password=#{user_password} where user_id=#{user_id}
+		update member set user_password=#{user_password} where user_id=#{user_id}
+	</update>
+	<update id="delete" parameterType="member">
+		update member set user_del='y' where user_id=#{user_id}
 	</update>
 </mapper>

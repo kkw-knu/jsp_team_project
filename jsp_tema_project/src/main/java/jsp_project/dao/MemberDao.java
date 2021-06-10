@@ -20,7 +20,7 @@ public class MemberDao {
 		try {
 			Reader reader = Resources.getResourceAsReader("configuration.xml");
 			SqlSessionFactory ssf = new SqlSessionFactoryBuilder().build(reader);
-			//true해야 입력/수정/삭제 ㅜㅎ에 commit 실행
+			//true해야 입력/수정/삭제 후에 commit 실행
 			session = ssf.openSession(true);
 		} catch (Exception e) {
 			System.out.println("에러 : "+e.getMessage());
@@ -40,5 +40,8 @@ public class MemberDao {
 	}
 	public int updatepass(Member member) {
 		return session.update("memberns.updatepass",member);
+	}
+	public int delete(Member member) {
+		return session.update("memberns.delete",member);
 	}
 }

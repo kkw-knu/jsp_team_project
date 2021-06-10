@@ -18,5 +18,4 @@ public class Confirm implements CommandProcess {
 		request.setAttribute("msg", msg);
 		return "confirm.jsp";
 	}
-
 }

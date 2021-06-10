@@ -88,7 +88,7 @@
 			</table>
 			<button class="btn btn-primary mt-3" data-toggle="modal" data-target="#myModal">정보수정</button>
 			<button class="btn btn-primary mt-3" data-toggle="modal" data-target="#myModal1">비밀번호변경</button>
-			<a onclick="#" class="btn btn-primary mt-3">회원탈퇴</a>
+			<button class="btn btn-primary mt-3" data-toggle="modal" data-target="#myModal2">회원탈퇴</button>
 			<!-- Modal -->
 			<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 			<div class="modal-dialog">
@@ -164,6 +164,36 @@
 						<div class="modal-footer">
 							<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
 							<input type="submit" class="btn btn-primary" value="저장하기">
+						</div>
+					</form>
+				</div>
+				<!-- 모달 콘텐츠 -->
+			</div>
+			<!-- 모달 다이얼로그 -->
+		</div>
+		<div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">
+							<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+						</button>
+						<h4 class="modal-title" id="myModalLabel" style="text-align:center;">정말로 탈퇴하시겠습니까?</h4>
+					</div>
+					<form action="delete.do" method="post">
+						<input type="text" name="user_id" required="required" value="${member.user_id}" hidden="hidden">
+						<div class="modal-body">
+	    					<table class="table">
+								<tr><th>비밀번호</th><td>
+								<div class="form-group">
+		    						<input type="password" name="user_password" class="form-control mt-3" placeholder="비밀번호" required="required">	
+		    					</div></td>
+		    					<h5 style="text-align:center;">회원탈퇴를 위해 비밀번호를 입력해주세요</h5>
+							</table>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+							<input type="submit" class="btn btn-primary" value="탈퇴하기">
 						</div>
 					</form>
 				</div>
