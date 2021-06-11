@@ -59,7 +59,7 @@
         <div class="total_sub_menu"><a href="main.do">메인</a></div>
         <div class="total_sub_menu"><a href="#">여행지</a></div>
         <div class="total_sub_menu"><a href="#">숙박</a></div>
-        <div class="total_sub_menu"><a href="#">QnA</a></div>
+        <div class="total_sub_menu"><a href="qna.do">QnA</a></div>
         <div class="total_sub_menu"><a href="#">공지사항</a></div>
     </div>
     <div class="container mt-3" style="max-width:550px;">
