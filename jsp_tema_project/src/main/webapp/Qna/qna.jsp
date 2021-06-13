@@ -107,7 +107,7 @@
 		</c:if>
 		</table>
 		<div align="center">
-		<c:if test="${startPage > PAGE_PER_BLOCK} }">
+		<c:if test="${startPage > PAGE_PER_BLOCK}">
 			<button onclick="location.href='qna.qo?pageNum=${startPage - 1}'">이전</button>
 		</c:if>
 		<c:forEach var="i" begin="${ startPage}" end="${ endPage}">
