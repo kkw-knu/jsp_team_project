@@ -1,4 +1,4 @@
-package jsp_project.service;
+package jsp_project.qnaservice;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -8,6 +8,7 @@ import jsp_project.dao.MemberDao;
 import jsp_project.dao.QnaDao;
 import jsp_project.model.Member;
 import jsp_project.model.Qna;
+import jsp_project.service.CommandProcess;
 
 public class Qna_WriteAction implements CommandProcess {
 

@@ -1,14 +1,16 @@
-package jsp_project.service;
+package jsp_project.qnaservice;
 
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import jsp_project.dao.NoticeDao;
-import jsp_project.model.Notice;
+import jsp_project.dao.QnaDao;
+import jsp_project.model.Qna;
+import jsp_project.service.CommandProcess;
 
-public class NoticeAction implements CommandProcess {
+public class QnaAction implements CommandProcess {
+
 	@Override
 	public String requestPro(HttpServletRequest request, HttpServletResponse response) {
 		final int ROW_PER_PAGE = 10;     // 한페이지에 10개씩
@@ -16,13 +18,13 @@ public class NoticeAction implements CommandProcess {
 		String pageNum = request.getParameter("pageNum");
 		if (pageNum == null || pageNum.equals("")) pageNum = "1";
 		int currentPage = Integer.parseInt(pageNum);
-		NoticeDao nd = NoticeDao.getInstance();
-		int total = nd.getTotal();  
+		QnaDao qd = QnaDao.getInstance();
+		int total = qd.getTotal();  
 		// 시작번호	(페이지번호 - 1) * 페이지당 갯수+ 1				
 		int startRow = (currentPage - 1) * ROW_PER_PAGE + 1;
 		// 끝번호 	시작번호 + 페이지당개수 - 1			
 		int endRow = startRow + ROW_PER_PAGE - 1;
-		List<Notice> list = nd.list(startRow, endRow);
+		List<Qna> list = qd.list(startRow, endRow);
 		// 번호를 보기 좋기 정열
 		int number = total - startRow + 1;
 		int totalPage = (int)Math.ceil((double)total/ROW_PER_PAGE);   // 총 페이지 수
@@ -41,7 +43,7 @@ public class NoticeAction implements CommandProcess {
 		request.setAttribute("endPage", endPage);
 		request.setAttribute("totalPage", totalPage);
 		
-		return "notice.jsp";
+		return "qna.jsp";
 	}
 
 }

@@ -108,14 +108,14 @@
 		</table>
 		<div align="center">
 		<c:if test="${startPage > PAGE_PER_BLOCK}">
-			<button onclick="location.href='notice.qo?pageNum=${startPage - 1}'">이전</button>
+			<button onclick="location.href='notice.no?pageNum=${startPage - 1}'">이전</button>
 		</c:if>
 		<c:forEach var="i" begin="${ startPage}" end="${ endPage}">
-			<button onclick="location.href='notice.qo?pageNum=${i}'">${i }</button>
+			<button onclick="location.href='notice.no?pageNum=${i}'">${i }</button>
 		</c:forEach>
 		<!-- 	보여줄 것이 아직 남아있다 -->
 		<c:if test="${endPage < totalPage} }">
-			<button onclick="location.href='notice.qo?pageNum=${ endPage + 1}'">다음</button>
+			<button onclick="location.href='notice.no?pageNum=${ endPage + 1}'">다음</button>
 		</c:if>
 			<br><button onclick="location.href='writeForm.no?notice_num=0&pageNum=1'">글쓰기</button>
 		</div>
