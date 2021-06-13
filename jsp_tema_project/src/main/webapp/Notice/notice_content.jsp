@@ -84,32 +84,24 @@
     </div>
     <div><!-- 메인내용 -->
     <table><caption>게시글 상세보기</caption>
-		<tr><th width="100">제목</th><td>${qna.qna_title }</td></tr>
-		<tr><th>작성자</th><td>${qna.qna_writer }</td></tr>
-		<tr><th>조회수</th><td>${qna.qna_readcount}</td></tr>
-		<tr><th>작성일</th><td>${qna.qna_reg_date }</td></tr>
-		<tr><th>내용</th><td><pre>${qna.qna_content }</pre></td></tr> 
+		<tr><th width="100">제목</th><td>${notice.notice_title }</td></tr>
+		<tr><th>작성자</th><td>${notice.notice_writer }</td></tr>
+		<tr><th>조회수</th><td>${notice.notice_readcount}</td></tr>
+		<tr><th>작성일</th><td>${notice.notice_reg_date }</td></tr>
+		<tr><th>내용</th><td><pre>${notice.notice_content }</pre></td></tr> 
 	</table>
 	<div align="center"><br>
 	<c:if test="${empty user_id }">
-			<button onclick="location.href='qna.qo?pageNum=${pageNum}'">게시글 목록</button>
+			<button onclick="location.href='notice.no?pageNum=${pageNum}'">게시글 목록</button>
 	</c:if>
     <c:if test="${not empty user_id }">
     	<c:if test="${user_id=='master' }">
-    		<button onclick="location.href='updateForm.qo?qna_num=${qna_num}&pageNum=${pageNum}'">수정</button>
+    		<button onclick="location.href='updateForm.no?notice_num=${notice_num}&pageNum=${pageNum}'">수정</button>
 			<button data-toggle="modal" data-target="#myModal2">삭제</button>
-			<button onclick="location.href='writeForm.qo?qna_num=${qna_num}&pageNum=${pageNum}'">답변</button>
-			<button onclick="location.href='qna.qo?pageNum=${pageNum}'">게시글 목록</button>
+			<button onclick="location.href='notice.no?pageNum=${pageNum}'">게시글 목록</button>
     	</c:if>
     	<c:if test="${user_id!='master' }">
-    		<c:if test="${user_id==qna.qna_writer }">
-    			<button onclick="location.href='updateForm.qo?qna_num=${qna_num}&pageNum=${pageNum}'">수정</button>
-				<button data-toggle="modal" data-target="#myModal2">삭제</button>
-				<button onclick="location.href='qna.qo?pageNum=${pageNum}'">게시글 목록</button>
-    		</c:if>
-    		<c:if test="${user_id!=qna.qna_writer }">
-				<button onclick="location.href='qna.qo?pageNum=${pageNum}'">게시글 목록</button>
-    		</c:if>
+			<button onclick="location.href='notice.no?pageNum=${pageNum}'">게시글 목록</button>
     	</c:if>
 	</c:if>
 	</div>
@@ -122,8 +114,8 @@
 						</button>
 						<h4 class="modal-title" id="myModalLabel" style="text-align:center;">정말로 삭제하시겠습니까?</h4>
 					</div>
-					<form action="deleteAction.qo" method="post">
-						<input type="hidden" name="qna_num" required="required" value="${qna_num}">
+					<form action="deleteAction.no" method="post">
+						<input type="hidden" name="notice_num" required="required" value="${notice_num}">
 						<input type="hidden" name="pageNum" required="required" value="${pageNum}">
 						<div class="modal-footer">
 							<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>

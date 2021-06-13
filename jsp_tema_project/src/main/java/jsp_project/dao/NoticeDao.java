@@ -68,6 +68,39 @@ public class NoticeDao {
 		return list;
 	}
 	
+	public Notice select(int notice_num){
+		Notice notice = new Notice();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		Connection conn = getConnection();
+		String sql = "select * from notice where notice_num=?";
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, notice_num);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				notice.setNotice_num(rs.getInt("notice_num"));
+				notice.setNotice_title(rs.getString("notice_title"));
+				notice.setNotice_content(rs.getString("notice_content"));
+				notice.setNotice_writer(rs.getString("notice_writer"));
+				notice.setNotice_readcount(rs.getInt("notice_readcount"));
+				notice.setNotice_reg_date(rs.getDate("notice_reg_date"));
+				notice.setNotice_del(rs.getString("notice_del"));
+			}
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}finally {
+			try {
+				if(rs!=null) rs.close();
+				if(pstmt!=null) pstmt.close();
+				if(conn!=null) conn.close();
+			} catch (Exception e2) {
+				System.out.println(e2.getMessage());
+			}
+		}
+		return notice;
+	}
+	
 	public int insert(Notice notice){
 		int result = 0;
 		PreparedStatement pstmt = null;
@@ -99,6 +132,27 @@ public class NoticeDao {
 			}
 		}
 		return result;
+	}
+	
+	public void readcoutUpdate(int notice_num){
+		PreparedStatement pstmt = null;
+		Connection conn = getConnection();
+		String sql = "update notice set notice_readcount = notice_readcount + 1 where notice_num=?";
+		try {
+
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, notice_num);
+			pstmt.executeUpdate();
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}finally {
+			try {
+				if(pstmt!=null) pstmt.close();
+				if(conn!=null) conn.close();
+			} catch (Exception e2) {
+				System.out.println(e2.getMessage());
+			}
+		}
 	}
 	
 	public int getTotal() {

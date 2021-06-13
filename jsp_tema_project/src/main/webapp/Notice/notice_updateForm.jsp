@@ -83,13 +83,13 @@
         <div class="total_sub_menu"><a href="notice.no">공지사항</a></div>
     </div>
     <div><!-- 메인내용 -->
-    <form action="updateAction.qo" method="post">
-	<input type="hidden" name="qna_num" value="${qna.qna_num}">
-	<input type="hidden" name="qna_writer" value="${qna.qna_writer}">
+    <form action="updateAction.no" method="post">
+	<input type="hidden" name="notice_num" value="${notice.notice_num}">
+	<input type="hidden" name="notice_writer" value="${notice.notice_writer}">
 	<input type="hidden" name="pageNum" value="${pageNum }">
 	<table class="table"><caption>게시글 수정</caption>
-		<tr><th>제목</th><td><input type="text" name="qna_title" required="required" autofocus="autofocus" value="${qna.qna_title}"></td></tr>
-		<tr><th>내용</th><td><textarea name="qna_content" required="required" rows="5" cols="40">${qna.qna_content}</textarea></td></tr>
+		<tr><th>제목</th><td><input type="text" name="notice_title" required="required" autofocus="autofocus" value="${notice.notice_title}"></td></tr>
+		<tr><th>내용</th><td><textarea name="notice_content" required="required" rows="5" cols="40">${notice.notice_content}</textarea></td></tr>
 		<tr><th colspan="2"><input type="submit" value="수정하기"> <button onclick="history.back()">돌아가기</button></th></tr>
 	</table>
 </form>
