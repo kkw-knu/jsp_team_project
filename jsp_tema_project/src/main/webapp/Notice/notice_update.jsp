@@ -5,13 +5,13 @@
 <title>Insert title here</title></head><body>
 <c:if test="${result > 0 }">
 	<script type="text/javascript">
-		alert("게시글이 수정되었습니다.");
+		alert("공지사항이 수정되었습니다.");
 		location.href="notice.no?pageNum=${pageNum}";
 	</script>
 </c:if>
 <c:if test="${result == 0 }">
 	<script type="text/javascript">
-		alert("게시글이 수정에 실패하였습니다.");
+		alert("공지사항이 수정에 실패하였습니다.");
 		history.back();
 	</script>
 </c:if>

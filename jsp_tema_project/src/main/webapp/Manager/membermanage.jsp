@@ -39,7 +39,7 @@
 					<li><a>ㅣ</a></li>
                     <li><a href="logout.do">로그아웃</a></li>
                     <li><a>ㅣ</a></li>
-                    <li><a href="#">회원관리</a></li>
+                    <li><a href="membermanage.mo">회원관리</a></li>
                 	</c:if>
                 	<c:if test="${user_id!='master' }">
                 	<li><a><%=session.getAttribute("user_id") %> 님 반갑습니다</a></li>
@@ -83,18 +83,38 @@
         <div class="total_sub_menu"><a href="qna.qo">QnA</a></div>
         <div class="total_sub_menu"><a href="notice.no">공지사항</a></div>
     </div>
-    <div><!-- 메인내용 -->
-    <form action="updateAction.no" method="post">
-	<input type="hidden" name="notice_num" value="${notice.notice_num}">
-	<input type="hidden" name="notice_writer" value="${notice.notice_writer}">
-	<input type="hidden" name="pageNum" value="${pageNum }">
-	<table class="table"><caption>게시글 수정</caption>
-		<tr><th>제목</th><td><input type="text" name="notice_title" required="required" autofocus="autofocus" value="${notice.notice_title}"></td></tr>
-		<tr><th>내용</th><td><textarea name="notice_content" required="required" rows="5" cols="40">${notice.notice_content}</textarea></td></tr>
-		<tr><th colspan="2"><input type="submit" value="수정하기"> <button onclick="history.back()">돌아가기</button></th></tr>
-	</table>
-</form>
-    </div>
+    <div>
+	<table class="table"><caption>회원 목록</caption>
+	<tr><th>아이디</th><th>이름</th><th>전화번호</th><th>주소</th><th>이메일</th><th>가입날짜</th><th>탈퇴여부</th></tr>
+		<c:if test="${empty list }">
+			<tr><th colspan="7" style="text-align:center;">가입한 회원이 없습니다</th></tr>
+		</c:if>
+		<c:if test="${not empty list }">
+			<c:forEach var="member" items="${list }">
+				<tr><td title="${member.user_id}"><a href="content.no?user_id=${member.user_id}&pageNum=${currentPage}">${member.user_id}</a></td>
+					<td>${member.user_name }</td>
+					<td>${member.user_tel }</td>
+					<td>${member.user_address }</td>
+					<td>${member.user_email }</td>
+					<td>${member.user_date }</td>
+					<td>${member.user_del }</td>
+				</tr>
+			</c:forEach>
+		</c:if>
+		</table>
+		<div align="center">
+		<c:if test="${startPage > PAGE_PER_BLOCK}">
+			<button onclick="location.href='membermanage.mo?pageNum=${startPage - 1}'">이전</button>
+		</c:if>
+		<c:forEach var="i" begin="${ startPage}" end="${ endPage}">
+			<button onclick="location.href='membermanage.mo?pageNum=${i}'">${i }</button>
+		</c:forEach>
+		<!-- 	보여줄 것이 아직 남아있다 -->
+		<c:if test="${endPage < totalPage} }">
+			<button onclick="location.href='membermanage.mo?pageNum=${ endPage + 1}'">다음</button>
+		</c:if>
+		</div>
+	</div><!--메인 div-->
     <div class="footer">
         <div class="fl">
             <div>
