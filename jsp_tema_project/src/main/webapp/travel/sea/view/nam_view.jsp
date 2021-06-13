@@ -9,13 +9,13 @@
 	<meta name="Keyword" content="웹개발, 프론트엔드, 백엔드, 여행, 관광, html, css, java, javascript, tomcat, jsp">
     <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding:wght@700&family=Noto+Sans+KR:wght@700&display=swap" rel="stylesheet">
 	<link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="../../../css/bootstrap.min.css" rel="stylesheet" type="text/css">
     <script src="https://kit.fontawesome.com/012d5a0fd2.js" crossorigin="anonymous"></script>
-    <script type="text/javascript" src="js/jquery.js"></script>
-    <script type="text/javascript" src="js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="js/pooper.js"></script>
-	<link href="css/init.css" rel="stylesheet" type="text/css">
-    <link href="css/Header.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="../../../js/jquery.js"></script>
+    <script type="text/javascript" src="../../../js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../../../js/pooper.js"></script>
+	<link href="../../../css/init.css" rel="stylesheet" type="text/css">
+    <link href="../../../css/Header.css" rel="stylesheet" type="text/css">
 <title>남애항</title>
 </head>
 <script>
