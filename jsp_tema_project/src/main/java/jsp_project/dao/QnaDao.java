@@ -35,7 +35,7 @@ public class QnaDao {
 		ResultSet rs = null;
 		Connection conn = getConnection();
 		String sql = "select * from (select rowNum rn, a.* from "
-				+ "(select * from qna order by ref desc, re_step) a)"
+				+ "(select * from qna order by qna_ref desc, qna_re_step) a)"
 				+ "    where rn between ? and ?";
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -53,7 +53,7 @@ public class QnaDao {
 				qna.setQna_re_step(rs.getInt("qna_re_step"));
 				qna.setQna_re_level(rs.getInt("qna_re_level"));
 				qna.setQna_reg_date(rs.getDate("qna_reg_date"));
-				qna.setDel(rs.getString("del"));
+				qna.setQna_del(rs.getString("qna_del"));
 				
 				list.add(qna);
 			}
@@ -67,6 +67,42 @@ public class QnaDao {
 			}catch (Exception e) {		}
 		}
 		return list;
+	}
+	
+	public Qna select(int qna_num){
+		Qna qna = new Qna();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		Connection conn = getConnection();
+		String sql = "select * from board where qna_num=?";
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, qna_num);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				qna.setQna_num(rs.getInt("qna_num"));
+				qna.setQna_title(rs.getString("qna_title"));
+				qna.setQna_content(rs.getString("qna_content"));
+				qna.setQna_writer(rs.getString("qna_writer"));
+				qna.setQna_readcount(rs.getInt("qna_readcount"));
+				qna.setQna_ref(rs.getInt("qna_ref"));
+				qna.setQna_re_step(rs.getInt("qna_re_step"));
+				qna.setQna_re_level(rs.getInt("qna_re_level"));
+				qna.setQna_reg_date(rs.getDate("qna_reg_date"));
+				qna.setQna_del(rs.getString("qna_del"));
+			}
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}finally {
+			try {
+				if(rs!=null) rs.close();
+				if(pstmt!=null) pstmt.close();
+				if(conn!=null) conn.close();
+			} catch (Exception e2) {
+				System.out.println(e2.getMessage());
+			}
+		}
+		return qna;
 	}
 	
 	public int getTotal() {

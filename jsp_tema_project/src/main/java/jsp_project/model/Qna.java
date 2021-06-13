@@ -10,7 +10,7 @@ public class Qna {
 	private int qna_re_step;
 	private int qna_re_level;
 	private Date qna_reg_date;
-	private String del;
+	private String qna_del;
 	public int getQna_num() {
 		return qna_num;
 	}
@@ -65,10 +65,10 @@ public class Qna {
 	public void setQna_reg_date(Date qna_reg_date) {
 		this.qna_reg_date = qna_reg_date;
 	}
-	public String getDel() {
-		return del;
+	public String getQna_del() {
+		return qna_del;
 	}
-	public void setDel(String del) {
-		this.del = del;
+	public void setQna_del(String qna_del) {
+		this.qna_del = qna_del;
 	}
 }
