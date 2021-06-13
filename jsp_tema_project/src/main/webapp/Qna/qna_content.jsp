@@ -82,11 +82,33 @@
 		<tr><th>내용</th><td><pre>${qna.qna_content }</pre></td></tr> 
 	</table>
 	<div align="center"><br>
-	<button onclick="location.href='updateForm.qo?qna_num=${qna_num}&pageNum=${pageNum}'">수정</button>
-	<button onclick="location.href='deleteForm.qo?qna_num=${qna_num}&pageNum=${pageNum}'">삭제</button>
-	<button onclick="location.href='writeForm.qo?qna_num=${qna_num}&pageNum=${pageNum}'">답변</button>
-	<button onclick="location.href='qna.qo?pageNum=${pageNum}'">게시글 목록</button>
+		<button onclick="location.href='updateForm.qo?qna_num=${qna_num}&pageNum=${pageNum}'">수정</button>
+		<button data-toggle="modal" data-target="#myModal2">삭제</button>
+		<button onclick="location.href='writeForm.qo?qna_num=${qna_num}&pageNum=${pageNum}'">답변</button>
+		<button onclick="location.href='qna.qo?pageNum=${pageNum}'">게시글 목록</button>
 	</div>
+	<div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">
+							<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+						</button>
+						<h4 class="modal-title" id="myModalLabel" style="text-align:center;">정말로 삭제하시겠습니까?</h4>
+					</div>
+					<form action="deleteAction.qo" method="post">
+						<input type="hidden" name="qna_num" required="required" value="${qna_num}">
+						<input type="hidden" name="pageNum" required="required" value="${pageNum}">
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+							<input type="submit" class="btn btn-primary" value="삭제하기">
+						</div>
+					</form>
+				</div>
+				<!-- 모달 콘텐츠 -->
+			</div>
+			<!-- 모달 다이얼로그 -->
+		</div>
     </div>
     <div class="footer">
         <div class="fl">

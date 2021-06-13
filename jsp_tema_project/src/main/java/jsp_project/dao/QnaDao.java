@@ -200,6 +200,29 @@ public class QnaDao {
 		}
 		return result;
 	}
+	
+	public int delete(int qna_num){
+		int result = 0;
+		PreparedStatement pstmt = null;
+		Connection conn = getConnection();
+		String sql = "update qna set qna_del='y' where qna_num=?";
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, qna_num);
+			result = pstmt.executeUpdate();
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}finally {
+			try {
+				if(pstmt!=null) pstmt.close();
+				if(conn!=null) conn.close();
+			} catch (Exception e2) {
+				System.out.println(e2.getMessage());
+			}
+		}
+		return result;
+	}
+	
 	public int getTotal() {
 		int total = 0;
 		PreparedStatement pstmt = null;
