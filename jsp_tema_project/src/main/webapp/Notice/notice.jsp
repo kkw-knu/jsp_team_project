@@ -117,7 +117,11 @@
 		<c:if test="${endPage < totalPage} }">
 			<button onclick="location.href='notice.no?pageNum=${ endPage + 1}'">다음</button>
 		</c:if>
-			<br><button onclick="location.href='writeForm.no?notice_num=0&pageNum=1'">글쓰기</button>
+		<c:if test="${not empty user_id }">
+	    	<c:if test="${user_id=='master' }">
+	    		<br><button onclick="location.href='writeForm.no?notice_num=0&pageNum=1'">글쓰기</button>
+	    	</c:if>
+		</c:if>
 		</div>
     </div>
     <div class="footer">

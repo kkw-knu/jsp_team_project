@@ -67,6 +67,40 @@ public class NoticeDao {
 		}
 		return list;
 	}
+	
+	public int insert(Notice notice){
+		int result = 0;
+		PreparedStatement pstmt = null;
+		Connection conn = getConnection();
+		ResultSet rs = null;
+		String sql = "insert into notice values(?,?,?,?,0,sysdate,'n')";
+		String sql2 = "select nvl(max(notice_num),0) + 1 from notice";
+		try {
+			pstmt = conn.prepareStatement(sql2);
+			rs = pstmt.executeQuery();
+			rs.next();
+			int number = rs.getInt(1); //가장 큰 num에 1을 더한값		
+			pstmt.close();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, number);
+			pstmt.setString(2, notice.getNotice_title());
+			pstmt.setString(3, notice.getNotice_content());
+			pstmt.setString(4, notice.getNotice_writer());
+
+			result = pstmt.executeUpdate();
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}finally {
+			try {
+				if(pstmt!=null) pstmt.close();
+				if(conn!=null) conn.close();
+			} catch (Exception e2) {
+				System.out.println(e2.getMessage());
+			}
+		}
+		return result;
+	}
+	
 	public int getTotal() {
 		int total = 0;
 		PreparedStatement pstmt = null;

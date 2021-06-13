@@ -83,18 +83,13 @@
         <div class="total_sub_menu"><a href="notice.no">공지사항</a></div>
     </div>
     <div><!-- 메인내용 -->
-    <form action="writeAction.qo" method="post">
-    <input type="hidden" name="qna_num" value="${qna_num }">
-    <input type="hidden" name="qna_writer" value="${member.user_id }"><!-- 확인 필요 -->
+    <form action="writeAction.no" method="post">
+    <input type="hidden" name="notice_num" value="${notice_num }">
+    <input type="hidden" name="notice_writer" value="${member.user_id }">
 	<input type="hidden" name="pageNum" value="${pageNum }">
-	<!-- 답변글을 위해 필요함 -->
-	<input type="hidden" name="qna_ref" value="${qna_ref }">
-	<input type="hidden" name="qna_re_level" value="${qna_re_level }">
-	<input type="hidden" name="qna_re_step" value="${qna_re_step }">
 	<table class="table"><caption>게시글 작성</caption>
-		<tr><th>제목</th><td><input type="text" name="qna_title" required="required" autofocus="autofocus"></td></tr>
-		<!-- 회원게시글에는 불필요 -->
-		<tr><th>내용</th><td><textarea rows="5" cols="40" name="qna_content" required="required"></textarea></td></tr>
+		<tr><th>제목</th><td><input type="text" name="notice_title" required="required" autofocus="autofocus"></td></tr>
+		<tr><th>내용</th><td><textarea rows="5" cols="40" name="notice_content" required="required"></textarea></td></tr>
 		<tr><th colspan="2"><input type="submit" value="확인"></th></tr>
 	</table>
     </form>
