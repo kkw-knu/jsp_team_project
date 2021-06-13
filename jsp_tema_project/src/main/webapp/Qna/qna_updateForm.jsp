@@ -75,7 +75,8 @@
     </div>
     <div><!-- 메인내용 -->
     <form action="updateAction.qo" method="post">
-	<input type="hidden" name="num" value="${qna.qna_num}">
+	<input type="hidden" name="qna_num" value="${qna.qna_num}">
+	<input type="hidden" name="qna_writer" value="${qna.qna_writer}">
 	<input type="hidden" name="pageNum" value="${pageNum }">
 	<table class="table"><caption>게시글 수정</caption>
 		<tr><th>제목</th><td><input type="text" name="qna_title" required="required" autofocus="autofocus" value="${qna.qna_title}"></td></tr>

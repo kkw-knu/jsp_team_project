@@ -177,6 +177,29 @@ public class QnaDao {
 		}
 	}
 	
+	public int update(Qna qna){ //board 화면에서 입력
+		int result = 0;
+		PreparedStatement pstmt = null;
+		Connection conn = getConnection();
+		String sql = "update qna set qna_content=?,qna_title=? where qna_num=?"; 
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, qna.getQna_content());
+			pstmt.setString(2, qna.getQna_title());
+			pstmt.setInt(3, qna.getQna_num());
+			result = pstmt.executeUpdate();
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}finally {
+			try {
+				if(pstmt!=null) pstmt.close();
+				if(conn!=null) conn.close();
+			} catch (Exception e2) {
+				System.out.println(e2.getMessage());
+			}
+		}
+		return result;
+	}
 	public int getTotal() {
 		int total = 0;
 		PreparedStatement pstmt = null;
