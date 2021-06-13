@@ -74,7 +74,7 @@
         <div class="total_sub_menu"><a href="#">공지사항</a></div>
     </div>
     <div><!-- 메인내용 -->
-    <form action="write.qo" method="post">
+    <form action="writeAction.qo" method="post">
     <input type="hidden" name="qna_num" value="${qna_num }">
     <input type="hidden" name="qna_writer" value="${member.user_id }"><!-- 확인 필요 -->
 	<input type="hidden" name="pageNum" value="${pageNum }">
