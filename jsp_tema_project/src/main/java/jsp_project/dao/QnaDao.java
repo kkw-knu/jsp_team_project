@@ -9,6 +9,7 @@ import java.util.List;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
+
 import jsp_project.model.Qna;
 
 public class QnaDao {
@@ -74,7 +75,7 @@ public class QnaDao {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		Connection conn = getConnection();
-		String sql = "select * from board where qna_num=?";
+		String sql = "select * from qna where qna_num=?";
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, qna_num);
@@ -152,6 +153,28 @@ public class QnaDao {
 			}
 		}
 		return result;
+	}
+	
+	public void readcoutUpdate(int qna_num){
+		PreparedStatement pstmt = null;
+		Connection conn = getConnection();
+		// readcount 1 증가 즉 조회수 1 증가(클릭할때마다)
+		String sql = "update qna set qna_readcount = qna_readcount + 1 where qna_num=?";
+		try {
+
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, qna_num);
+			pstmt.executeUpdate();
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}finally {
+			try {
+				if(pstmt!=null) pstmt.close();
+				if(conn!=null) conn.close();
+			} catch (Exception e2) {
+				System.out.println(e2.getMessage());
+			}
+		}
 	}
 	
 	public int getTotal() {

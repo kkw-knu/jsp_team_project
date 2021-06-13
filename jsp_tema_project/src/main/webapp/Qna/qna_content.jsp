@@ -73,52 +73,20 @@
         <div class="total_sub_menu"><a href="qna.qo">QnA</a></div>
         <div class="total_sub_menu"><a href="#">공지사항</a></div>
     </div>
-    <div>
-    <table class="table"><caption>게시글 목록</caption>
-	<tr><th>번호</th><th>	제목</th><th>작성자</th><th>작성일</th><th>조회수</th></tr>
-		<c:if test="${empty list }">
-			<tr><th colspan="5" style="text-align:center;">게시글이 없습니다</th></tr>
-		</c:if>
-		<c:if test="${not empty list }">
-			<c:forEach var="qna" items="${list }">
-				<tr><td>${qna.qna_num}<%-- ${board.num } --%></td>
-				<c:if test="${qna.qna_del == 'y' }">
-					<th colspan="4">삭제된 게시글 입니다</th>
-				</c:if>
-				<c:if test="${qna.qna_del != 'y' }">
-					<td title="${qna.qna_content }">
-						<!-- 답변글 -->
-						<c:if test="${qna.qna_re_level > 0 }">
-							<img alt="" src="images/level.gif" height="5" 
-								width="${qna.qna_re_level*10 }">
-							<img alt="" src="images/re.gif">
-						</c:if>
-						<a href="content.qo?qna_num=${qna.qna_num}&pageNum=${currentPage}">
-						${qna.qna_title}</a>
-						<c:if test="${qna.qna_readcount > 50 }">
-							<img alt="" src="images/hot.gif">
-						</c:if></td>
-					<td>${qna.qna_writer }</td>
-					<td>${qna.qna_reg_date }</td>
-					<td>${qna.qna_readcount}</td>
-				</c:if>
-				</tr>
-			</c:forEach>
-		</c:if>
-		</table>
-		<div align="center">
-		<c:if test="${startPage > PAGE_PER_BLOCK}">
-			<button onclick="location.href='qna.qo?pageNum=${startPage - 1}'">이전</button>
-		</c:if>
-		<c:forEach var="i" begin="${ startPage}" end="${ endPage}">
-			<button onclick="location.href='qna.qo?pageNum=${i}'">${i }</button>
-		</c:forEach>
-		<!-- 	보여줄 것이 아직 남아있다 -->
-		<c:if test="${endPage < totalPage} }">
-			<button onclick="location.href='qna.qo?pageNum=${ endPage + 1}'">다음</button>
-		</c:if>
-			<br><button onclick="location.href='writeForm.qo?qna_num=0&pageNum=1'">글쓰기</button>
-		</div>
+    <div><!-- 메인내용 -->
+    <table><caption>게시글 상세보기</caption>
+		<tr><th width="100">제목</th><td>${qna.qna_title }</td></tr>
+		<tr><th>작성자</th><td>${qna.qna_writer }</td></tr>
+		<tr><th>조회수</th><td>${qna.qna_readcount}</td></tr>
+		<tr><th>작성일</th><td>${qna.qna_reg_date }</td></tr>
+		<tr><th>내용</th><td><pre>${qna.qna_content }</pre></td></tr> 
+	</table>
+	<div align="center"><br>
+	<button onclick="location.href='updateForm.qo?qna_num=${qna_num}&pageNum=${pageNum}'">수정</button>
+	<button onclick="location.href='deleteForm.qo?qna_num=${qna_num}&pageNum=${pageNum}'">삭제</button>
+	<button onclick="location.href='writeForm.qo?qna_num=${qna_num}&pageNum=${pageNum}'">답변</button>
+	<button onclick="location.href='qna.qo?pageNum=${pageNum}'">게시글 목록</button>
+	</div>
     </div>
     <div class="footer">
         <div class="fl">
