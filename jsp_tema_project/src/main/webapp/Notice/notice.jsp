@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -23,9 +24,28 @@
         <div class="global_menu_wrap">
             <div class="fr">
                 <ul>
-                    <li><a href="loginform.do">로그인</a></li>
+                <c:set var="user_id" value="${sessionScope.user_id }"></c:set>
+                <c:if test="${empty user_id }">
+					<li><a href="loginform.do">로그인</a></li>
+					<li><a>ㅣ</a></li>
                     <li><a href="joinform.do">회원가입</a></li>
-                    <li><a href="#none">고객센터</a></li>
+                    <li><a>ㅣ</a></li>
+                    <li><a href="qna.qo">고객센터</a></li>
+				</c:if>
+                <c:if test="${not empty user_id }">
+                	<c:if test="${user_id=='master' }">
+                	<li><a>관리자 로그인 상태입니다</a></li>
+					<li><a>ㅣ</a></li>
+                    <li><a href="logout.do">로그아웃</a></li>
+                    <li><a>ㅣ</a></li>
+                    <li><a href="#">회원관리</a></li>
+                	</c:if>
+                	<c:if test="${user_id!='master' }">
+                	<li><a><%=session.getAttribute("user_id") %> 님 반갑습니다</a></li>
+					<li><a>ㅣ</a></li>
+                    <li><a href="logout.do">로그아웃</a></li>
+                	</c:if>
+				</c:if>
                 </ul>
             </div>
         </div>
@@ -60,21 +80,46 @@
         <div class="total_sub_menu"><a href="#">여행지</a></div>
         <div class="total_sub_menu"><a href="#">숙박</a></div>
         <div class="total_sub_menu"><a href="qna.qo">QnA</a></div>
-        <div class="total_sub_menu"><a href="#">공지사항</a></div>
+        <div class="total_sub_menu"><a href="notice.no">공지사항</a></div>
     </div>
-    <div class="container mt-3" style="max-width:550px;">
-    	<form action="login.do" method="post">
-    		<br><h1 style="text-align:center; font-size:60px;">로그인</h1><br>
-    		<div class="form-group">
-    			<input type="text" name="user_id" class="form-control" id="inputid" placeholder="아이디">	
-    		</div>
-    		<div class="form-group">
-    			<input type="password" name="user_password" class="form-control mt-3" id="inputpassword" placeholder="비밀번호">	
-    		</div>
-	    	<button type="submit" class="btn btn-primary btn-block mt-3">로그인</button>
-	    	<a onclick="location.href='joinform.do'" class="btn btn-primary mt-3 btn-block">회원가입</a>	
-    	</form>
-    </div><!--메인 div-->
+    <div>
+    <table class="table"><caption>게시글 목록</caption>
+	<tr><th>번호</th><th>	제목</th><th>작성자</th><th>작성일</th><th>조회수</th></tr>
+		<c:if test="${empty list }">
+			<tr><th colspan="5" style="text-align:center;">게시글이 없습니다</th></tr>
+		</c:if>
+		<c:if test="${not empty list }">
+			<c:forEach var="notice" items="${list }">
+				<tr><td>${notice.notice_num}<%-- ${board.num } --%></td>
+				<c:if test="${notice.notice_del == 'y' }">
+					<th colspan="4">삭제된 게시글 입니다</th>
+				</c:if>
+				<c:if test="${notice.notice_del != 'y' }">
+					<td title="${notice.notice_content }">
+						<a href="content.no?notice_num=${notice.notice_num}&pageNum=${currentPage}">
+						${notice.notice_title}</a></td>
+					<td>${notice.notice_writer }</td>
+					<td>${notice.notice_reg_date }</td>
+					<td>${notice.notice_readcount}</td>
+				</c:if>
+				</tr>
+			</c:forEach>
+		</c:if>
+		</table>
+		<div align="center">
+		<c:if test="${startPage > PAGE_PER_BLOCK}">
+			<button onclick="location.href='notice.qo?pageNum=${startPage - 1}'">이전</button>
+		</c:if>
+		<c:forEach var="i" begin="${ startPage}" end="${ endPage}">
+			<button onclick="location.href='notice.qo?pageNum=${i}'">${i }</button>
+		</c:forEach>
+		<!-- 	보여줄 것이 아직 남아있다 -->
+		<c:if test="${endPage < totalPage} }">
+			<button onclick="location.href='notice.qo?pageNum=${ endPage + 1}'">다음</button>
+		</c:if>
+			<br><button onclick="location.href='writeForm.no?notice_num=0&pageNum=1'">글쓰기</button>
+		</div>
+    </div>
     <div class="footer">
         <div class="fl">
             <div>

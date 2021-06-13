@@ -4,20 +4,20 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="Description" content="관광지를 한눈에 찾아보고 숙박시스템까지 연계가 가능한 웹페이지.">
-	<meta name="Keyword" content="웹개발, 프론트엔드, 백엔드, 여행, 관광, html, css, java, javascript, tomcat, jsp">
-    <title>관광곳곳</title>
-    <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding:wght@700&family=Noto+Sans+KR:wght@700&display=swap" rel="stylesheet">
-	<link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="css/bootstrap1.min.css" rel="stylesheet" type="text/css">
-    <script src="https://kit.fontawesome.com/012d5a0fd2.js" crossorigin="anonymous"></script>
-    <script type="text/javascript" src="js/jquery.js"></script>
-    <script type="text/javascript" src="js/bootstrap1.min.js"></script>
-    <script type="text/javascript" src="js/pooper.js"></script>
-	<link href="css/init.css" rel="stylesheet" type="text/css">
-    <link href="css/Header.css" rel="stylesheet" type="text/css">
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="Keyword" content="웹개발, 프론트엔드, 백엔드, 여행, 관광, html, css, java, javascript, tomcat, jsp">
+<meta name="Description" content="관광지를 한눈에 찾아보고 숙박시스템까지 연계가 가능한 웹페이지.">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>관광곳곳</title>
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding:wght@700&family=Noto+Sans+KR:wght@700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<script src="https://kit.fontawesome.com/012d5a0fd2.js" crossorigin="anonymous"></script>
+<link href="css/bootstrap1.min.css" rel="stylesheet">
+<script src="js/jquery.js"></script>
+<link href="css/init.css" rel="stylesheet" type="text/css">
+<link href="css/Header.css" rel="stylesheet" type="text/css">
+<script src="js/bootstrap1.min.js"></script>
 </head>
 <body>
     <div>
@@ -82,59 +82,8 @@
         <div class="total_sub_menu"><a href="qna.qo">QnA</a></div>
         <div class="total_sub_menu"><a href="notice.no">공지사항</a></div>
     </div>
-    <div><!-- 메인내용 -->
-    <table><caption>게시글 상세보기</caption>
-		<tr><th width="100">제목</th><td>${qna.qna_title }</td></tr>
-		<tr><th>작성자</th><td>${qna.qna_writer }</td></tr>
-		<tr><th>조회수</th><td>${qna.qna_readcount}</td></tr>
-		<tr><th>작성일</th><td>${qna.qna_reg_date }</td></tr>
-		<tr><th>내용</th><td><pre>${qna.qna_content }</pre></td></tr> 
-	</table>
-	<div align="center"><br>
-	<c:if test="${empty user_id }">
-			<button onclick="location.href='qna.qo?pageNum=${pageNum}'">게시글 목록</button>
-	</c:if>
-    <c:if test="${not empty user_id }">
-    	<c:if test="${user_id=='master' }">
-    		<button onclick="location.href='updateForm.qo?qna_num=${qna_num}&pageNum=${pageNum}'">수정</button>
-			<button data-toggle="modal" data-target="#myModal2">삭제</button>
-			<button onclick="location.href='writeForm.qo?qna_num=${qna_num}&pageNum=${pageNum}'">답변</button>
-			<button onclick="location.href='qna.qo?pageNum=${pageNum}'">게시글 목록</button>
-    	</c:if>
-    	<c:if test="${user_id!='master' }">
-    		<c:if test="${user_id==qna.qna_writer }">
-    			<button onclick="location.href='updateForm.qo?qna_num=${qna_num}&pageNum=${pageNum}'">수정</button>
-				<button data-toggle="modal" data-target="#myModal2">삭제</button>
-				<button onclick="location.href='qna.qo?pageNum=${pageNum}'">게시글 목록</button>
-    		</c:if>
-    		<c:if test="${user_id!=qna.qna_writer }">
-				<button onclick="location.href='qna.qo?pageNum=${pageNum}'">게시글 목록</button>
-    		</c:if>
-    	</c:if>
-	</c:if>
-	</div>
-	<div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-			<div class="modal-dialog">
-				<div class="modal-content">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal">
-							<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
-						</button>
-						<h4 class="modal-title" id="myModalLabel" style="text-align:center;">정말로 삭제하시겠습니까?</h4>
-					</div>
-					<form action="deleteAction.qo" method="post">
-						<input type="hidden" name="qna_num" required="required" value="${qna_num}">
-						<input type="hidden" name="pageNum" required="required" value="${pageNum}">
-						<div class="modal-footer">
-							<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
-							<input type="submit" class="btn btn-primary" value="삭제하기">
-						</div>
-					</form>
-				</div>
-				<!-- 모달 콘텐츠 -->
-			</div>
-			<!-- 모달 다이얼로그 -->
-		</div>
+    <div style="max-width:600px; margin:0 auto; margin-top:30px;">
+    <br><h1 style="text-align:center; font-size:60px;">내 리뷰</h1><br>
     </div>
     <div class="footer">
         <div class="fl">

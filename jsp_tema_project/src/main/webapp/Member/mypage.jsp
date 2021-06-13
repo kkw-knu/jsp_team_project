@@ -36,9 +36,28 @@
         <div class="global_menu_wrap">
             <div class="fr">
                 <ul>
-					<li><a><%=session.getAttribute("user_id") %> 님 반갑습니다</a></li>
+                <c:set var="user_id" value="${sessionScope.user_id }"></c:set>
+                <c:if test="${empty user_id }">
+					<li><a href="loginform.do">로그인</a></li>
+					<li><a>ㅣ</a></li>
+                    <li><a href="joinform.do">회원가입</a></li>
+                    <li><a>ㅣ</a></li>
+                    <li><a href="qna.qo">고객센터</a></li>
+				</c:if>
+                <c:if test="${not empty user_id }">
+                	<c:if test="${user_id=='master' }">
+                	<li><a>관리자 로그인 상태입니다</a></li>
 					<li><a>ㅣ</a></li>
                     <li><a href="logout.do">로그아웃</a></li>
+                    <li><a>ㅣ</a></li>
+                    <li><a href="#">회원관리</a></li>
+                	</c:if>
+                	<c:if test="${user_id!='master' }">
+                	<li><a><%=session.getAttribute("user_id") %> 님 반갑습니다</a></li>
+					<li><a>ㅣ</a></li>
+                    <li><a href="logout.do">로그아웃</a></li>
+                	</c:if>
+				</c:if>
                 </ul>
             </div>
         </div>
@@ -73,7 +92,7 @@
         <div class="total_sub_menu"><a href="#">여행지</a></div>
         <div class="total_sub_menu"><a href="#">숙박</a></div>
         <div class="total_sub_menu"><a href="qna.qo">QnA</a></div>
-        <div class="total_sub_menu"><a href="#">공지사항</a></div>
+        <div class="total_sub_menu"><a href="notice.no">공지사항</a></div>
     </div>
    	<div class="container">
     	<div style="max-width:600px; margin:0 auto; margin-top:30px;">

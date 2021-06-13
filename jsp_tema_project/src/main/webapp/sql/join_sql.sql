@@ -7,14 +7,6 @@ grant connect to scott;
 grant resource to scott;
 /*scott사용자계정 생성 후 권한 부여*/
 
-create table admin(
-	admin_id varchar2(20) primary key,
-	admin_password varchar2(20) not null
-);
--- admin table 생성
-
-insert into admin values ('admin', '1234');
--- admin 정보 삽입
 
 create table member(
 	user_id varchar2(20) primary key,
@@ -26,5 +18,7 @@ create table member(
 	user_date date not null,
 	user_del varchar2(20) not null
 );
+
+insert into member values ('master', '1234','홍길동','010-1234-5678','서울','주인장@com',sysdate,'n');
 
 drop table member;

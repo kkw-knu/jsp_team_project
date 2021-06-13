@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -17,36 +18,34 @@
     <script type="text/javascript" src="js/pooper.js"></script>
 	<link href="css/init.css" rel="stylesheet" type="text/css">
     <link href="css/Header.css" rel="stylesheet" type="text/css">
-    <script type="text/javascript">
-    	function chk(){
-    		if(!frm.user_id.value){//id란에 아무것도 입력 안됐을 때
-    			alert('아이디를 입력하세요!');
-    			frm.user_id.focus();
-    			return false;
-    		}else{
-    			$.post("confirm.do", "user_id="+frm.user_id.value, function(data){
-    				$('#err').html(data);
-    			});
-    		}
-    	}
-    	function chk2(){
-    		if(frm.user_password.value != frm.confirmpass.value){
-    			alert('암호와 암호확인이 다릅니다.');
-    			frm.user_password.focus();
-    			frm.user_password.value = "";
-    			return false;
-    		}
-    	}
-    </script>
 </head>
 <body>
     <div>
         <div class="global_menu_wrap">
             <div class="fr">
                 <ul>
-                    <li><a href="loginform.do">로그인</a></li>
+                <c:set var="user_id" value="${sessionScope.user_id }"></c:set>
+                <c:if test="${empty user_id }">
+					<li><a href="loginform.do">로그인</a></li>
+					<li><a>ㅣ</a></li>
                     <li><a href="joinform.do">회원가입</a></li>
-                    <li><a href="#none">고객센터</a></li>
+                    <li><a>ㅣ</a></li>
+                    <li><a href="qna.qo">고객센터</a></li>
+				</c:if>
+                <c:if test="${not empty user_id }">
+                	<c:if test="${user_id=='master' }">
+                	<li><a>관리자 로그인 상태입니다</a></li>
+					<li><a>ㅣ</a></li>
+                    <li><a href="logout.do">로그아웃</a></li>
+                    <li><a>ㅣ</a></li>
+                    <li><a href="#">회원관리</a></li>
+                	</c:if>
+                	<c:if test="${user_id!='master' }">
+                	<li><a><%=session.getAttribute("user_id") %> 님 반갑습니다</a></li>
+					<li><a>ㅣ</a></li>
+                    <li><a href="logout.do">로그아웃</a></li>
+                	</c:if>
+				</c:if>
                 </ul>
             </div>
         </div>
@@ -81,40 +80,25 @@
         <div class="total_sub_menu"><a href="#">여행지</a></div>
         <div class="total_sub_menu"><a href="#">숙박</a></div>
         <div class="total_sub_menu"><a href="qna.qo">QnA</a></div>
-        <div class="total_sub_menu"><a href="#">공지사항</a></div>
+        <div class="total_sub_menu"><a href="notice.no">공지사항</a></div>
     </div>
-    <div class="container mt-3" style="max-width:550px;">
-    	<form action="join.do" method="post" name="frm" onsubmit="return chk2()">
-    		<br><h1 style="text-align:center; font-size:60px;">회원가입</h1><br>
-    		<div class="form-group" style="display:flex; flex-flow:row;">
-    			<input type="text" name="user_id" class="form-control" placeholder="아이디" required="required">
-    			<input type="button" value="중복체크 " onclick="chk()" class="btn btn-default" style="border:1px solid #ddd; font-size:12px;">
-    		</div>
-    		<div id="err"></div>
-    		<div class="form-group">
-    			<input type="password" name="user_password" class="form-control mt-3" placeholder="비밀번호" required="required">	
-    		</div>
-    		<div class="form-group">
-    			<input type="password" name="confirmpass" class="form-control mt-3" placeholder="비밀번호재입력" required="required">	
-    		</div>
-    		<div class="form-group">
-    			<input type="text" name="user_name" class="form-control mt-3" placeholder="이름" required="required">	
-    		</div>
-    		<div class="form-group">
-    			<input type="text" name="user_tel" class="form-control mt-3" placeholder="핸드폰 번호" 
-    			title="010-1234-5678 과 같은 형식으로 입력하세요" pattern="\d{3}-\d{3,4}-\d{4}" required="required">
-    			<span  aria-describedby="helpBlock" style="font-color:#111; font-size:10px;" class="mt-3">※ 010-1234-5678 과 같은 형태로 입력해 주세요.</span>    	
-    		</div>
-    		<div class="form-group">
-    			<input type="text" name="user_address" class="form-control mt-3" placeholder="주소" required="required">	
-    		</div>
-    		<div class="form-group">
-    			<input type="text" name="user_email" class="form-control mt-3" placeholder="이메일" required="required">	
-    		</div>
-    		<input type="submit" class="btn btn-primary btn-block mt-3 " value="회원가입" >
-    		<a onclick="location.href='loginform.do'" class="btn btn-primary btn-block mt-3">로그인화면</a>
-    	</form>
-    </div><!--메인 div-->
+    <div><!-- 메인내용 -->
+    <form action="writeAction.qo" method="post">
+    <input type="hidden" name="qna_num" value="${qna_num }">
+    <input type="hidden" name="qna_writer" value="${member.user_id }"><!-- 확인 필요 -->
+	<input type="hidden" name="pageNum" value="${pageNum }">
+	<!-- 답변글을 위해 필요함 -->
+	<input type="hidden" name="qna_ref" value="${qna_ref }">
+	<input type="hidden" name="qna_re_level" value="${qna_re_level }">
+	<input type="hidden" name="qna_re_step" value="${qna_re_step }">
+	<table class="table"><caption>게시글 작성</caption>
+		<tr><th>제목</th><td><input type="text" name="qna_title" required="required" autofocus="autofocus"></td></tr>
+		<!-- 회원게시글에는 불필요 -->
+		<tr><th>내용</th><td><textarea rows="5" cols="40" name="qna_content" required="required"></textarea></td></tr>
+		<tr><th colspan="2"><input type="submit" value="확인"></th></tr>
+	</table>
+    </form>
+    </div>
     <div class="footer">
         <div class="fl">
             <div>
