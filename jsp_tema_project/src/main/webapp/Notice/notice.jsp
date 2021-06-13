@@ -86,13 +86,13 @@
     <table class="table"><caption>게시글 목록</caption>
 	<tr><th>번호</th><th>	제목</th><th>작성자</th><th>작성일</th><th>조회수</th></tr>
 		<c:if test="${empty list }">
-			<tr><th colspan="5" style="text-align:center;">게시글이 없습니다</th></tr>
+			<tr><th colspan="5" style="text-align:center;">공지사항이 없습니다</th></tr>
 		</c:if>
 		<c:if test="${not empty list }">
 			<c:forEach var="notice" items="${list }">
 				<tr><td>${notice.notice_num}<%-- ${board.num } --%></td>
 				<c:if test="${notice.notice_del == 'y' }">
-					<th colspan="4">삭제된 게시글 입니다</th>
+					<th colspan="4">삭제된 공지사항 입니다</th>
 				</c:if>
 				<c:if test="${notice.notice_del != 'y' }">
 					<td title="${notice.notice_content }">

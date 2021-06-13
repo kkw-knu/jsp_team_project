@@ -11,6 +11,7 @@ import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
 import jsp_project.model.Notice;
+import jsp_project.model.Qna;
 
 public class NoticeDao {
 	private static NoticeDao instance = new NoticeDao();
@@ -37,7 +38,7 @@ public class NoticeDao {
 		ResultSet rs = null;
 		Connection conn = getConnection();
 		String sql = "select * from (select rowNum rn, a.* from "
-				+ "(select * from notice) a)"
+				+ "(select * from notice order by notice_num desc) a)"
 				+ "    where rn between ? and ?";
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -153,6 +154,52 @@ public class NoticeDao {
 				System.out.println(e2.getMessage());
 			}
 		}
+	}
+	
+	public int update(Notice notice){ //board 화면에서 입력
+		int result = 0;
+		PreparedStatement pstmt = null;
+		Connection conn = getConnection();
+		String sql = "update notice set notice_content=?,notice_title=? where notice_num=?"; 
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, notice.getNotice_content());
+			pstmt.setString(2, notice.getNotice_title());
+			pstmt.setInt(3, notice.getNotice_num());
+			result = pstmt.executeUpdate();
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}finally {
+			try {
+				if(pstmt!=null) pstmt.close();
+				if(conn!=null) conn.close();
+			} catch (Exception e2) {
+				System.out.println(e2.getMessage());
+			}
+		}
+		return result;
+	}
+	
+	public int delete(int notice_num){
+		int result = 0;
+		PreparedStatement pstmt = null;
+		Connection conn = getConnection();
+		String sql = "update notice set notice_del='y' where notice_num=?";
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, notice_num);
+			result = pstmt.executeUpdate();
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}finally {
+			try {
+				if(pstmt!=null) pstmt.close();
+				if(conn!=null) conn.close();
+			} catch (Exception e2) {
+				System.out.println(e2.getMessage());
+			}
+		}
+		return result;
 	}
 	
 	public int getTotal() {
