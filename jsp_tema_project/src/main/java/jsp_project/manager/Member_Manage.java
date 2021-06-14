@@ -42,7 +42,7 @@ public class Member_Manage implements CommandProcess {
 		request.setAttribute("endPage", endPage);
 		request.setAttribute("totalPage", totalPage);
 		
-		return "membermanage.jsp";
+		return "member_manage.jsp";
 	}
 
 }

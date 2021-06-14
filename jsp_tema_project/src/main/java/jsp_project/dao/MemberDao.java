@@ -103,6 +103,28 @@ public class MemberDao {
 		return list;
 	}
 	
+	public int realdelete(String user_id){
+		int result = 0;
+		PreparedStatement pstmt = null;
+		Connection conn = getConnection();
+		String sql = "delete from member where user_id=?";
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, user_id);
+			result = pstmt.executeUpdate();
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}finally {
+			try {
+				if(pstmt!=null) pstmt.close();
+				if(conn!=null) conn.close();
+			} catch (Exception e2) {
+				System.out.println(e2.getMessage());
+			}
+		}
+		return result;
+	}
+	
 	public int getTotal() {
 		int total = 0;
 		PreparedStatement pstmt = null;

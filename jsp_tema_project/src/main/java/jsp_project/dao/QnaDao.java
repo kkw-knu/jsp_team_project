@@ -120,7 +120,6 @@ public class QnaDao {
 			int number = rs.getInt(1); //가장 큰 num에 1을 더한값
 			pstmt.close();
 			
-			
 			if(qna.getQna_num() != 0) { //답변글
 				pstmt = conn.prepareStatement(sql3);
 				pstmt.setInt(1, qna.getQna_ref());
@@ -130,8 +129,8 @@ public class QnaDao {
 				qna.setQna_re_step(qna.getQna_re_step()+1);
 				qna.setQna_re_level(qna.getQna_re_level()+1);
 			}else qna.setQna_ref(number); //답변글이 아니면 ref와 num은 같다.
-			
 			pstmt.close();
+			
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, number);
 			pstmt.setString(2, qna.getQna_title());

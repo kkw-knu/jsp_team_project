@@ -13,7 +13,7 @@ create table member(
 	user_password varchar2(20) not null,
 	user_name varchar2(20) not null,
 	user_tel varchar2(20) not null,
-	user_address varchar2(20) not null,
+	user_address varchar2(100) not null,
 	user_email varchar2(40) not null,
 	user_date date not null,
 	user_del varchar2(20) not null
