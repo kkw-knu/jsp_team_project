@@ -71,7 +71,7 @@ public class MemberDao {
 		ResultSet rs = null;
 		Connection conn = getConnection();
 		String sql = "select * from (select rowNum rn, a.* from "
-				+ "(select * from member order user_id) a)"
+				+ "(select * from member order by user_id) a)"
 				+ "    where rn between ? and ?";
 		try {
 			pstmt = conn.prepareStatement(sql);
