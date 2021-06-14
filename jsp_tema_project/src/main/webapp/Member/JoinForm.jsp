@@ -48,7 +48,7 @@
                     <li>l</li>
                     <li><a href="joinform.do">회원가입</a></li>
                     <li>l</li>
-                    <li><a href="#none">고객센터</a></li>
+                    <li><a href="qna.qo">고객센터</a></li>
                 </ul>
             </div>
         </div>

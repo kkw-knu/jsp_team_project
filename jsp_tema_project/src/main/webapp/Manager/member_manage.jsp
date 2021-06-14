@@ -129,7 +129,7 @@
 						<td>${member.user_email }</td>
 						<td>${member.user_date }</td>
 						<td>${member.user_del }</td>
-						<td><button class="btn btn-primary mt-3" data-toggle="modal" data-target="#myModal">수정</button>
+						<td><button class="btn btn-info btn-xs mt-3" data-toggle="modal" data-target="#myModal">수정</button>
 						<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 							<div class="modal-dialog">
 								<div class="modal-content">
@@ -174,7 +174,7 @@
 							<!-- 모달 다이얼로그 -->
 						</div>
 						</td>
-						<td><button data-toggle="modal" data-target="#myModal2">삭제</button>
+						<td><button class="btn btn-danger btn-xs" data-toggle="modal" data-target="#myModal2">삭제</button>
 						<div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 							<div class="modal-dialog">
 								<div class="modal-content">
@@ -206,15 +206,14 @@
 		<div align="center">
 			<c:if test="${startPage > PAGE_PER_BLOCK}">
 				<button
-					onclick="location.href='membermanage.mo?pageNum=${startPage - 1}'">이전</button>
+					class="btn btn-default btn-xs" onclick="location.href='membermanage.mo?pageNum=${startPage - 1}'">이전</button>
 			</c:if>
 			<c:forEach var="i" begin="${ startPage}" end="${ endPage}">
-				<button onclick="location.href='membermanage.mo?pageNum=${i}'">${i }</button>
+				<button class="btn btn-default btn-xs" onclick="location.href='membermanage.mo?pageNum=${i}'">${i }</button>
 			</c:forEach>
-			<!-- 	보여줄 것이 아직 남아있다 -->
 			<c:if test="${endPage < totalPage} }">
 				<button
-					onclick="location.href='membermanage.mo?pageNum=${ endPage + 1}'">다음</button>
+					class="btn btn-default btn-xs" onclick="location.href='membermanage.mo?pageNum=${ endPage + 1}'">다음</button>
 			</c:if>
 		</div>
 	</div>

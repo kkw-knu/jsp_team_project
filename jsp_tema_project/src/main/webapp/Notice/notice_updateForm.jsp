@@ -39,7 +39,7 @@
 					<li><a>ㅣ</a></li>
                     <li><a href="logout.do">로그아웃</a></li>
                     <li><a>ㅣ</a></li>
-                    <li><a href="#">회원관리</a></li>
+                    <li><a href="membermanage.mo">회원관리</a></li>
                 	</c:if>
                 	<c:if test="${user_id!='master' }">
                 	<li><a><%=session.getAttribute("user_id") %> 님 반갑습니다</a></li>
@@ -91,7 +91,7 @@
 	<table class="table"><caption>게시글 수정</caption>
 		<tr><th>제목</th><td><input type="text" name="notice_title" required="required" autofocus="autofocus" value="${notice.notice_title}"></td></tr>
 		<tr><th>내용</th><td><textarea name="notice_content" required="required" rows="5" cols="40">${notice.notice_content}</textarea></td></tr>
-		<tr><th colspan="2"><input type="submit" value="수정하기"> <button onclick="history.back()">돌아가기</button></th></tr>
+		<tr><th colspan="2"><input class="btn btn-primary btn-sm" type="submit" value="수정하기"> <button class="btn btn-primary btn-sm" onclick="history.back()">돌아가기</button></th></tr>
 	</table>
 </form>
     </div>

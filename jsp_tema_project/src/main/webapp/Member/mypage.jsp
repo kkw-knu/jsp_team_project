@@ -50,7 +50,7 @@
 					<li><a>ㅣ</a></li>
                     <li><a href="logout.do">로그아웃</a></li>
                     <li><a>ㅣ</a></li>
-                    <li><a href="#">회원관리</a></li>
+                    <li><a href="membermanage.mo">회원관리</a></li>
                 	</c:if>
                 	<c:if test="${user_id!='master' }">
                 	<li><a><%=session.getAttribute("user_id") %> 님 반갑습니다</a></li>

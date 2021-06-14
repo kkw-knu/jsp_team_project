@@ -38,7 +38,7 @@
 					<li><a>ㅣ</a></li>
                     <li><a href="logout.do">로그아웃</a></li>
                     <li><a>ㅣ</a></li>
-                    <li><a href="#">회원관리</a></li>
+                    <li><a href="membermanage.mo">회원관리</a></li>
                 	</c:if>
                 	<c:if test="${user_id!='master' }">
                 	<li><a><%=session.getAttribute("user_id") %> 님 반갑습니다</a></li>
@@ -95,7 +95,7 @@
 		<tr><th>제목</th><td><input type="text" name="qna_title" required="required" autofocus="autofocus"></td></tr>
 		<!-- 회원게시글에는 불필요 -->
 		<tr><th>내용</th><td><textarea rows="5" cols="40" name="qna_content" required="required"></textarea></td></tr>
-		<tr><th colspan="2"><input type="submit" value="확인"></th></tr>
+		<tr><th colspan="2"><input class="btn btn-primary btn-sm" type="submit" value="작성하기"></th></tr>
 	</table>
     </form>
     </div>

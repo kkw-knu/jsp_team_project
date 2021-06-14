@@ -38,7 +38,7 @@
 					<li><a>ㅣ</a></li>
                     <li><a href="logout.do">로그아웃</a></li>
                     <li><a>ㅣ</a></li>
-                    <li><a href="#">회원관리</a></li>
+                    <li><a href="membermanage.mo">회원관리</a></li>
                 	</c:if>
                 	<c:if test="${user_id!='master' }">
                 	<li><a><%=session.getAttribute("user_id") %> 님 반갑습니다</a></li>
@@ -92,16 +92,16 @@
 	</table>
 	<div align="center"><br>
 	<c:if test="${empty user_id }">
-			<button onclick="location.href='notice.no?pageNum=${pageNum}'">게시글 목록</button>
+			<button class="btn btn-primary btn-sm" onclick="location.href='notice.no?pageNum=${pageNum}'">게시글 목록</button>
 	</c:if>
     <c:if test="${not empty user_id }">
     	<c:if test="${user_id=='master' }">
-    		<button onclick="location.href='updateForm.no?notice_num=${notice_num}&pageNum=${pageNum}'">수정</button>
-			<button data-toggle="modal" data-target="#myModal2">삭제</button>
-			<button onclick="location.href='notice.no?pageNum=${pageNum}'">게시글 목록</button>
+    		<button class="btn btn-primary btn-sm" onclick="location.href='updateForm.no?notice_num=${notice_num}&pageNum=${pageNum}'">수정</button>
+			<button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#myModal2">삭제</button>
+			<button class="btn btn-primary btn-sm" onclick="location.href='notice.no?pageNum=${pageNum}'">게시글 목록</button>
     	</c:if>
     	<c:if test="${user_id!='master' }">
-			<button onclick="location.href='notice.no?pageNum=${pageNum}'">게시글 목록</button>
+			<button class="btn btn-primary btn-sm" onclick="location.href='notice.no?pageNum=${pageNum}'">게시글 목록</button>
     	</c:if>
 	</c:if>
 	</div>

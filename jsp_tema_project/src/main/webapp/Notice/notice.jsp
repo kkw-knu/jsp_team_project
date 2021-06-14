@@ -38,7 +38,7 @@
 					<li><a>ㅣ</a></li>
                     <li><a href="logout.do">로그아웃</a></li>
                     <li><a>ㅣ</a></li>
-                    <li><a href="#">회원관리</a></li>
+                    <li><a href="membermanage.mo">회원관리</a></li>
                 	</c:if>
                 	<c:if test="${user_id!='master' }">
                 	<li><a><%=session.getAttribute("user_id") %> 님 반갑습니다</a></li>
@@ -83,7 +83,8 @@
         <div class="total_sub_menu"><a href="notice.no">공지사항</a></div>
     </div>
     <div>
-    <table class="table"><caption>게시글 목록</caption>
+    <br><h1 style="text-align:center; font-size:60px;">공지사항</h1><br>
+    <table class="table"><caption>공지사항 목록</caption>
 	<tr><th>번호</th><th>	제목</th><th>작성자</th><th>작성일</th><th>조회수</th></tr>
 		<c:if test="${empty list }">
 			<tr><th colspan="5" style="text-align:center;">공지사항이 없습니다</th></tr>
@@ -108,18 +109,18 @@
 		</table>
 		<div align="center">
 		<c:if test="${startPage > PAGE_PER_BLOCK}">
-			<button onclick="location.href='notice.no?pageNum=${startPage - 1}'">이전</button>
+			<button class="btn btn-default btn-xs" onclick="location.href='notice.no?pageNum=${startPage - 1}'">이전</button>
 		</c:if>
 		<c:forEach var="i" begin="${ startPage}" end="${ endPage}">
-			<button onclick="location.href='notice.no?pageNum=${i}'">${i }</button>
+			<button class="btn btn-default btn-xs" onclick="location.href='notice.no?pageNum=${i}'">${i }</button>
 		</c:forEach>
 		<!-- 	보여줄 것이 아직 남아있다 -->
 		<c:if test="${endPage < totalPage} }">
-			<button onclick="location.href='notice.no?pageNum=${ endPage + 1}'">다음</button>
+			<button class="btn btn-default btn-xs" onclick="location.href='notice.no?pageNum=${ endPage + 1}'">다음</button>
 		</c:if>
 		<c:if test="${not empty user_id }">
 	    	<c:if test="${user_id=='master' }">
-	    		<br><button onclick="location.href='writeForm.no?notice_num=0&pageNum=1'">글쓰기</button>
+	    		<br><br><button class="btn btn-primary btn-sm" onclick="location.href='writeForm.no?notice_num=0&pageNum=1'">글쓰기</button>
 	    	</c:if>
 		</c:if>
 		</div>
