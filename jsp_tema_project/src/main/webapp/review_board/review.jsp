@@ -33,26 +33,12 @@
 <script src="https://kit.fontawesome.com/012d5a0fd2.js"
 	crossorigin="anonymous"></script>
 <script type="text/javascript" src="../js/jquery.js"></script>
-<script type="text/javascript" src="../js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../js/bootstrap1.min.js"></script>
 <script type="text/javascript" src="../js/pooper.js"></script>
 <link href="../css/init.css" rel="stylesheet" type="text/css">
 <link href="../css/Header.css" rel="stylesheet" type="text/css">
 <meta charset="UTF-8">
 <title>Review</title>
-<%-- jQuery CDN --%>
-<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
-<script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-
-<%-- BootStrap CDN --%>
-<!-- Latest compiled and minified CSS -->
-<link rel="stylesheet"
-	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-<!-- jQuery library -->
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<!-- Latest compiled JavaScript -->
-<script
-	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
 
 <%-- JavaScript review_read 이벤트 처리 --%>

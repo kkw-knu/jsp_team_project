@@ -20,5 +20,3 @@ create table member(
 );
 
 insert into member values ('master', '1234','홍길동','010-1234-5678','서울','주인장@com',sysdate,'n');
-
-drop table member;

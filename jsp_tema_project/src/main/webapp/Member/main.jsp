@@ -16,6 +16,7 @@
     <script type="text/javascript" src="js/jquery.js"></script>
     <script type="text/javascript" src="js/bootstrap1.min.js"></script>
     <script type="text/javascript" src="js/pooper.js"></script>
+    <script type="text/javascript" src="js/Header.js"></script>
 	<link href="css/init.css" rel="stylesheet" type="text/css">
     <link href="css/Header.css" rel="stylesheet" type="text/css">
 </head>
@@ -60,12 +61,12 @@
                     <ul>
                         <li>
                             <a href="mypage.do" class="sub_menu">
-                                <i class="far fa-user-circle fa-2x"></i><div class="my">내 정보</div>
+                                <i class="far fa-user-circle fa-2x"></i>내 정보
                             </a>
                         </li>
                         <li>
                             <a href="myreview.do" class="sub_menu">
-                                <i class="far fa-edit fa-2x"></i><div class="my">리뷰관리</div>
+                                <i class="far fa-edit fa-2x"></i>리뷰관리
                             </a>
                         </li>
                     </ul>
@@ -77,10 +78,25 @@
     <div class="list_menu">
         <div class="total_menu"><a href="#"><i class="fas fa-bars"></i> 전체메뉴</div></a><!--onclick로 전체메뉴 켜고끄기-->
         <div class="total_sub_menu"><a href="main.do">메인</a></div>
-        <div class="total_sub_menu"><a href="#">여행지</a></div>
-        <div class="total_sub_menu"><a href="#">숙박</a></div>
+        <div class="total_sub_menu" id="travle"><a href="#">여행지</a></div>
+        <div class="total_sub_menu" id="sleep"><a href="#">숙박</a></div>
         <div class="total_sub_menu"><a href="qna.qo">QnA</a></div>
         <div class="total_sub_menu"><a href="notice.no">공지사항</a></div>
+    </div>
+    <div class="drop_bar" id="travle_menu">
+        <div class="drop_menu">문화</div>
+        <div class="drop_menu">캠핑</div>
+        <div class="drop_menu">바다-해수욕장</div>
+        <div class="drop_menu">바다-해안가</div>
+        <div class="drop_menu">산-정상</div>
+        <div class="drop_menu">산-둘레길</div>
+    </div>
+    <div class="drop_bar" id="sleep_menu">
+        <div class="drop_menu">호텔</div>
+        <div class="drop_menu">풀빌라</div>
+        <div class="drop_menu">글램핑</div>
+        <div class="drop_menu">게스트하우스</div>
+        <div class="drop_menu">펜션</div>
     </div>
     <div><h1>여기에 내용</h1></div><!--메인 div-->
     <div class="footer">
