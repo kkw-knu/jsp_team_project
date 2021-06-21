@@ -311,6 +311,209 @@
 		</c:if>
 		</div>
 		</c:if>
+		<br><br><br>
+		<div class="jumbotron">
+			<h3>&nbsp;&nbsp;&nbsp;&nbsp;Review</h3>
+			<p>&nbsp;&nbsp;&nbsp;&nbsp;* 숙박 리뷰관리.</p>
+		</div>
+		<table class="table"><caption>리뷰 제목을 누르면 자세히 볼 수 있습니다.</caption>
+			<thead>
+				<tr>
+					<th width="20%;">작성자</th>
+					<th width="20%;">숙박업소명</th>
+					<th width="20%;">제목</th>
+					<th width="15%;">별점</th>
+					<th width="15%;">작성일</th>
+					<th width="5%"></th>
+					<th width="5%"></th>
+				</tr>
+			</thead>
+			<tbody>
+			<c:if test="${empty list1 }">
+				<tr><th colspan="7" style="text-align:center;">등록된 리뷰가 없습니다. 어서 리뷰를 등록해주세요!</th></tr>
+			</c:if>
+			<c:if test="${not empty list1 }">
+				<c:forEach var="review" items="${list1 }">
+				<tr>
+					<td>${review.review_id }</td>
+					<td>${review.review_travel }</td>
+					<td title="${review.review_title }">
+					<a style="cursor:pointer;"data-toggle="modal" data-target="#myModal11${review.review_num }">${review.review_title }</a></td>
+					<c:choose>
+						<c:when test="${review.review_star == 1}">
+							<td><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i></td>
+						</c:when>
+						<c:when test="${review.review_star == 2}">
+							<td><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i></td>
+						</c:when>
+						<c:when test="${review.review_star == 3}">
+							<td><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i></td>
+						</c:when>
+						<c:when test="${review.review_star == 4}">
+							<td><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i></td>
+						</c:when>
+						<c:when test="${review.review_star == 5}">
+							<td><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i></td>
+						</c:when>
+					</c:choose>
+					<td>${review.review_reg_date }</td>
+					<td><button class="btn btn-info btn-xs mt-3" data-toggle="modal" data-target="#myModal_update1${review.review_num }">수정</button></td>
+					<td><button class="btn btn-danger btn-xs" data-toggle="modal" data-target="#myModal_delete1${review.review_num }">삭제</button></td>
+					</tr>
+					<!-- 글수정 모달 -->
+					<div class="modal fade" id="myModal_update1${review.review_num }" role="dialog">
+						<div class="modal-dialog modal-lg">
+							<!-- Modal content-->
+							<div class="modal-content">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal">&times;</button>
+								</div>
+								<div class="modal-body">
+									<div class="panel-group">
+										<div class="panel panel-success" style="margin-top: 10px;">
+											<div class="panel-heading">Review</div>
+											<div class="panel-body">
+												<%-- form --%>
+												<form class="form-horizontal" action="myreview1update.re" method="post" >
+												<input type="hidden" name="review_num" value="${review.review_num }">
+												<input type="hidden" name="pageNum" value="${pageNum }">
+												<input type="hidden" name="review_id" value="${review.review_id }">
+												<input type="hidden" name="review_acmd" value="${review.review_acmd }">
+													<div class="form-group">
+														<label class="control-label col-sm-2">작성자(ID):</label>
+														<div class="col-sm-10">
+															<input type="text" class="form-control" name="review_id" value="${review.review_id }" disabled>
+														</div>
+													</div><br><br>
+													<div class="form-group">
+														<label class="control-label col-sm-2" for="pwd">숙박업소 :</label>
+														<div class="col-sm-10">
+															<input type="text" class="form-control" name="review_acmd" value="${review.review_acmd }" disabled>
+														</div>
+													</div><br><br>
+													<div class="form-group">
+														<label class="control-label col-sm-2" for="review_title">제목 :</label>
+														<div class="col-sm-10">
+															<input type="text" class="form-control" id="review_title" name="review_title" placeholder="제목을 입력하세요" value="${review.review_title }">
+														</div>
+													</div><br><br>
+													<div class="form-group">
+														<label class="control-label col-sm-2" for="review_content">내용 :</label>
+														<div class="col-sm-10">
+															<textarea class="form-control" rows="5"
+																placeholder="내용을 입력하세요" name="review_content"
+																id="review_content">${review.review_content }</textarea>
+														</div>
+													</div><br><br>
+													<div class="form-group">
+														<div class="col-sm-offset-2 col-sm-10">
+															<div class="radio">
+																<label class="radio-inline"> <input type="radio"
+																	name="review_star" id="review_star" value="1"
+																	checked="checked"><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i>
+																</label> <label class="radio-inline"> <input type="radio"
+																	name="review_star" id="review_star" value="2"><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i>
+																</label> <label class="radio-inline"> <input type="radio"
+																	name="review_star" id="review_star" value="3"><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i>
+																</label> <label class="radio-inline"> <input type="radio"
+																	name="review_star" id="review_star" value="4"><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i>
+																</label> <label class="radio-inline"> <input type="radio"
+																	name="review_star" id="review_star" value="5"><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i>
+																</label>
+															</div>
+														</div>
+													</div><br><br>
+													<div class="form-group">
+														<div class="col-sm-offset-2 col-sm-10">
+															<button type="submit" class="btn btn-success">수 정</button>
+															<button type="reset" class="btn btn-danger">초기화</button>
+														</div>
+													</div>
+												</form>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- 리뷰 삭제 모달 -->
+					<div class="modal fade" id="myModal_delete1${review.review_num }" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal">
+									<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+									</button>
+									<h4 class="modal-title" id="myModalLabel" style="text-align:center;">리뷰가 삭제됩니다. 진행하시겠습니까?</h4>
+								</div>
+							<form action="myreview1delete.re" method="post">
+								<input type="hidden" name="review_num" value="${review.review_num }">
+								<input type="hidden" name="pageNum" value="${pageNum }">
+								<div class="modal-footer">
+									<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+									<input type="submit" class="btn btn-primary" value="삭제하기">
+								</div>
+								</form>
+							</div>
+						</div>
+					</div>
+					<!-- 상세보기 모달 -->
+					<div class="modal fade" id="myModal11${review.review_num }" role="dialog">
+						<div class="modal-dialog">
+							<!-- Modal content-->
+							<div class="modal-content">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal">&times;</button>
+									<h4 class="modal-title">Review Detail</h4>
+								</div>
+								<div class="modal-body">
+									<h4>${review.review_title }</h4>
+										<c:choose>
+											<c:when test="${review.review_star == 1}">
+												<i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i>
+											</c:when>
+											<c:when test="${review.review_star == 2}">
+												<i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i>
+											</c:when>
+											<c:when test="${review.review_star == 3}">
+												<i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i>
+											</c:when>
+											<c:when test="${review.review_star == 4}">
+												<i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i>
+											</c:when>
+											<c:when test="${review.review_star == 5}">
+												<i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i>
+											</c:when>
+										</c:choose>
+									${review.review_reg_date }<br><br>
+									<textarea rows="10" class="form-control" readonly="readonly" id="content">${review.review_content }</textarea>
+								</div>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			
+								</div>
+							</div>
+						</div>
+					</div>
+				</c:forEach>
+			</c:if>
+			</tbody>
+		</table>
+		<div align="center">
+		<c:if test="${startPage1 > PAGE_PER_BLOCK}">
+			<button class="btn btn-default btn-xs" onclick="location.href='myreview.do?pageNum1=${startPage1 - 1}'">이전</button>
+		</c:if>
+		<c:forEach var="i" begin="${ startPage1}" end="${ endPage1}">
+			<button class="btn btn-default btn-xs" onclick="location.href='myreview.do?pageNum1=${i}'">${i }</button>
+		</c:forEach>
+		<c:if test="${endPage1 < totalPage1} }">
+			<button class="btn btn-default btn-xs" onclick="location.href='myreview.do?pageNum1=${ endPage + 1}'">다음</button>
+		</c:if>
+		</div>
 		
 		<!-- 관리자아닐때 -->
 		<c:if test="${user_id!='master' }">
@@ -340,7 +543,7 @@
 					<td>${number}<c:set var="number" value="${number-1 }"></c:set></td>
 					<td>${review.review_travel }</td>
 					<td title="${review.review_title }">
-					<a style="cursor:pointer;"data-toggle="modal" data-target="#myModal1">${review.review_title }</a></td>
+					<a style="cursor:pointer;"data-toggle="modal" data-target="#myModal1${review.review_num }">${review.review_title }</a></td>
 					<c:choose>
 						<c:when test="${review.review_star == 1}">
 							<td><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i></td>
@@ -359,10 +562,11 @@
 						</c:when>
 					</c:choose>
 					<td>${review.review_reg_date }</td>
-					<td><button class="btn btn-info btn-xs mt-3" data-toggle="modal" data-target="#myModal_update">수정</button></td>
-					<td><button class="btn btn-danger btn-xs" data-toggle="modal" data-target="#myModal_delete">삭제</button></td>
+					<td><button class="btn btn-info btn-xs mt-3" data-toggle="modal" data-target="#myModal_update${review.review_num }">수정</button></td>
+					<td><button class="btn btn-danger btn-xs" data-toggle="modal" data-target="#myModal_delete${review.review_num }">삭제</button></td>
+					</tr>
 					<!-- 글수정 모달 -->
-					<div class="modal fade" id="myModal_update" role="dialog">
+					<div class="modal fade" id="myModal_update${review.review_num }" role="dialog">
 						<div class="modal-dialog modal-lg">
 							<!-- Modal content-->
 							<div class="modal-content">
@@ -442,7 +646,7 @@
 						</div>
 					</div>
 					<!-- 리뷰 삭제 모달 -->
-					<div class="modal fade" id="myModal_delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+					<div class="modal fade" id="myModal_delete${review.review_num }" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 						<div class="modal-dialog">
 							<div class="modal-content">
 								<div class="modal-header">
@@ -463,7 +667,209 @@
 						</div>
 					</div>
 					<!-- 상세보기 모달 -->
-					<div class="modal fade" id="myModal1" role="dialog">
+					<div class="modal fade" id="myModal1${review.review_num }" role="dialog">
+						<div class="modal-dialog">
+							<!-- Modal content-->
+							<div class="modal-content">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal">&times;</button>
+									<h4 class="modal-title">Review Detail</h4>
+								</div>
+								<div class="modal-body">
+									<h4>${review.review_title }</h4>
+										<c:choose>
+											<c:when test="${review.review_star == 1}">
+												<i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i>
+											</c:when>
+											<c:when test="${review.review_star == 2}">
+												<i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i>
+											</c:when>
+											<c:when test="${review.review_star == 3}">
+												<i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i>
+											</c:when>
+											<c:when test="${review.review_star == 4}">
+												<i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i>
+											</c:when>
+											<c:when test="${review.review_star == 5}">
+												<i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i>
+											</c:when>
+										</c:choose>
+									${review.review_reg_date }<br><br>
+									<textarea rows="10" class="form-control" readonly="readonly" id="content">${review.review_content }</textarea>
+								</div>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</c:forEach>
+			</c:if>
+			</tbody>
+		</table>
+		<div align="center">
+		<c:if test="${startPage > PAGE_PER_BLOCK}">
+			<button class="btn btn-default btn-xs" onclick="location.href='myreview.do?pageNum=${startPage - 1}'">이전</button>
+		</c:if>
+		<c:forEach var="i" begin="${ startPage}" end="${ endPage}">
+			<button class="btn btn-default btn-xs" onclick="location.href='myreview.do?pageNum=${i}'">${i }</button>
+		</c:forEach>
+		<c:if test="${endPage < totalPage} }">
+			<button class="btn btn-default btn-xs" onclick="location.href='myreview.do?pageNum=${ endPage + 1}'">다음</button>
+		</c:if>
+		</div>
+		<br><br><br>
+		<div class="jumbotron">
+			<h3>&nbsp;&nbsp;&nbsp;&nbsp;Review</h3>
+			<p>&nbsp;&nbsp;&nbsp;&nbsp;* 내 숙박 리뷰를 확인하세요.</p>
+		</div>
+		<table class="table"><caption>리뷰 제목을 누르면 자세히 볼 수 있습니다.</caption>
+			<thead>
+				<tr>
+					<th width="20%;">#</th>
+					<th width="20%;">숙박업소명</th>
+					<th width="20%;">제목</th>
+					<th width="15%;">별점</th>
+					<th width="15%;">작성일</th>
+					<th width="5%"></th>
+					<th width="5%"></th>
+				</tr>
+			</thead>
+			<tbody>
+			<c:if test="${empty list1 }">
+				<tr><th colspan="7" style="text-align:center;">등록된 리뷰가 없습니다. 어서 리뷰를 등록해주세요!</th></tr>
+			</c:if>
+			<c:if test="${not empty list1 }">
+				<c:forEach var="review" items="${list1 }">
+				<tr>
+					<td>${number1}<c:set var="number1" value="${number1-1 }"></c:set></td>
+					<td>${review.review_acmd }</td>
+					<td title="${review.review_title }">
+					<a style="cursor:pointer;"data-toggle="modal" data-target="#myModal11${review.review_num }">${review.review_title }</a></td>
+					<c:choose>
+						<c:when test="${review.review_star == 1}">
+							<td><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i></td>
+						</c:when>
+						<c:when test="${review.review_star == 2}">
+							<td><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i></td>
+						</c:when>
+						<c:when test="${review.review_star == 3}">
+							<td><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i></td>
+						</c:when>
+						<c:when test="${review.review_star == 4}">
+							<td><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i></td>
+						</c:when>
+						<c:when test="${review.review_star == 5}">
+							<td><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i></td>
+						</c:when>
+					</c:choose>
+					<td>${review.review_reg_date }</td>
+					<td><button class="btn btn-info btn-xs mt-3" data-toggle="modal" data-target="#myModal_update1${review.review_num }">수정</button></td>
+					<td><button class="btn btn-danger btn-xs" data-toggle="modal" data-target="#myModal_delete1${review.review_num }">삭제</button></td>
+					</tr>
+					<!-- 글수정 모달 -->
+					<div class="modal fade" id="myModal_update1${review.review_num }" role="dialog">
+						<div class="modal-dialog modal-lg">
+							<!-- Modal content-->
+							<div class="modal-content">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal">&times;</button>
+								</div>
+								<div class="modal-body">
+									<div class="panel-group">
+										<div class="panel panel-success" style="margin-top: 10px;">
+											<div class="panel-heading">Review</div>
+											<div class="panel-body">
+												<%-- form --%>
+												<form class="form-horizontal" action="myreview1update.re" method="post" >
+												<input type="hidden" name="review_num" value="${review.review_num }">
+												<input type="hidden" name="pageNum" value="${pageNum }">
+												<input type="hidden" name="review_id" value="${review.review_id }">
+												<input type="hidden" name="review_acmd" value="${review.review_acmd }">
+													<div class="form-group">
+														<label class="control-label col-sm-2">작성자(ID):</label>
+														<div class="col-sm-10">
+															<input type="text" class="form-control" name="review_id" value="${review.review_id }" disabled>
+														</div>
+													</div><br><br>
+													<div class="form-group">
+														<label class="control-label col-sm-2" for="pwd">숙박업소 :</label>
+														<div class="col-sm-10">
+															<input type="text" class="form-control" name="review_acmd" value="${review.review_acmd }" disabled>
+														</div>
+													</div><br><br>
+													<div class="form-group">
+														<label class="control-label col-sm-2" for="review_title">제목 :</label>
+														<div class="col-sm-10">
+															<input type="text" class="form-control" id="review_title" name="review_title" placeholder="제목을 입력하세요" value="${review.review_title }">
+														</div>
+													</div><br><br>
+													<div class="form-group">
+														<label class="control-label col-sm-2" for="review_content">내용 :</label>
+														<div class="col-sm-10">
+															<textarea class="form-control" rows="5"
+																placeholder="내용을 입력하세요" name="review_content"
+																id="review_content">${review.review_content }</textarea>
+														</div>
+													</div><br><br>
+													<div class="form-group">
+														<div class="col-sm-offset-2 col-sm-10">
+															<div class="radio">
+																<label class="radio-inline"> <input type="radio"
+																	name="review_star" id="review_star" value="1"
+																	checked="checked"><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i>
+																</label> <label class="radio-inline"> <input type="radio"
+																	name="review_star" id="review_star" value="2"><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i>
+																</label> <label class="radio-inline"> <input type="radio"
+																	name="review_star" id="review_star" value="3"><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i>
+																</label> <label class="radio-inline"> <input type="radio"
+																	name="review_star" id="review_star" value="4"><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i>
+																</label> <label class="radio-inline"> <input type="radio"
+																	name="review_star" id="review_star" value="5"><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i>
+																</label>
+															</div>
+														</div>
+													</div><br><br>
+													<div class="form-group">
+														<div class="col-sm-offset-2 col-sm-10">
+															<button type="submit" class="btn btn-success">수 정</button>
+															<button type="reset" class="btn btn-danger">초기화</button>
+														</div>
+													</div>
+												</form>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- 리뷰 삭제 모달 -->
+					<div class="modal fade" id="myModal_delete1${review.review_num }" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal">
+									<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+									</button>
+									<h4 class="modal-title" id="myModalLabel" style="text-align:center;">리뷰가 삭제됩니다. 진행하시겠습니까?</h4>
+								</div>
+							<form action="myreview1delete.re" method="post">
+								<input type="hidden" name="review_num" value="${review.review_num }">
+								<input type="hidden" name="pageNum" value="${pageNum }">
+								<div class="modal-footer">
+									<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+									<input type="submit" class="btn btn-primary" value="삭제하기">
+								</div>
+								</form>
+							</div>
+						</div>
+					</div>
+					<!-- 상세보기 모달 -->
+					<div class="modal fade" id="myModal11${review.review_num }" role="dialog">
 						<div class="modal-dialog">
 							<!-- Modal content-->
 							<div class="modal-content">
@@ -500,20 +906,19 @@
 							</div>
 						</div>
 					</div>
-					</tr>
 				</c:forEach>
 			</c:if>
 			</tbody>
 		</table>
 		<div align="center">
-		<c:if test="${startPage > PAGE_PER_BLOCK}">
-			<button class="btn btn-default btn-xs" onclick="location.href='myreview.do?pageNum=${startPage - 1}'">이전</button>
+		<c:if test="${startPage1 > PAGE_PER_BLOCK}">
+			<button class="btn btn-default btn-xs" onclick="location.href='myreview.do?pageNum1=${startPage1 - 1}'">이전</button>
 		</c:if>
-		<c:forEach var="i" begin="${ startPage}" end="${ endPage}">
-			<button class="btn btn-default btn-xs" onclick="location.href='myreview.do?pageNum=${i}'">${i }</button>
+		<c:forEach var="i" begin="${ startPage1}" end="${ endPage1}">
+			<button class="btn btn-default btn-xs" onclick="location.href='myreview.do?pageNum1=${i}'">${i }</button>
 		</c:forEach>
-		<c:if test="${endPage < totalPage} }">
-			<button class="btn btn-default btn-xs" onclick="location.href='myreview.do?pageNum=${ endPage + 1}'">다음</button>
+		<c:if test="${endPage1 < totalPage1} }">
+			<button class="btn btn-default btn-xs" onclick="location.href='myreview.do?pageNum1=${ endPage1 + 1}'">다음</button>
 		</c:if>
 		</div>
 		</c:if>

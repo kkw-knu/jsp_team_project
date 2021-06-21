@@ -5,7 +5,8 @@ create table acmd(
 	acmd_local varchar2(50) not null,
 	acmd_content varchar2(2048) not null,
 	acmd_mini varchar2(50) not null,
-	acmd_travel varchar2(50)
+	acmd_travel varchar2(50),
+	acmd_q varchar2(20) not null
 );
 
 drop table acmd;

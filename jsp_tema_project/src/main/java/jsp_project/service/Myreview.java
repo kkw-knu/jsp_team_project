@@ -7,9 +7,11 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import jsp_project.dao.MemberDao;
+import jsp_project.dao.Review1Dao;
 import jsp_project.dao.ReviewDao;
 import jsp_project.model.Member;
 import jsp_project.model.Review;
+import jsp_project.model.Review1;
 
 public class Myreview implements CommandProcess {
 
@@ -42,6 +44,20 @@ public class Myreview implements CommandProcess {
 				// 총 페이지보다 큰 endPage나올 수 없다
 				if (endPage > totalPage) endPage = totalPage;
 				
+				String pageNum1 = request.getParameter("pageNum1");
+				if (pageNum1 == null || pageNum1.equals("")) pageNum1 = "1";
+				int currentPage1 = Integer.parseInt(pageNum1);
+				Review1Dao rd1 = Review1Dao.getInstance();
+				int total1 = rd1.getManagerTotal();  			
+				int startRow1 = (currentPage1 - 1) * ROW_PER_PAGE + 1;			
+				int endRow1 = startRow1 + ROW_PER_PAGE - 1;
+				List<Review1> list1 = rd1.list(startRow1, endRow1); 
+				int number1 = total1 - startRow1 + 1;
+				int totalPage1 = (int)Math.ceil((double)total1/ROW_PER_PAGE);  	
+				int startPage1 = currentPage1 - (currentPage1 - 1)%PAGE_PER_BLOCK;
+				int endPage1 = startPage1 + PAGE_PER_BLOCK - 1;
+				if (endPage1 > totalPage1) endPage1 = totalPage1;
+				
 				request.setAttribute("currentPage", currentPage);
 				request.setAttribute("PAGE_PER_BLOCK", PAGE_PER_BLOCK);
 				request.setAttribute("number", number);
@@ -51,6 +67,14 @@ public class Myreview implements CommandProcess {
 				request.setAttribute("totalPage", totalPage);
 				request.setAttribute("member", member);
 				request.setAttribute("pageNum", pageNum);
+				
+				request.setAttribute("currentPage1", currentPage1);
+				request.setAttribute("number1", number1);
+				request.setAttribute("list1", list1);
+				request.setAttribute("startPage1", startPage1);
+				request.setAttribute("endPage1", endPage1);
+				request.setAttribute("totalPage1", totalPage1);
+				request.setAttribute("pageNum1", pageNum1);
 				return "myreview.jsp";
 			}else {
 				MemberDao md = MemberDao.getInstance();
@@ -77,6 +101,20 @@ public class Myreview implements CommandProcess {
 				int endPage = startPage + PAGE_PER_BLOCK - 1;
 				// 총 페이지보다 큰 endPage나올 수 없다
 				if (endPage > totalPage) endPage = totalPage;
+				
+				String pageNum1 = request.getParameter("pageNum1");
+				if (pageNum1 == null || pageNum1.equals("")) pageNum1 = "1";
+				int currentPage1 = Integer.parseInt(pageNum1);
+				Review1Dao rd1 = Review1Dao.getInstance();
+				int total1 = rd1.getMyTotal(user_id);  			
+				int startRow1 = (currentPage1 - 1) * ROW_PER_PAGE + 1;	
+				int endRow1 = startRow1 + ROW_PER_PAGE - 1;
+				List<Review1> list1 = rd1.Mylist(startRow1, endRow1, user_id); 
+				int number1 = total1 - startRow1 + 1;
+				int totalPage1 = (int)Math.ceil((double)total1/ROW_PER_PAGE);   // 총 페이지 수		
+				int startPage1 = currentPage1 - (currentPage1 - 1)%PAGE_PER_BLOCK;
+				int endPage1 = startPage1 + PAGE_PER_BLOCK - 1;
+				if (endPage1 > totalPage1) endPage1 = totalPage1;
 
 				request.setAttribute("currentPage", currentPage);
 				request.setAttribute("PAGE_PER_BLOCK", PAGE_PER_BLOCK);
@@ -87,6 +125,14 @@ public class Myreview implements CommandProcess {
 				request.setAttribute("totalPage", totalPage);
 				request.setAttribute("member", member);
 				request.setAttribute("pageNum", pageNum);
+				
+				request.setAttribute("currentPage1", currentPage1);
+				request.setAttribute("number1", number1);
+				request.setAttribute("list1", list1);
+				request.setAttribute("startPage1", startPage1);
+				request.setAttribute("endPage1", endPage1);
+				request.setAttribute("totalPage1", totalPage1);
+				request.setAttribute("pageNum1", pageNum1);
 				return "myreview.jsp";
 			}
 		}else {

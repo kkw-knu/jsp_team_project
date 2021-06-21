@@ -1,11 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ include file="managersessionChk.jsp" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<% String path = request.getContextPath();%>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="Description" content="관광지를 한눈에 찾아보고 숙박시스템까지 연계가 가능한 웹페이지.">
 	<meta name="Keyword" content="웹개발, 프론트엔드, 백엔드, 여행, 관광, html, css, java, javascript, tomcat, jsp">
@@ -17,9 +17,9 @@
     <script type="text/javascript" src="js/jquery.js"></script>
     <script type="text/javascript" src="js/bootstrap1.min.js"></script>
     <script type="text/javascript" src="js/pooper.js"></script>
+    <script type="text/javascript" src="js/Header.js"></script>
 	<link href="css/init.css" rel="stylesheet" type="text/css">
     <link href="css/Header.css" rel="stylesheet" type="text/css">
-    <script type="text/javascript" src="js/Header.js"></script>
 </head>
 <body>
     <div>
@@ -99,58 +99,39 @@
         <div class="drop_menu"><a href="search.ac?acmd_q=게스트하우스">게스트하우스</a></div>
         <div class="drop_menu"><a href="search.ac?acmd_q=펜션">펜션</a></div>
     </div>
-    <div><!-- 메인내용 -->
-    <form action="updateAction.to" method="post" enctype="multipart/form-data">
-    <input type="hidden" name="travel_num" value="${travel.travel_num}">
-	<input type="hidden" name="pageNum" value="${pageNum }">
-	<table class="table"><caption>여행지 작성</caption>
-		<tr><th>여행지 이름</th><td colspan="2"><input type="text" name="travel_name" required="required" autofocus="autofocus" value="${travel.travel_name }"></td></tr>
-		<tr><th>여행지 간단소개</th><td colspan="2"><input type="text" name="travel_mini" required="required" value=${travel.travel_mini }></td></tr>
-		<tr><th>여행지 내용</th><td colspan="2"><textarea rows="5" cols="40" name="travel_content" required="required">${travel.travel_content }</textarea></td></tr>
-		<tr><th>여행지 이미지</th><td colspan="2"><input type="file" name="travel_img" required="required"></td></tr>
-		<tr><th>여행지 지역</th><td colspan="2"><select name="travel_local">
-			<option value="서울" selected>서울</option>
-			<option value="경기">경기</option>
-			<option value="인천">인천</option>
-			<option value="대구">대구</option>
-			<option value="부산">부산</option>
-			<option value="경상도">경상도</option>
-			<option value="충청도">충청도</option>
-			<option value="강원도">강원도</option>
-			<option value="광주">광주</option>
-			<option value="울산">울산</option>
-			<option value="대전">대전</option>
-			<option value="전라도">전라도</option>
-			<option value="제주">제주</option>
-			<option value="세종">세종</option>
-		</select></td></tr>
-		<tr><th rowspan="2">여행지 질문</th><td><select name="travel_q1">
-			<option value="당일치기" selected>당일치기</option>
-			<option value="1박2일">1박2일</option>
-			<option value="3박4일">3박4일</option>
-			<option value="장기여행">장기여행</option>
-		</select></td><td><select name="travel_q2">
-			<option value="봄" selected>봄</option>
-			<option value="여름">여름</option>
-			<option value="가을">가을</option>
-			<option value="겨울">겨울</option>
-		</select></tr>
-		<tr><td><select name="travel_q3">
-			<option value="캠핑" selected>캠핑</option>
-			<option value="산-정상">산-정상</option>
-			<option value="산-둘레길">산-둘레길</option>
-			<option value="바다-해수욕장">바다-해수욕장</option>
-			<option value="바다-해변">바다-해변</option>
-			<option value="테마여행">테마여행</option>
-		</select></td><td><select name="travel_q4">
-			<option value="솔로" selected>솔로</option>
-			<option value="커플">커플</option>
-			<option value="가족">가족</option>
-		</select></tr>
-		<tr><th colspan="3"><input class="btn btn-primary btn-sm" type="submit" value="수정하기"></th></tr>
-	</table>
-    </form>
+    <div>
+    <br><h1 style="text-align:center; font-size:40px;">${acmd_q}</h1><br>
+    <div class="travelbox">
+    <c:if test="${empty list }">
+    	<h2 align="center">등록된 숙박업소가 없습니다.</h2>
+    </c:if>
+    <c:if test="${not empty list }">
+    	<c:forEach var="acmd" items="${list }">
+    	<article class="imagebox" onclick="location.href='content.ac?acmd_num=${acmd.acmd_num}&pageNum=${currentPage}'">
+    		<img src="<%=path%>/filesave/${acmd.acmd_img}" alt="숙박업소이미지">
+    		<h2 align="center">${acmd.acmd_name }</h2>
+    		<p align="center">${acmd.acmd_mini }</p>
+    	</article>
+    	</c:forEach>
+    </c:if>
     </div>
+    <div align="center">
+		<c:if test="${startPage > PAGE_PER_BLOCK}">
+			<button class="btn btn-default btn-xs" onclick="location.href='search.ac?acmd_q=${acmd_q}&pageNum=${startPage - 1}'">이전</button>
+		</c:if>
+		<c:forEach var="i" begin="${ startPage}" end="${ endPage}">
+			<button class="btn btn-default btn-xs" onclick="location.href='search.ac?acmd_q=${acmd_q}&pageNum=${i}'">${i }</button>
+		</c:forEach>
+		<c:if test="${endPage < totalPage} ">
+			<button class="btn btn-default btn-xs" onclick="location.href='search.ac?acmd_q=${acmd_q}&pageNum=${ endPage + 1}'">다음</button>
+		</c:if>
+		<c:if test="${not empty user_id }">
+	    	<c:if test="${user_id=='master' }">
+			<br><br><button class="btn btn-primary btn-sm" onclick="location.href='writeForm.ac?acmd_num=0&pageNum=1'">숙박업소 등록</button>
+			</c:if>
+		</c:if>
+		</div>
+    </div><!--메인 div-->
     <div class="footer">
         <div class="fl">
             <div>

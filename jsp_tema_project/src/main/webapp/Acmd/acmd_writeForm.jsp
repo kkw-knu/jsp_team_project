@@ -100,15 +100,16 @@
         <div class="drop_menu"><a href="search.ac?acmd_q=펜션">펜션</a></div>
     </div>
     <div><!-- 메인내용 -->
-    <form action="updateAction.to" method="post" enctype="multipart/form-data">
-    <input type="hidden" name="travel_num" value="${travel.travel_num}">
+    <form action="writeAction.ac" method="post" enctype="multipart/form-data">
+    <input type="hidden" name="acmd_num" value="${acmd_num}">
 	<input type="hidden" name="pageNum" value="${pageNum }">
-	<table class="table"><caption>여행지 작성</caption>
-		<tr><th>여행지 이름</th><td colspan="2"><input type="text" name="travel_name" required="required" autofocus="autofocus" value="${travel.travel_name }"></td></tr>
-		<tr><th>여행지 간단소개</th><td colspan="2"><input type="text" name="travel_mini" required="required" value=${travel.travel_mini }></td></tr>
-		<tr><th>여행지 내용</th><td colspan="2"><textarea rows="5" cols="40" name="travel_content" required="required">${travel.travel_content }</textarea></td></tr>
-		<tr><th>여행지 이미지</th><td colspan="2"><input type="file" name="travel_img" required="required"></td></tr>
-		<tr><th>여행지 지역</th><td colspan="2"><select name="travel_local">
+	<table class="table"><caption>숙박업소 등록</caption>
+		<tr><th>숙박 이름</th><td colspan="2"><input type="text" name="acmd_name" required="required" autofocus="autofocus"></td></tr>
+		<tr><th>숙박 간단소개</th><td colspan="2"><input type="text" name="acmd_mini" required="required"></td></tr>
+		<tr><th>주변 여행지</th><td colspan="2"><input type="text" name="acmd_travel" required="required" placeholder="정확한 여행지 이름입력"></td></tr>
+		<tr><th>숙박 내용</th><td colspan="2"><textarea rows="5" cols="40" name="acmd_content" required="required"></textarea></td></tr>
+		<tr><th>숙박 이미지</th><td colspan="2"><input type="file" name="acmd_img" required="required"></td></tr>
+		<tr><th>숙박 지역</th><td colspan="2"><select name="acmd_local">
 			<option value="서울" selected>서울</option>
 			<option value="경기">경기</option>
 			<option value="인천">인천</option>
@@ -124,30 +125,14 @@
 			<option value="제주">제주</option>
 			<option value="세종">세종</option>
 		</select></td></tr>
-		<tr><th rowspan="2">여행지 질문</th><td><select name="travel_q1">
-			<option value="당일치기" selected>당일치기</option>
-			<option value="1박2일">1박2일</option>
-			<option value="3박4일">3박4일</option>
-			<option value="장기여행">장기여행</option>
-		</select></td><td><select name="travel_q2">
-			<option value="봄" selected>봄</option>
-			<option value="여름">여름</option>
-			<option value="가을">가을</option>
-			<option value="겨울">겨울</option>
-		</select></tr>
-		<tr><td><select name="travel_q3">
-			<option value="캠핑" selected>캠핑</option>
-			<option value="산-정상">산-정상</option>
-			<option value="산-둘레길">산-둘레길</option>
-			<option value="바다-해수욕장">바다-해수욕장</option>
-			<option value="바다-해변">바다-해변</option>
-			<option value="테마여행">테마여행</option>
-		</select></td><td><select name="travel_q4">
-			<option value="솔로" selected>솔로</option>
-			<option value="커플">커플</option>
-			<option value="가족">가족</option>
-		</select></tr>
-		<tr><th colspan="3"><input class="btn btn-primary btn-sm" type="submit" value="수정하기"></th></tr>
+		<tr><th>테마</th><td colspan="2"><select name="acmd_q">
+			<option value="호텔" selected>호텔</option>
+			<option value="풀빌라">풀빌라</option>
+			<option value="글램핑">글램핑</option>
+			<option value="게스트하우스">게스트하우스</option>
+			<option value="펜션">펜션</option>
+		</select></td></tr>
+		<tr><th colspan="3"><input class="btn btn-primary btn-sm" type="submit" value="등록하기"></th></tr>
 	</table>
     </form>
     </div>
