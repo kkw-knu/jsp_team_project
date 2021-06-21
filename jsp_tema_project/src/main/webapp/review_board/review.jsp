@@ -248,7 +248,7 @@
 					<tr class="info">
 						<td>${review_Bean.review_num}</td>
 						<td>${review_Bean.user_id}</td>
-						<td><a data-toggle="modal" data-target="#myModal2"
+						<td><a data-toggle="modal" data-target="#myModal1"
 							onclick="review_read(${review_Bean.review_num})">${review_Bean.review_title}</a></td>
 						<td>${review_Bean.review_thema}</td>
 						<td>${review_Bean.review_place }</td>

@@ -32,11 +32,11 @@ import javax.servlet.http.HttpServletResponse;
 
 import jsp_project.service.CommandProcess; 
 
-@WebServlet(urlPatterns="*.to",	
+@WebServlet(urlPatterns="*.re",	
 
 	initParams={@WebInitParam(name="config",value="/WEB-INF/command.properties")})
 
-public class TravelController extends HttpServlet {
+public class ReviewController extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 
@@ -85,7 +85,7 @@ public class TravelController extends HttpServlet {
 	    } catch(Throwable e) { throw new ServletException(e); } 
 
 	    RequestDispatcher dispatcher =
-	      	request.getRequestDispatcher("Travel/"+view);
+	      	request.getRequestDispatcher("Review/"+view);
 	   dispatcher.forward(request, response);
 
 	}

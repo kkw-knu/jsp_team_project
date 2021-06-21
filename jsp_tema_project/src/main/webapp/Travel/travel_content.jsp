@@ -143,6 +143,7 @@
 			</c:if>
 			<c:if test="${not empty list }">
 				<c:forEach var="review" items="${list }">
+				<tr>
 					<td>${review.review_id }</td>
 					<td title="${review.review_title }">
 					<a style="cursor:pointer;"data-toggle="modal" data-target="#myModal1">${review.review_title }</a></td>
@@ -182,8 +183,8 @@
 											<div class="panel-heading">Review</div>
 											<div class="panel-body">
 												<%-- form --%>
-												<form class="form-horizontal" role="form" action="reviewupdate.to" method="post">
-												<input type="hidden" name="review_num" value="0">
+												<form class="form-horizontal" action="reviewupdate.re" method="post" >
+												<input type="hidden" name="review_num" value="${review.review_num }">
 												<input type="hidden" name="pageNum" value="${pageNum }">
 												<input type="hidden" name="travel_num" value="${travel_num }">
 												<input type="hidden" name="pageNum1" value="${pageNum1 }">
@@ -235,7 +236,7 @@
 													</div><br><br>
 													<div class="form-group">
 														<div class="col-sm-offset-2 col-sm-10">
-															<button type="submit" class="btn btn-success">작 성</button>
+															<button type="submit" class="btn btn-success">수 정</button>
 															<button type="reset" class="btn btn-danger">초기화</button>
 														</div>
 													</div>
@@ -247,6 +248,29 @@
 								<div class="modal-footer">
 									<button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
 								</div>
+							</div>
+						</div>
+					</div>
+					<!-- 리뷰 삭제 모달 -->
+					<div class="modal fade" id="myModal_delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal">
+									<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+									</button>
+									<h4 class="modal-title" id="myModalLabel" style="text-align:center;">리뷰가 삭제됩니다. 진행하시겠습니까?</h4>
+								</div>
+							<form action="reviewdelete.re" method="post">
+								<input type="hidden" name="review_num" value="${review.review_num }">
+								<input type="hidden" name="pageNum" value="${pageNum }">
+								<input type="hidden" name="travel_num" value="${travel_num }">
+								<input type="hidden" name="pageNum1" value="${pageNum1 }">
+								<div class="modal-footer">
+									<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+									<input type="submit" class="btn btn-primary" value="삭제하기">
+								</div>
+								</form>
 							</div>
 						</div>
 					</div>
@@ -288,6 +312,7 @@
 							</div>
 						</div>
 					</div>
+					</tr>
 				</c:forEach>
 			</c:if>
 			</tbody>
@@ -325,7 +350,7 @@
 								<div class="panel-heading">Review</div>
 								<div class="panel-body">
 									<%-- form --%>
-									<form class="form-horizontal" role="form" action="reviewwrite.to" method="post">
+									<form class="form-horizontal" role="form" action="reviewwrite.re" method="post">
 									<input type="hidden" name="review_num" value="0">
 									<input type="hidden" name="pageNum" value="${pageNum }">
 									<input type="hidden" name="travel_num" value="${travel_num }">

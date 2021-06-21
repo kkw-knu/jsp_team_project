@@ -68,6 +68,30 @@ public class ReviewDao {
 		}
 		return list;
 	}
+	public int update(Review review){ //board 화면에서 입력
+		int result = 0;
+		PreparedStatement pstmt = null;
+		Connection conn = getConnection();
+		String sql = "update review set review_content=?,review_title=?,review_star=? where review_num=?"; 
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, review.getReview_content());
+			pstmt.setString(2, review.getReview_title());
+			pstmt.setInt(3, review.getReview_star());
+			pstmt.setInt(4, review.getReview_num());
+			result = pstmt.executeUpdate();
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}finally {
+			try {
+				if(pstmt!=null) pstmt.close();
+				if(conn!=null) conn.close();
+			} catch (Exception e2) {
+				System.out.println(e2.getMessage());
+			}
+		}
+		return result;
+	}
 	
 	public int insert(Review review){
 		int result = 0;
@@ -89,6 +113,27 @@ public class ReviewDao {
 			pstmt.setString(4, review.getReview_title());
 			pstmt.setString(5, review.getReview_content());
 			pstmt.setInt(6, review.getReview_star());
+			result = pstmt.executeUpdate();
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}finally {
+			try {
+				if(pstmt!=null) pstmt.close();
+				if(conn!=null) conn.close();
+			} catch (Exception e2) {
+				System.out.println(e2.getMessage());
+			}
+		}
+		return result;
+	}
+	public int delete(int review_num){
+		int result = 0;
+		PreparedStatement pstmt = null; 
+		Connection conn = getConnection();
+		String sql = "delete from review where review_num=?";
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, review_num);
 			result = pstmt.executeUpdate();
 		} catch (Exception e) {
 			System.out.println(e.getMessage());

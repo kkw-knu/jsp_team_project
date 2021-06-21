@@ -104,7 +104,7 @@
     </div>
 	<div style="max-width: 600px; margin: 0 auto; margin-top: 30px;">
 		<br>
-		<h1 style="text-align: center; font-size: 60px;">내 리뷰</h1>
+		<h1 style="text-align: center; font-size: 40px;">리뷰 관리</h1>
 		<br>
 	</div>
 	<div class="footer">
