@@ -1,13 +1,13 @@
 $(document).ready(function(){
     $('#travle').hover(function(){
-        $(this).css({
+        $('#travle').css({
             color:'red'
         });
         $('#travle_menu').css({
             display:'flex'
         });
     }, function(){
-        $(this).css({
+        $('#travle').css({
             color:'black'
         });
         $('#travle_menu').css({

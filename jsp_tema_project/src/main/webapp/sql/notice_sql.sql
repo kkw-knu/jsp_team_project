@@ -7,3 +7,6 @@ create table notice(
 	notice_reg_date date not null, --累己老
 	notice_del char(1) default 'n' --qna 昏力咯何
 );
+SELECT *
+FROM (SELECT * FROM notice ORDER BY notice_reg_date desc)
+WHERE rownum <= 3;

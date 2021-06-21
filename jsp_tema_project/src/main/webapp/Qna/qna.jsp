@@ -18,6 +18,7 @@
     <script type="text/javascript" src="js/pooper.js"></script>
 	<link href="css/init.css" rel="stylesheet" type="text/css">
     <link href="css/Header.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="js/Header.js"></script>
 </head>
 <body>
     <div>
@@ -60,12 +61,12 @@
                     <ul>
                         <li>
                             <a href="mypage.do" class="sub_menu">
-                                <i class="far fa-user-circle fa-2x"></i><div class="my">내 정보</div>
+                                <i class="far fa-user-circle fa-2x"></i>내 정보
                             </a>
                         </li>
                         <li>
                             <a href="myreview.do" class="sub_menu">
-                                <i class="far fa-edit fa-2x"></i><div class="my">리뷰관리</div>
+                                <i class="far fa-edit fa-2x"></i>리뷰관리
                             </a>
                         </li>
                     </ul>
@@ -75,23 +76,39 @@
     </div>
     <div style="height: 105px;"></div><!--여백용-->
     <div class="list_menu">
-        <div class="total_menu"><a href="#"><i class="fas fa-bars"></i> 전체메뉴</div></a><!--onclick로 전체메뉴 켜고끄기-->
+        <div class="total_menu"><a href="#"><i class="fas fa-bars"></i> 전체메뉴</a></div><!--onclick로 전체메뉴 켜고끄기-->
         <div class="total_sub_menu"><a href="main.do">메인</a></div>
-        <div class="total_sub_menu"><a href="#">여행지</a></div>
-        <div class="total_sub_menu"><a href="#">숙박</a></div>
+        <div class="total_sub_menu" id="travle"><a href="#">여행지</a></div>
+        <div class="total_sub_menu" id="sleep"><a href="#">숙박</a></div>
         <div class="total_sub_menu"><a href="qna.qo">QnA</a></div>
         <div class="total_sub_menu"><a href="notice.no">공지사항</a></div>
+    </div>
+    <div class="drop_bar" id="travle_menu">
+        <div class="drop_menu"><a href="cul1.aa">문화</a></div>
+        <div class="drop_menu"><a href="camp1.aa">캠핑</a></div>
+        <div class="drop_menu"><a href="beach.aa">바다-해수욕장</a></div>
+        <div class="drop_menu"><a href="view.aa">바다-해안가</a></div>
+        <div class="drop_menu"><a href="top1.aa">산-정상</a></div>
+        <div class="drop_menu"><a href="cirroad.aa">산-둘레길</a></div>
+    </div>
+    <div class="drop_bar" id="sleep_menu">
+        <div class="drop_menu"><a href="#">호텔</a></div>
+        <div class="drop_menu"><a href="#">풀빌라</a></div>
+        <div class="drop_menu"><a href="#">글램핑</a></div>
+        <div class="drop_menu"><a href="#">게스트하우스</a></div>
+        <div class="drop_menu"><a href="#">펜션</a></div>
     </div>
     <div>
     <br><h1 style="text-align:center; font-size:60px;">QnA</h1><br>
     <table class="table"><caption>QnA 목록</caption>
-	<tr><th>번호</th><th>제목</th><th>작성자</th><th>작성일</th><th>조회수</th></tr>
+    <thead>
+	<tr><th width="15%;">번호</th><th width="40%;">제목</th><th width="15%;">작성자</th><th width="15%;">작성일</th><th width="15%;">조회수</th></tr></thead><tbody>
 		<c:if test="${empty list }">
 			<tr><th colspan="5" style="text-align:center;">게시글이 없습니다</th></tr>
 		</c:if>
 		<c:if test="${not empty list }">
 			<c:forEach var="qna" items="${list }">
-				<tr><td>${qna.qna_num}<%-- ${board.num } --%></td>
+				<tr><td>${number}<c:set var="number" value="${number-1 }"></c:set></td>
 				<c:if test="${qna.qna_del == 'y' }">
 					<th colspan="4">삭제된 게시글 입니다</th>
 				</c:if>
@@ -115,6 +132,7 @@
 				</tr>
 			</c:forEach>
 		</c:if>
+		</tbody>
 		</table>
 		<div align="center">
 		<c:if test="${startPage > PAGE_PER_BLOCK}">
@@ -123,7 +141,6 @@
 		<c:forEach var="i" begin="${ startPage}" end="${ endPage}">
 			<button class="btn btn-default btn-xs" onclick="location.href='qna.qo?pageNum=${i}'">${i }</button>
 		</c:forEach>
-		<!-- 	보여줄 것이 아직 남아있다 -->
 		<c:if test="${endPage < totalPage} }">
 			<button class="btn btn-default btn-xs" onclick="location.href='qna.qo?pageNum=${ endPage + 1}'">다음</button>
 		</c:if>

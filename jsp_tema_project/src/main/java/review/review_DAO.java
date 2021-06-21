@@ -12,16 +12,16 @@ import bean.*;
 
 public class review_DAO {
 
-	// ë¹ˆê°ì²´ë¥¼ ë§¤ê°œë³€ìˆ˜ë¡œ ë°›ëŠ”ë‹¤.
-	// ë¦¬ë·°ì‘ì„±
+	// ºó°´Ã¼¸¦ ¸Å°³º¯¼ö·Î ¹Ş´Â´Ù.
+	// ¸®ºäÀÛ¼º
 	public static void review_write(review_Bean bean) {
 
 		try {
 
-			// DBì—°ê²°
+			// DB¿¬°á
 			Connection conn = DBConnector.getConnection();
 
-			// SQL ë¬¸
+			// SQL ¹®
 			String sql = "INSERT INTO REVIEW_TABLE(review_num, user_id, review_title,review_thema, review_place,review_content, review_cnt, review_star, review_regdate)"
 					+ " VALUES(review_num.nextval, ?, ?, ?,?, ?, 0, ?,  sysdate)";
 
@@ -35,10 +35,10 @@ public class review_DAO {
 			psmt.setInt(6, bean.getReview_star());
 			
 
-			// SQL ì‹¤í–‰
+			// SQL ½ÇÇà
 			psmt.execute();
 
-			// DB ì—°ê²° ì¢…ë£Œ
+			// DB ¿¬°á Á¾·á
 			conn.close();
 
 		} catch (Exception e) {
@@ -47,21 +47,21 @@ public class review_DAO {
 
 	} // review_write()
 
-	// ëª¨ë“  ë¦¬ë·°ê¸€ë“¤ì„ ë¶ˆëŸ¬ì˜¨ë‹¤.
+	// ¸ğµç ¸®ºä±ÛµéÀ» ºÒ·¯¿Â´Ù.
 	public static ArrayList<review_Bean> review_get(int start, int end) {
 
-		// Arraylist ìƒì„±
-		// ë¹ˆê°ì²´ë¥¼ ë‹´ì„ arraylist
+		// Arraylist »ı¼º
+		// ºó°´Ã¼¸¦ ´ãÀ» arraylist
 		ArrayList<review_Bean> list = new ArrayList<review_Bean>();
 
 		try {
 
 		
-			// DBì—°ê²°
+			// DB¿¬°á
 			Connection conn = DBConnector.getConnection();
 
 			// SQL
-			// ë¦¬ë·°ê²Œì‹œíŒì— ëª¨ë“  ë°ì´í„°ë¥¼ ë¶ˆëŸ¬ì˜¨ë‹¤.
+			// ¸®ºä°Ô½ÃÆÇ¿¡ ¸ğµç µ¥ÀÌÅÍ¸¦ ºÒ·¯¿Â´Ù.
 			String sql =  "select * from "
 						 + "(select rownum as rnum, a1.* from "
 					     + "(select review_num, user_id, review_title, review_thema, review_place,review_content, review_cnt, review_star, review_regdate FROM REVIEW_TABLE ORDER BY review_num DESC) a1) a2 "
@@ -72,23 +72,23 @@ public class review_DAO {
 			pstmt.setInt(1, start);
 			pstmt.setInt(2, end);
 
-			// SQL ì‹¤í–‰
+			// SQL ½ÇÇà
 			ResultSet rs = pstmt.executeQuery();
 
-			// rs.next() ê°’ì´ ìˆìœ¼ë©´ íˆ¬ë£¨ë¥¼ ë°˜í™˜.
+			// rs.next() °ªÀÌ ÀÖÀ¸¸é Åõ·ç¸¦ ¹İÈ¯.
 			while (rs.next()) {
 
-				int review_num = rs.getInt("REVIEW_NUM"); // ê¸€ ë²ˆí˜¸
-				String user_id = rs.getString("USER_ID"); // ì‘ì„±ì ID
-				String review_title = rs.getString("REVIEW_TITLE"); // ë¦¬ë·° ì œëª©
-				String review_thema = rs.getString("REVIEW_THEMA"); // í…Œë§ˆ
-				String review_place = rs.getString("REVIEW_PLACE"); //ì—¬í–‰ì§€
-				String review_content = rs.getString("REVIEW_CONTENT"); // ë¦¬ë·° ë‚´ìš©
-				int review_cnt = rs.getInt("REVIEW_CNT"); // ì¡°íšŒìˆ˜
-				int review_star = rs.getInt("REVIEW_STAR"); // ë³„ì 
-				Date review_regdate = rs.getDate("REVIEW_REGDATE"); // ë¦¬ë·° ì‘ì„±ì¼
+				int review_num = rs.getInt("REVIEW_NUM"); // ±Û ¹øÈ£
+				String user_id = rs.getString("USER_ID"); // ÀÛ¼ºÀÚ ID
+				String review_title = rs.getString("REVIEW_TITLE"); // ¸®ºä Á¦¸ñ
+				String review_thema = rs.getString("REVIEW_THEMA"); // Å×¸¶
+				String review_place = rs.getString("REVIEW_PLACE"); //¿©ÇàÁö
+				String review_content = rs.getString("REVIEW_CONTENT"); // ¸®ºä ³»¿ë
+				int review_cnt = rs.getInt("REVIEW_CNT"); // Á¶È¸¼ö
+				int review_star = rs.getInt("REVIEW_STAR"); // º°Á¡
+				Date review_regdate = rs.getDate("REVIEW_REGDATE"); // ¸®ºä ÀÛ¼ºÀÏ
 
-				// ë¹ˆê°ì²´ ìƒì„±
+				// ºó°´Ã¼ »ı¼º
 				review_Bean bean = new review_Bean();
 
 				bean.setReview_num(review_num);
@@ -104,7 +104,7 @@ public class review_DAO {
 				list.add(bean);
 			}
 
-			// DB ì—°ê²° ì¢…ë£Œ
+			// DB ¿¬°á Á¾·á
 			conn.close();
 
 		} catch (Exception e) {
@@ -115,37 +115,37 @@ public class review_DAO {
 
 	}
 
-	// í˜ì´ì§€ ìˆ˜ë¥¼ êµ¬í•˜ëŠ” ë©”ì„œë“œ
-	// ì´ ë ˆì½”ë“œìˆ˜(ê²Œì‹œê¸€ ìˆ˜)ë¥¼ êµ¬í•¨.
+	// ÆäÀÌÁö ¼ö¸¦ ±¸ÇÏ´Â ¸Ş¼­µå
+	// ÃÑ ·¹ÄÚµå¼ö(°Ô½Ã±Û ¼ö)¸¦ ±¸ÇÔ.
 	public static int review_getPageCount() throws Exception {
 
 		Connection conn = DBConnector.getConnection();
 
-		// ì¿¼ë¦¬ë¬¸
+		// Äõ¸®¹®
 		String sql = "SELECT COUNT(*) FROM " + "REVIEW_TABLE";
 
 		Statement stmt = conn.createStatement();
 		ResultSet rs = stmt.executeQuery(sql);
 		rs.next();
 
-		// ì „ì²´ ê¸€ì˜ ê°œìˆ˜ë¥¼ ê°€ì ¸ì˜¨ë‹¤.
+		// ÀüÃ¼ ±ÛÀÇ °³¼ö¸¦ °¡Á®¿Â´Ù.
 		int cnt = rs.getInt(1);
 
 		
 		conn.close();
 
-		// ì´ í˜ì´ì§€ ê°œìˆ˜ ë¦¬í„´
+		// ÃÑ ÆäÀÌÁö °³¼ö ¸®ÅÏ
 		return cnt;
 
 	}
 
-	// ë¦¬ë·°ê¸€ì„ ì½ì–´ì˜¤ëŠ” ë©”ì„œë“œ
+	// ¸®ºä±ÛÀ» ÀĞ¾î¿À´Â ¸Ş¼­µå
 	public static review_Bean review_read(int num) throws Exception {
 
-		// ë¹ˆê°ì²´ ìƒì„±
+		// ºó°´Ã¼ »ı¼º
 		review_Bean bean = new review_Bean();
 
-		// DB ì—°ê²°
+		// DB ¿¬°á
 		Connection conn = DBConnector.getConnection();
 
 		// SQL
@@ -157,15 +157,15 @@ public class review_DAO {
 
 		while (rs.next()) {
 
-			int review_num = rs.getInt("REVIEW_NUM"); // ê¸€ ë²ˆí˜¸
-			String user_id = rs.getString("USER_ID"); // ì‘ì„±ì ID
-			String review_title = rs.getString("REVIEW_TITLE"); // ë¦¬ë·° ì œëª©
-			String review_thema = rs.getString("REVIEW_THEMA"); // í…Œë§ˆ
-			String review_place = rs.getString("REVIEW_PLACE"); //ì—¬í–‰ì§€
-			String review_content = rs.getString("REVIEW_CONTENT"); // ë¦¬ë·° ë‚´ìš©
-			int review_cnt = rs.getInt("REVIEW_CNT"); // ì¡°íšŒìˆ˜
-			int review_star = rs.getInt("REVIEW_STAR"); // ë³„ì 
-			Date review_regdate = rs.getDate("REVIEW_REGDATE"); // ë¦¬ë·° ì‘ì„±ì¼
+			int review_num = rs.getInt("REVIEW_NUM"); // ±Û ¹øÈ£
+			String user_id = rs.getString("USER_ID"); // ÀÛ¼ºÀÚ ID
+			String review_title = rs.getString("REVIEW_TITLE"); // ¸®ºä Á¦¸ñ
+			String review_thema = rs.getString("REVIEW_THEMA"); // Å×¸¶
+			String review_place = rs.getString("REVIEW_PLACE"); //¿©ÇàÁö
+			String review_content = rs.getString("REVIEW_CONTENT"); // ¸®ºä ³»¿ë
+			int review_cnt = rs.getInt("REVIEW_CNT"); // Á¶È¸¼ö
+			int review_star = rs.getInt("REVIEW_STAR"); // º°Á¡
+			Date review_regdate = rs.getDate("REVIEW_REGDATE"); // ¸®ºä ÀÛ¼ºÀÏ
 
 			bean.setReview_num(review_num);
 			bean.setUser_id(user_id);

@@ -19,6 +19,7 @@
     <script type="text/javascript" src="js/pooper.js"></script>
 	<link href="css/init.css" rel="stylesheet" type="text/css">
     <link href="css/Header.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="js/Header.js"></script>
 </head>
 <body>
     <div>
@@ -61,12 +62,12 @@
                     <ul>
                         <li>
                             <a href="mypage.do" class="sub_menu">
-                                <i class="far fa-user-circle fa-2x"></i><div class="my">내 정보</div>
+                                <i class="far fa-user-circle fa-2x"></i>내 정보
                             </a>
                         </li>
                         <li>
                             <a href="myreview.do" class="sub_menu">
-                                <i class="far fa-edit fa-2x"></i><div class="my">리뷰관리</div>
+                                <i class="far fa-edit fa-2x"></i>리뷰관리
                             </a>
                         </li>
                     </ul>
@@ -76,12 +77,27 @@
     </div>
     <div style="height: 105px;"></div><!--여백용-->
     <div class="list_menu">
-        <div class="total_menu"><a href="#"><i class="fas fa-bars"></i> 전체메뉴</div></a><!--onclick로 전체메뉴 켜고끄기-->
+        <div class="total_menu"><a href="#"><i class="fas fa-bars"></i> 전체메뉴</a></div><!--onclick로 전체메뉴 켜고끄기-->
         <div class="total_sub_menu"><a href="main.do">메인</a></div>
-        <div class="total_sub_menu"><a href="#">여행지</a></div>
-        <div class="total_sub_menu"><a href="#">숙박</a></div>
+        <div class="total_sub_menu" id="travle"><a href="#">여행지</a></div>
+        <div class="total_sub_menu" id="sleep"><a href="#">숙박</a></div>
         <div class="total_sub_menu"><a href="qna.qo">QnA</a></div>
         <div class="total_sub_menu"><a href="notice.no">공지사항</a></div>
+    </div>
+    <div class="drop_bar" id="travle_menu">
+        <div class="drop_menu"><a href="#">문화</a></div>
+        <div class="drop_menu"><a href="#">캠핑</a></div>
+        <div class="drop_menu"><a href="#">바다-해수욕장</a></div>
+        <div class="drop_menu"><a href="#">바다-해안가</a></div>
+        <div class="drop_menu"><a href="#">산-정상</a></div>
+        <div class="drop_menu"><a href="#">산-둘레길</a></div>
+    </div>
+    <div class="drop_bar" id="sleep_menu">
+        <div class="drop_menu"><a href="#">호텔</a></div>
+        <div class="drop_menu"><a href="#">풀빌라</a></div>
+        <div class="drop_menu"><a href="#">글램핑</a></div>
+        <div class="drop_menu"><a href="#">게스트하우스</a></div>
+        <div class="drop_menu"><a href="#">펜션</a></div>
     </div>
     <div><!-- 메인내용 -->
     <form action="updateAction.no" method="post">

@@ -1,33 +1,15 @@
-/*ë¦¬ë·° ê²Œì‹œíŒ*/
-CREATE TABLE REVIEW_TABLE (
-review_num NUMBER PRIMARY KEY NOT NULL, 
-user_id VARCHAR2(10) NOT NULL, 
-review_title VARCHAR2(20), 
-review_thema varchar2(30),
-review_content VARCHAR2(200), 
-review_cnt NUMBER, 
-review_star NUMBER, 
-review_regdate DATE NOT NULL
+create table review(
+review_num NUMBER PRIMARY KEY NOT NULL, --review ¼ıÀÚ
+review_id VARCHAR2(20) NOT NULL, --À¯Àú ¾ÆÀÌµğ 
+review_travel VARCHAR2(50) NOT NULL, --¸®ºä ¿©ÇàÁö
+review_title VARCHAR2(50) NOT NULL, --¸®ºä Á¦¸ñ
+review_content VARCHAR2(200) NOT NULL, --¸®ºä ³»¿ë
+review_star NUMBER NOT NULL, --¸®ºä º° °¹¼ö
+review_reg_date DATE NOT NULL --¸®ºä ÀÛ¼ºÀÏ
 );
 
 alter table REVIEW_TABLE modify review_place varchar2(50);
 
 drop table REVIEW_TABLE;
-/*ë¦¬ë·°ê²Œì‹œíŒ ì‹œí€€ìŠ¤*/
-create sequence review_num
-start with 0
-minvalue 0
-increment by 1;
-
-/*ì‹œí€€ìŠ¤ ì¦ê°€.*/
-
-review_num.nextval;
 
 select * from REVIEW_TABLE;
-/*ë¦¬ë·°ê²Œì‹œíŒ ì¿¼ë¦¬ë¬¸*/
-INSERT INTO REVIEW_TABLE(review_num, user_id, review_title,review_thema, review_content, review_cnt, review_star, review_regdate)
-VALUES (review_num.nextval,'zzzz2222','ì¶”ì²œ','í•´ìˆ˜ìš•ì¥','ì—¬ê¸° ì™„ì „ ì¢‹ì•„ìš”!',0,4,sysdate);
-
-
-/*rownumì„ ì´ìš©í•œ ì¿¼ë¦¬ë¬¸ ì‘ì„±*/
-SELECT * FROM (SELECT ROWNUM, review_num, user_id, review_title,review_thema, review_content, review_cnt, review_star,  review_regdate FROM REVIEW_TABLE ORDER BY review_num DESC) WHERE ROWNUM <=15;

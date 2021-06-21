@@ -6,7 +6,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page import="DB.*"%>
 <%@ page import="review.*"%>
- 
 
 <% 
 	//파라미터 한글처리
@@ -314,15 +313,12 @@
 		<!-- Modal -->
 		<div class="modal fade" id="myModal" role="dialog">
 			<div class="modal-dialog modal-lg">
-
 				<!-- Modal content-->
 				<div class="modal-content">
 					<div class="modal-header">
 						<button type="button" class="close" data-dismiss="modal">&times;</button>
 					</div>
-
 					<div class="modal-body">
-
 						<div class="panel-group">
 							<div class="panel panel-success" style="margin-top: 10px;">
 								<div class="panel-heading">Review</div>
@@ -359,7 +355,6 @@
 												</select>
 											</div>
 										</div>
-
 										<div class="form-group">
 											<label class="control-label col-sm-2" for="pwd">내용:</label>
 											<div class="col-sm-10">
@@ -374,15 +369,15 @@
 
 													<label class="radio-inline"> <input type="radio"
 														name="review_star" id="review_star" value="1"
-														checked="checked">★☆☆☆☆
+														checked="checked"><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i>
 													</label> <label class="radio-inline"> <input type="radio"
-														name="review_star" id="review_star" value="2">★★☆☆☆
+														name="review_star" id="review_star" value="2"><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i>
 													</label> <label class="radio-inline"> <input type="radio"
-														name="review_star" id="review_star" value="3">★★★☆☆
+														name="review_star" id="review_star" value="3"><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i>
 													</label> <label class="radio-inline"> <input type="radio"
-														name="review_star" id="review_star" value="4">★★★★☆
+														name="review_star" id="review_star" value="4"><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i>
 													</label> <label class="radio-inline"> <input type="radio"
-														name="review_star" id="review_star" value="5">★★★★★
+														name="review_star" id="review_star" value="5"><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i>
 													</label>
 
 												</div>
@@ -395,10 +390,7 @@
 											</div>
 										</div>
 									</form>
-
-
 								</div>
-
 							</div>
 						</div>
 					</div>
@@ -406,7 +398,6 @@
 						<button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
 					</div>
 				</div>
-
 			</div>
 		</div>
 

@@ -30,38 +30,39 @@
     		}
     	}
     </script>
+   <script type="text/javascript" src="js/Header.js"></script>
 </head>
 <body>
-    <div>
-        <div class="global_menu_wrap">
-            <div class="fr">
-                <ul>
-                <c:set var="user_id" value="${sessionScope.user_id }"></c:set>
-                <c:if test="${empty user_id }">
-					<li><a href="loginform.do">로그인</a></li>
-					<li><a>ㅣ</a></li>
-                    <li><a href="joinform.do">회원가입</a></li>
-                    <li><a>ㅣ</a></li>
-                    <li><a href="qna.qo">고객센터</a></li>
-				</c:if>
-                <c:if test="${not empty user_id }">
-                	<c:if test="${user_id=='master' }">
-                	<li><a>관리자 로그인 상태입니다</a></li>
-					<li><a>ㅣ</a></li>
-                    <li><a href="logout.do">로그아웃</a></li>
-                    <li><a>ㅣ</a></li>
-                    <li><a href="membermanage.mo">회원관리</a></li>
-                	</c:if>
-                	<c:if test="${user_id!='master' }">
-                	<li><a><%=session.getAttribute("user_id") %> 님 반갑습니다</a></li>
-					<li><a>ㅣ</a></li>
-                    <li><a href="logout.do">로그아웃</a></li>
-                	</c:if>
-				</c:if>
-                </ul>
-            </div>
-        </div>
-        <div class="local_menu_wrap">
+	<div>
+		<div class="global_menu_wrap">
+			<div class="fr">
+				<ul>
+					<c:set var="user_id" value="${sessionScope.user_id }"></c:set>
+					<c:if test="${empty user_id }">
+						<li><a href="loginform.do">로그인</a></li>
+						<li><a>ㅣ</a></li>
+						<li><a href="joinform.do">회원가입</a></li>
+						<li><a>ㅣ</a></li>
+						<li><a href="qna.qo">고객센터</a></li>
+					</c:if>
+					<c:if test="${not empty user_id }">
+						<c:if test="${user_id=='master' }">
+							<li><a>관리자 로그인 상태입니다</a></li>
+							<li><a>ㅣ</a></li>
+							<li><a href="logout.do">로그아웃</a></li>
+							<li><a>ㅣ</a></li>
+							<li><a href="membermanage.mo">회원관리</a></li>
+						</c:if>
+						<c:if test="${user_id!='master' }">
+							<li><a><%=session.getAttribute("user_id")%> 님 반갑습니다</a></li>
+							<li><a>ㅣ</a></li>
+							<li><a href="logout.do">로그아웃</a></li>
+						</c:if>
+					</c:if>
+				</ul>
+			</div>
+		</div>
+		<div class="local_menu_wrap">
             <div class="fl">
                 <div class="logo">
                     <a href="main.do">관광곳곳</a>
@@ -72,12 +73,12 @@
                     <ul>
                         <li>
                             <a href="mypage.do" class="sub_menu">
-                                <i class="far fa-user-circle fa-2x"></i><div>내 정보</div>
+                                <i class="far fa-user-circle fa-2x"></i>내 정보
                             </a>
                         </li>
                         <li>
                             <a href="myreview.do" class="sub_menu">
-                                <i class="far fa-edit fa-2x"></i><div>리뷰관리</div>
+                                <i class="far fa-edit fa-2x"></i>리뷰관리
                             </a>
                         </li>
                     </ul>
@@ -87,12 +88,27 @@
     </div>
     <div style="height: 105px;"></div><!--여백용-->
     <div class="list_menu">
-        <div class="total_menu"><a href="#"><i class="fas fa-bars"></i> 전체메뉴</div></a><!--onclick로 전체메뉴 켜고끄기-->
+        <div class="total_menu"><a href="#"><i class="fas fa-bars"></i> 전체메뉴</a></div><!--onclick로 전체메뉴 켜고끄기-->
         <div class="total_sub_menu"><a href="main.do">메인</a></div>
-        <div class="total_sub_menu"><a href="#">여행지</a></div>
-        <div class="total_sub_menu"><a href="#">숙박</a></div>
+        <div class="total_sub_menu" id="travle"><a href="#">여행지</a></div>
+        <div class="total_sub_menu" id="sleep"><a href="#">숙박</a></div>
         <div class="total_sub_menu"><a href="qna.qo">QnA</a></div>
         <div class="total_sub_menu"><a href="notice.no">공지사항</a></div>
+    </div>
+    <div class="drop_bar" id="travle_menu">
+        <div class="drop_menu"><a href="cul1.aa">문화</a></div>
+        <div class="drop_menu"><a href="camp1.aa">캠핑</a></div>
+        <div class="drop_menu"><a href="beach.aa">바다-해수욕장</a></div>
+        <div class="drop_menu"><a href="view.aa">바다-해안가</a></div>
+        <div class="drop_menu"><a href="top1.aa">산-정상</a></div>
+        <div class="drop_menu"><a href="cirroad.aa">산-둘레길</a></div>
+    </div>
+    <div class="drop_bar" id="sleep_menu">
+        <div class="drop_menu"><a href="#">호텔</a></div>
+        <div class="drop_menu"><a href="#">풀빌라</a></div>
+        <div class="drop_menu"><a href="#">글램핑</a></div>
+        <div class="drop_menu"><a href="#">게스트하우스</a></div>
+        <div class="drop_menu"><a href="#">펜션</a></div>
     </div>
    	<div class="container">
     	<div style="max-width:600px; margin:0 auto; margin-top:30px;">

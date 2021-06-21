@@ -1,10 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ include file="managersessionChk.jsp" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="Description" content="관광지를 한눈에 찾아보고 숙박시스템까지 연계가 가능한 웹페이지.">
 	<meta name="Keyword" content="웹개발, 프론트엔드, 백엔드, 여행, 관광, html, css, java, javascript, tomcat, jsp">
@@ -84,12 +85,12 @@
         <div class="total_sub_menu"><a href="notice.no">공지사항</a></div>
     </div>
     <div class="drop_bar" id="travle_menu">
-        <div class="drop_menu"><a href="cul1.aa">문화</a></div>
-        <div class="drop_menu"><a href="camp1.aa">캠핑</a></div>
-        <div class="drop_menu"><a href="beach.aa">바다-해수욕장</a></div>
-        <div class="drop_menu"><a href="view.aa">바다-해안가</a></div>
-        <div class="drop_menu"><a href="top1.aa">산-정상</a></div>
-        <div class="drop_menu"><a href="cirroad.aa">산-둘레길</a></div>
+        <div class="drop_menu"><a href="culture.to">문화</a></div>
+        <div class="drop_menu"><a href="camp.to">캠핑</a></div>
+        <div class="drop_menu"><a href="beach.to">바다-해수욕장</a></div>
+        <div class="drop_menu"><a href="view.to">바다-해안가</a></div>
+        <div class="drop_menu"><a href="top.to">산-정상</a></div>
+        <div class="drop_menu"><a href="cirroad.to">산-둘레길</a></div>
     </div>
     <div class="drop_bar" id="sleep_menu">
         <div class="drop_menu"><a href="#">호텔</a></div>
@@ -99,16 +100,56 @@
         <div class="drop_menu"><a href="#">펜션</a></div>
     </div>
     <div><!-- 메인내용 -->
-    <form action="updateAction.qo" method="post">
-	<input type="hidden" name="qna_num" value="${qna.qna_num}">
-	<input type="hidden" name="qna_writer" value="${qna.qna_writer}">
+    <form action="updateAction.to" method="post" enctype="multipart/form-data">
+    <input type="hidden" name="travel_num" value="${travel.travel_num}">
 	<input type="hidden" name="pageNum" value="${pageNum }">
-	<table class="table"><caption>게시글 수정</caption>
-		<tr><th>제목</th><td><input type="text" name="qna_title" required="required" autofocus="autofocus" value="${qna.qna_title}"></td></tr>
-		<tr><th>내용</th><td><textarea name="qna_content" required="required" rows="5" cols="40">${qna.qna_content}</textarea></td></tr>
-		<tr><th colspan="2"><input class="btn btn-primary btn-sm" type="submit" value="수정하기"> <button class="btn btn-primary btn-sm" onclick="history.back()">돌아가기</button></th></tr>
+	<table class="table"><caption>여행지 작성</caption>
+		<tr><th>여행지 이름</th><td colspan="2"><input type="text" name="travel_name" required="required" autofocus="autofocus" value="${travel.travel_name }"></td></tr>
+		<tr><th>여행지 간단소개</th><td colspan="2"><input type="text" name="travel_mini" required="required" value=${travel.travel_mini }></td></tr>
+		<tr><th>여행지 내용</th><td colspan="2"><textarea rows="5" cols="40" name="travel_content" required="required">${travel.travel_content }</textarea></td></tr>
+		<tr><th>여행지 이미지</th><td colspan="2"><input type="file" name="travel_img" required="required"></td></tr>
+		<tr><th>여행지 지역</th><td colspan="2"><select name="travel_local">
+			<option value="서울" selected>서울</option>
+			<option value="경기">경기</option>
+			<option value="인천">인천</option>
+			<option value="대구">대구</option>
+			<option value="부산">부산</option>
+			<option value="경상도">경상도</option>
+			<option value="충청도">충청도</option>
+			<option value="강원도">강원도</option>
+			<option value="광주">광주</option>
+			<option value="울산">울산</option>
+			<option value="대전">대전</option>
+			<option value="전라도">전라도</option>
+			<option value="제주">제주</option>
+			<option value="세종">세종</option>
+		</select></td></tr>
+		<tr><th rowspan="2">여행지 질문</th><td><select name="travel_q1">
+			<option value="당일치기" selected>당일치기</option>
+			<option value="1박2일">1박2일</option>
+			<option value="3박4일">3박4일</option>
+			<option value="장기여행">장기여행</option>
+		</select></td><td><select name="travel_q2">
+			<option value="봄" selected>봄</option>
+			<option value="여름">여름</option>
+			<option value="가을">가을</option>
+			<option value="겨울">겨울</option>
+		</select></tr>
+		<tr><td><select name="travel_q3">
+			<option value="캠핑" selected>캠핑</option>
+			<option value="산-정상">산-정상</option>
+			<option value="산-둘레길">산-둘레길</option>
+			<option value="바다-해수욕장">바다-해수욕장</option>
+			<option value="바다-해변">바다-해변</option>
+			<option value="테마여행">테마여행</option>
+		</select></td><td><select name="travel_q4">
+			<option value="솔로" selected>솔로</option>
+			<option value="커플">커플</option>
+			<option value="가족">가족</option>
+		</select></tr>
+		<tr><th colspan="3"><input class="btn btn-primary btn-sm" type="submit" value="수정하기"></th></tr>
 	</table>
-</form>
+    </form>
     </div>
     <div class="footer">
         <div class="fl">

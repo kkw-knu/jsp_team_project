@@ -76,27 +76,27 @@
     </div>
     <div style="height: 105px;"></div><!--여백용-->
     <div class="list_menu">
-        <div class="total_menu"><a href="#"><i class="fas fa-bars"></i> 전체메뉴</div></a><!--onclick로 전체메뉴 켜고끄기-->
+        <div class="total_menu"><a href="#"><i class="fas fa-bars"></i> 전체메뉴</a></div><!--onclick로 전체메뉴 켜고끄기-->
         <div class="total_sub_menu"><a href="main.do">메인</a></div>
-        <div class="total_sub_menu" id="travle"><a href="#">여행지</a></div>
+        <div class="total_sub_menu" id="travle"><a href="travel.to">여행지</a></div>
         <div class="total_sub_menu" id="sleep"><a href="#">숙박</a></div>
         <div class="total_sub_menu"><a href="qna.qo">QnA</a></div>
         <div class="total_sub_menu"><a href="notice.no">공지사항</a></div>
     </div>
     <div class="drop_bar" id="travle_menu">
-        <div class="drop_menu">문화</div>
-        <div class="drop_menu">캠핑</div>
-        <div class="drop_menu">바다-해수욕장</div>
-        <div class="drop_menu">바다-해안가</div>
-        <div class="drop_menu">산-정상</div>
-        <div class="drop_menu">산-둘레길</div>
+        <div class="drop_menu"><a href="cul1.aa">문화</a></div>
+        <div class="drop_menu"><a href="camp1.aa">캠핑</a></div>
+        <div class="drop_menu"><a href="beach.aa">바다-해수욕장</a></div>
+        <div class="drop_menu"><a href="view.aa">바다-해안가</a></div>
+        <div class="drop_menu"><a href="top1.aa">산-정상</a></div>
+        <div class="drop_menu"><a href="cirroad.aa">산-둘레길</a></div>
     </div>
     <div class="drop_bar" id="sleep_menu">
-        <div class="drop_menu">호텔</div>
-        <div class="drop_menu">풀빌라</div>
-        <div class="drop_menu">글램핑</div>
-        <div class="drop_menu">게스트하우스</div>
-        <div class="drop_menu">펜션</div>
+        <div class="drop_menu"><a href="#">호텔</a></div>
+        <div class="drop_menu"><a href="#">풀빌라</a></div>
+        <div class="drop_menu"><a href="#">글램핑</a></div>
+        <div class="drop_menu"><a href="#">게스트하우스</a></div>
+        <div class="drop_menu"><a href="#">펜션</a></div>
     </div>
     <div><h1>여기에 내용</h1></div><!--메인 div-->
     <div class="footer">

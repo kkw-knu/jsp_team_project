@@ -4,6 +4,7 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
+	<% String path = request.getContextPath();%>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="Description" content="관광지를 한눈에 찾아보고 숙박시스템까지 연계가 가능한 웹페이지.">
@@ -16,9 +17,9 @@
     <script type="text/javascript" src="js/jquery.js"></script>
     <script type="text/javascript" src="js/bootstrap1.min.js"></script>
     <script type="text/javascript" src="js/pooper.js"></script>
+    <script type="text/javascript" src="js/Header.js"></script>
 	<link href="css/init.css" rel="stylesheet" type="text/css">
     <link href="css/Header.css" rel="stylesheet" type="text/css">
-    <script type="text/javascript" src="js/Header.js"></script>
 </head>
 <body>
     <div>
@@ -78,18 +79,18 @@
     <div class="list_menu">
         <div class="total_menu"><a href="#"><i class="fas fa-bars"></i> 전체메뉴</a></div><!--onclick로 전체메뉴 켜고끄기-->
         <div class="total_sub_menu"><a href="main.do">메인</a></div>
-        <div class="total_sub_menu" id="travle"><a href="#">여행지</a></div>
+        <div class="total_sub_menu" id="travle"><a href="travel.to">여행지</a></div>
         <div class="total_sub_menu" id="sleep"><a href="#">숙박</a></div>
         <div class="total_sub_menu"><a href="qna.qo">QnA</a></div>
         <div class="total_sub_menu"><a href="notice.no">공지사항</a></div>
     </div>
     <div class="drop_bar" id="travle_menu">
-        <div class="drop_menu"><a href="cul1.aa">문화</a></div>
-        <div class="drop_menu"><a href="camp1.aa">캠핑</a></div>
-        <div class="drop_menu"><a href="beach.aa">바다-해수욕장</a></div>
-        <div class="drop_menu"><a href="view.aa">바다-해안가</a></div>
-        <div class="drop_menu"><a href="top1.aa">산-정상</a></div>
-        <div class="drop_menu"><a href="cirroad.aa">산-둘레길</a></div>
+        <div class="drop_menu"><a href="search.to?travel_q3='테마여행'">문화</a></div>
+        <div class="drop_menu"><a href="search.to?travel_q3='캠핑'">캠핑</a></div>
+        <div class="drop_menu"><a href="search.to?travel_q3='바다-해수욕장'">바다-해수욕장</a></div>
+        <div class="drop_menu"><a href="search.to?travel_q3='바다-해변'">바다-해안가</a></div>
+        <div class="drop_menu"><a href="search.to?travel_q3='산-정상'">산-정상</a></div>
+        <div class="drop_menu"><a href="search.to?travel_q3='산-둘레길'">산-둘레길</a></div>
     </div>
     <div class="drop_bar" id="sleep_menu">
         <div class="drop_menu"><a href="#">호텔</a></div>
@@ -98,18 +99,39 @@
         <div class="drop_menu"><a href="#">게스트하우스</a></div>
         <div class="drop_menu"><a href="#">펜션</a></div>
     </div>
-    <div><!-- 메인내용 -->
-    <form action="updateAction.qo" method="post">
-	<input type="hidden" name="qna_num" value="${qna.qna_num}">
-	<input type="hidden" name="qna_writer" value="${qna.qna_writer}">
-	<input type="hidden" name="pageNum" value="${pageNum }">
-	<table class="table"><caption>게시글 수정</caption>
-		<tr><th>제목</th><td><input type="text" name="qna_title" required="required" autofocus="autofocus" value="${qna.qna_title}"></td></tr>
-		<tr><th>내용</th><td><textarea name="qna_content" required="required" rows="5" cols="40">${qna.qna_content}</textarea></td></tr>
-		<tr><th colspan="2"><input class="btn btn-primary btn-sm" type="submit" value="수정하기"> <button class="btn btn-primary btn-sm" onclick="history.back()">돌아가기</button></th></tr>
-	</table>
-</form>
+    <div>
+    <br><h1 style="text-align:center; font-size:40px;">${travel_q3}</h1><br>
+    <div class="travelbox">
+    <c:if test="${empty list }">
+    	<h2 align="center">등록된 여행지가 없습니다.</h2>
+    </c:if>
+    <c:if test="${not empty list }">
+    	<c:forEach var="travel" items="${list }">
+    	<article class="imagebox" onclick="location.href='content.to?travel_num=${travel.travel_num}&pageNum=${currentPage}'">
+    		<img src="<%=path%>/filesave/${travel.travel_img}" alt="여행이미지">
+    		<h2 align="center">${travel.travel_name }</h2>
+    		<p align="center">${travel.travel_mini }</p>
+    	</article>
+    	</c:forEach>
+    </c:if>
     </div>
+    <div align="center">
+		<c:if test="${startPage > PAGE_PER_BLOCK}">
+			<button class="btn btn-default btn-xs" onclick="location.href='search.to?travel_q3=${travel_q3}&pageNum=${startPage - 1}'">이전</button>
+		</c:if>
+		<c:forEach var="i" begin="${ startPage}" end="${ endPage}">
+			<button class="btn btn-default btn-xs" onclick="location.href='search.to?travel_q3=${travel_q3}&pageNum=${i}'">${i }</button>
+		</c:forEach>
+		<c:if test="${endPage < totalPage} ">
+			<button class="btn btn-default btn-xs" onclick="location.href='search.to?travel_q3=${travel_q3}&pageNum=${ endPage + 1}'">다음</button>
+		</c:if>
+		<c:if test="${not empty user_id }">
+	    	<c:if test="${user_id=='master' }">
+			<br><br><button class="btn btn-primary btn-sm" onclick="location.href='writeForm.to?travel_num=0&pageNum=1'">여행지등록</button>
+			</c:if>
+		</c:if>
+		</div>
+    </div><!--메인 div-->
     <div class="footer">
         <div class="fl">
             <div>

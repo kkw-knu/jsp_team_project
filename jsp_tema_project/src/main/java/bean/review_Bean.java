@@ -4,15 +4,15 @@ import java.util.Date;
 
 public class review_Bean {
 
-	private int review_num; // ê¸€ ë²ˆí˜¸
-	private String user_id; // ì‘ì„±ì ID
-	private String review_title; // ë¦¬ë·° ì œëª©
-	private String review_thema; //í…Œë§ˆ
-	private String review_place; //ì—¬í–‰ì§€
-	private String review_content; // ë¦¬ë·° ë‚´ìš©
-	private int review_cnt; // ì¡°íšŒìˆ˜
-	private int review_star; // ë³„ì 
-	private Date review_regdate; // ë¦¬ë·° ì‘ì„±ì¼
+	private int review_num; // ±Û ¹øÈ£
+	private String user_id; // ÀÛ¼ºÀÚ ID
+	private String review_title; // ¸®ºä Á¦¸ñ
+	private String review_thema; //Å×¸¶
+	private String review_place; //¿©ÇàÁö
+	private String review_content; // ¸®ºä ³»¿ë
+	private int review_cnt; // Á¶È¸¼ö
+	private int review_star; // º°Á¡
+	private Date review_regdate; // ¸®ºä ÀÛ¼ºÀÏ
 	public int getReview_num() {
 		return review_num;
 	}
