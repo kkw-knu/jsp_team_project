@@ -68,6 +68,7 @@ public class ReviewDao {
 		}
 		return list;
 	}
+	
 	public int update(Review review){ //board 화면에서 입력
 		int result = 0;
 		PreparedStatement pstmt = null;
@@ -171,5 +172,128 @@ public class ReviewDao {
 			}catch (Exception e) {		}
 		}
 		return total;
+	}
+	
+	public int getMyTotal(String user_id) {
+		int total = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		Connection conn = getConnection();
+		String sql = "select count(*) from review where review_id=?";
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, user_id);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				total = rs.getInt(1);
+			}
+		}catch (Exception e) {
+			System.out.println(e.getMessage());
+		}finally {
+			try {
+				if (rs != null) rs.close();
+				if (pstmt != null) pstmt.close();
+				if (conn != null)  conn.close();
+			}catch (Exception e) {		}
+		}
+		return total;
+	}
+	
+	public List<Review> Mylist(int startRow, int endRow, String user_id) {
+		List<Review> list = new ArrayList<Review>();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		Connection conn = getConnection();
+		String sql = "select * from (select rowNum rn, a.* from "
+				+ "(select * from review where review_id = ? order by review_num desc) a)"
+				+ "    where rn between ? and ?";
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, user_id);
+			pstmt.setInt(2, startRow);
+			pstmt.setInt(3, endRow);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				Review review = new Review();
+				review.setReview_num(rs.getInt("review_num"));
+				review.setReview_id(rs.getString("review_id"));
+				review.setReview_travel(rs.getString("review_travel"));
+				review.setReview_title(rs.getString("review_title"));
+				review.setReview_content(rs.getString("review_content"));
+				review.setReview_star(rs.getInt("review_star"));
+				review.setReview_reg_date(rs.getDate("review_reg_date"));
+				
+				list.add(review);
+			}
+		}catch (Exception e) {
+			System.out.println(e.getMessage());
+		}finally {
+			try {
+				if (rs != null) rs.close();
+				if (pstmt != null) pstmt.close();
+				if (conn != null)  conn.close();
+			}catch (Exception e) {		}
+		}
+		return list;
+	}
+	
+	public int getManagerTotal() {
+		int total = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		Connection conn = getConnection();
+		String sql = "select count(*) from review";
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				total = rs.getInt(1);
+			}
+		}catch (Exception e) {
+			System.out.println(e.getMessage());
+		}finally {
+			try {
+				if (rs != null) rs.close();
+				if (pstmt != null) pstmt.close();
+				if (conn != null)  conn.close();
+			}catch (Exception e) {		}
+		}
+		return total;
+	}
+	public List<Review> list(int startRow, int endRow) {
+		List<Review> list = new ArrayList<Review>();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		Connection conn = getConnection();
+		String sql = "select * from (select rowNum rn, a.* from "
+				+ "(select * from review order by review_num desc) a)"
+				+ "    where rn between ? and ?";
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, startRow);
+			pstmt.setInt(2, endRow);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				Review review = new Review();
+				review.setReview_num(rs.getInt("review_num"));
+				review.setReview_id(rs.getString("review_id"));
+				review.setReview_travel(rs.getString("review_travel"));
+				review.setReview_title(rs.getString("review_title"));
+				review.setReview_content(rs.getString("review_content"));
+				review.setReview_star(rs.getInt("review_star"));
+				review.setReview_reg_date(rs.getDate("review_reg_date"));
+				
+				list.add(review);
+			}
+		}catch (Exception e) {
+			System.out.println(e.getMessage());
+		}finally {
+			try {
+				if (rs != null) rs.close();
+				if (pstmt != null) pstmt.close();
+				if (conn != null)  conn.close();
+			}catch (Exception e) {		}
+		}
+		return list;
 	}
 }

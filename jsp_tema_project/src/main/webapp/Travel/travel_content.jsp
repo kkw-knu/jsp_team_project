@@ -113,10 +113,10 @@
     	<c:if test="${user_id=='master' }">
     		<button class="btn btn-primary btn-sm" onclick="location.href='updateForm.to?travel_num=${travel_num}&pageNum=${pageNum}'">수정</button>
 			<button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#myModal2">삭제</button>
-			<button class="btn btn-primary btn-sm" onclick="history.back()">여행지 목록</button>
+			<button class="btn btn-primary btn-sm" onclick="location.href='travel.to?pageNum=${pageNum}'">여행지 목록</button>
     	</c:if>
     	<c:if test="${user_id!='master' }">
-			<button class="btn btn-primary btn-sm" onclick="history.back()">여행지 목록</button>
+			<button class="btn btn-primary btn-sm" onclick="location.href='travel.to?pageNum=${pageNum}'">여행지 목록</button>
     	</c:if>
 	</c:if>
 	</div><br>
@@ -143,34 +143,8 @@
 			</c:if>
 			<c:if test="${not empty list }">
 				<c:forEach var="review" items="${list }">
-				<tr>
-					<td>${review.review_id }</td>
-					<td title="${review.review_title }">
-					<a style="cursor:pointer;"data-toggle="modal" data-target="#myModal1">${review.review_title }</a></td>
-					<c:choose>
-						<c:when test="${review.review_star == 1}">
-							<td><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i></td>
-						</c:when>
-						<c:when test="${review.review_star == 2}">
-							<td><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i></td>
-						</c:when>
-						<c:when test="${review.review_star == 3}">
-							<td><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i></td>
-						</c:when>
-						<c:when test="${review.review_star == 4}">
-							<td><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i></td>
-						</c:when>
-						<c:when test="${review.review_star == 5}">
-							<td><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i></td>
-						</c:when>
-					</c:choose>
-					<td>${review.review_reg_date }</td>
-					<c:if test="${review.review_id == user_id||user_id=='master' }">
-					<td><button class="btn btn-info btn-xs mt-3" data-toggle="modal" data-target="#myModal_update">수정</button></td>
-					<td><button class="btn btn-danger btn-xs" data-toggle="modal" data-target="#myModal_delete">삭제</button></td>
-					</c:if>
-					<!-- 글 수정 모달 -->
-					<div class="modal fade" id="myModal_update" role="dialog">
+				<!-- 글 수정 모달 -->
+					<div class="modal fade" id="myModal_update${review.review_num }" role="dialog">
 						<div class="modal-dialog modal-lg">
 							<!-- Modal content-->
 							<div class="modal-content">
@@ -252,7 +226,7 @@
 						</div>
 					</div>
 					<!-- 리뷰 삭제 모달 -->
-					<div class="modal fade" id="myModal_delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+					<div class="modal fade" id="myModal_delete${review.review_num }" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 						<div class="modal-dialog">
 							<div class="modal-content">
 								<div class="modal-header">
@@ -275,7 +249,7 @@
 						</div>
 					</div>
 					<!-- 상세보기 모달 -->
-					<div class="modal fade" id="myModal1" role="dialog">
+					<div class="modal fade" id="myModal1${review.review_num }" role="dialog">
 						<div class="modal-dialog">
 							<!-- Modal content-->
 							<div class="modal-content">
@@ -307,11 +281,36 @@
 								</div>
 								<div class="modal-footer">
 									<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-			
 								</div>
 							</div>
 						</div>
 					</div>
+				<tr>
+					<td>${review.review_id }</td>
+					<td title="${review.review_title }">
+					<a style="cursor:pointer;"data-toggle="modal" data-target="#myModal1${review.review_num }">${review.review_title }</a></td>
+					<c:choose>
+						<c:when test="${review.review_star == 1}">
+							<td><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i></td>
+						</c:when>
+						<c:when test="${review.review_star == 2}">
+							<td><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i></td>
+						</c:when>
+						<c:when test="${review.review_star == 3}">
+							<td><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i></td>
+						</c:when>
+						<c:when test="${review.review_star == 4}">
+							<td><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i></td>
+						</c:when>
+						<c:when test="${review.review_star == 5}">
+							<td><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i></td>
+						</c:when>
+					</c:choose>
+					<td>${review.review_reg_date }</td>
+					<c:if test="${review.review_id == user_id||user_id=='master' }">
+					<td><button class="btn btn-info btn-xs mt-3" data-toggle="modal" data-target="#myModal_update${review.review_num }">수정</button></td>
+					<td><button class="btn btn-danger btn-xs" data-toggle="modal" data-target="#myModal_delete${review.review_num }">삭제</button></td>
+					</c:if>
 					</tr>
 				</c:forEach>
 			</c:if>
@@ -438,7 +437,6 @@
 				</div>
 			</div>
 		</div>
-	</div>
     </div><!--메인 div-->
     <div class="footer">
         <div class="fl">

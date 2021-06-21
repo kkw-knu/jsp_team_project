@@ -132,8 +132,8 @@
 						<td>${member.user_email }</td>
 						<td>${member.user_date }</td>
 						<td>${member.user_del }</td>
-						<td><button class="btn btn-info btn-xs mt-3" data-toggle="modal" data-target="#myModal">수정</button>
-						<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+						<td><button class="btn btn-info btn-xs mt-3" data-toggle="modal" data-target="#myModal${member.user_id}">수정</button>
+						<div class="modal fade" id="myModal${member.user_id}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 							<div class="modal-dialog">
 								<div class="modal-content">
 									<div class="modal-header">
@@ -177,8 +177,8 @@
 							<!-- 모달 다이얼로그 -->
 						</div>
 						</td>
-						<td><button class="btn btn-danger btn-xs" data-toggle="modal" data-target="#myModal2">삭제</button>
-						<div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+						<td><button class="btn btn-danger btn-xs" data-toggle="modal" data-target="#myModal2${member.user_id}">삭제</button>
+						<div class="modal fade" id="myModal2${member.user_id}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 							<div class="modal-dialog">
 								<div class="modal-content">
 									<div class="modal-header">
