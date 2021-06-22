@@ -77,7 +77,7 @@
     </div>
     <div style="height: 105px;"></div><!--여백용-->
     <div class="list_menu">
-        <div class="total_menu"><a href="#"><i class="fas fa-bars"></i> 전체메뉴</a></div><!--onclick로 전체메뉴 켜고끄기-->
+        <div class="total_menu"><a href="#"></a></div><!--onclick로 전체메뉴 켜고끄기-->
         <div class="total_sub_menu"><a href="main.do">메인</a></div>
         <div class="total_sub_menu" id="travle"><a href="travel.to">여행지</a></div>
         <div class="total_sub_menu" id="sleep"><a href="acmd.ac">숙박</a></div>

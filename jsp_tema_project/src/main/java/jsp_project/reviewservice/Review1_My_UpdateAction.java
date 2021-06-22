@@ -30,6 +30,7 @@ public class Review1_My_UpdateAction implements CommandProcess {
 		
 		Review1Dao rd = Review1Dao.getInstance();
 		int result = rd.update(review);
+		rd.starupdate(review);
 		
 		request.setAttribute("pageNum", pageNum);
 		request.setAttribute("result", result);

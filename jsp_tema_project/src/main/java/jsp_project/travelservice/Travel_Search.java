@@ -13,7 +13,7 @@ public class Travel_Search implements CommandProcess {
 
 	@Override
 	public String requestPro(HttpServletRequest request, HttpServletResponse response) {
-		final int ROW_PER_PAGE = 9;     // 한페이지에 10개씩
+		final int ROW_PER_PAGE = 12;     // 한페이지에 10개씩
 		final int PAGE_PER_BLOCK = 10;   // 한블럭에 10페이지
 		String pageNum = request.getParameter("pageNum");
 		String travel_q3 = request.getParameter("travel_q3");

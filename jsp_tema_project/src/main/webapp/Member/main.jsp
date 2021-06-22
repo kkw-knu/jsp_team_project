@@ -76,7 +76,7 @@
     </div>
     <div style="height: 105px;"></div><!--여백용-->
     <div class="list_menu">
-        <div class="total_menu"><a href="#"><i class="fas fa-bars"></i> 전체메뉴</a></div><!--onclick로 전체메뉴 켜고끄기-->
+        <div class="total_menu"><a href="#"></a></div><!--onclick로 전체메뉴 켜고끄기-->
         <div class="total_sub_menu"><a href="main.do">메인</a></div>
         <div class="total_sub_menu" id="travle"><a href="travel.to">여행지</a></div>
         <div class="total_sub_menu" id="sleep"><a href="acmd.ac">숙박</a></div>
@@ -98,7 +98,33 @@
         <div class="drop_menu"><a href="search.ac?acmd_q=게스트하우스">게스트하우스</a></div>
         <div class="drop_menu"><a href="search.ac?acmd_q=펜션">펜션</a></div>
     </div>
-    <div><h1>여기에 내용</h1></div><!--메인 div-->
+    <div><br><br>
+    <table class="table"><caption><i class="far fa-smile-beam"></i> 최근 공지사항 목록 <i class="far fa-smile-beam"></i></caption>
+    <thead>
+	<tr><th width="15%;">번호</th><th width="40%;">제목</th><th width="15%;">작성자</th><th width="15%;">작성일</th><th width="15%;">조회수</th></tr></thead><tbody>
+		<c:if test="${empty noticelist }">
+			<tr><th colspan="5" style="text-align:center;">최근 공지사항이 없습니다</th></tr>
+		</c:if>
+		<c:if test="${not empty noticelist }">
+			<c:forEach var="notice" items="${noticelist }">
+				<tr><td>${notice.notice_num}</td>
+				<c:if test="${notice.notice_del == 'y' }">
+					<th colspan="4">삭제된 공지사항 입니다</th>
+				</c:if>
+				<c:if test="${notice.notice_del != 'y' }">
+					<td title="${notice.notice_content }">
+						<a href="content.no?notice_num=${notice.notice_num}&pageNum=1">
+						${notice.notice_title}</a></td>
+					<td>${notice.notice_writer }</td>
+					<td>${notice.notice_reg_date }</td>
+					<td>${notice.notice_readcount}</td>
+				</c:if>
+				</tr>
+			</c:forEach>
+		</c:if>
+		</tbody>
+		</table>
+    </div><!--메인 div-->
     <div class="footer">
         <div class="fl">
             <div>

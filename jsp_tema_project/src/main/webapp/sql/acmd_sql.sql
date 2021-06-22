@@ -6,7 +6,8 @@ create table acmd(
 	acmd_content varchar2(2048) not null,
 	acmd_mini varchar2(50) not null,
 	acmd_travel varchar2(50),
-	acmd_q varchar2(20) not null
+	acmd_q varchar2(20) not null,
+	acmd_star number not null --º°Á¡ ÃÑÇÕ
 );
 
 drop table acmd;

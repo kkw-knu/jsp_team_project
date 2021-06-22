@@ -77,7 +77,7 @@
     </div>
     <div style="height: 105px;"></div><!--여백용-->
     <div class="list_menu">
-        <div class="total_menu"><a href="#"><i class="fas fa-bars"></i> 전체메뉴</a></div><!--onclick로 전체메뉴 켜고끄기-->
+        <div class="total_menu"><a href="#"></a></div><!--onclick로 전체메뉴 켜고끄기-->
         <div class="total_sub_menu"><a href="main.do">메인</a></div>
         <div class="total_sub_menu" id="travle"><a href="travel.to">여행지</a></div>
         <div class="total_sub_menu" id="sleep"><a href="acmd.ac">숙박</a></div>
@@ -105,18 +105,31 @@
     style="border-radius: 8px; max-height: 400px; object-fit: cover;">
     <h5>숙박 지역 : ${acmd.acmd_local }</h5>
     <p>숙박업소 내용 : ${acmd.acmd_content}</p>
+    <p align="center">
+    		<c:if test="${acmd.acmd_star >= 0 && acmd.acmd_star<0.5}"><i class="far fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i> (${acmd.acmd_star })</c:if>
+    		<c:if test="${acmd.acmd_star >= 0.5 && acmd.acmd_star<1}"><i class="fas fa-star-half-alt fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i> (${acmd.acmd_star }</c:if>
+    		<c:if test="${acmd.acmd_star >= 1 && acmd.acmd_star<1.5}"><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i> (${acmd.acmd_star })</c:if>
+    		<c:if test="${acmd.acmd_star >= 1.5 && acmd.acmd_star<2}"><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="fas fa-star-half-alt fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i> (${acmd.acmd_star })</c:if>
+    		<c:if test="${acmd.acmd_star >= 2 && acmd.acmd_star<2.5}"><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i> (${acmd.acmd_star })</c:if>
+    		<c:if test="${acmd.acmd_star >= 2.5 && acmd.acmd_star<3}"><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="fas fa-star-half-alt fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i> (${acmd.acmd_star })</c:if>
+    		<c:if test="${acmd.acmd_star >= 3 && acmd.acmd_star<3.5}"><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i> (${acmd.acmd_star })</c:if>
+    		<c:if test="${acmd.acmd_star >= 3.5 && acmd.acmd_star<4}"><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="fas fa-star-half-alt fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i> (${acmd.acmd_star })</c:if>
+    		<c:if test="${acmd.acmd_star >= 4 && acmd.acmd_star<4.5}"><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i> (${acmd.acmd_star })</c:if>
+    		<c:if test="${acmd.acmd_star >= 4.5 && acmd.acmd_star<5}"><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="fas fa-star-half-alt fa-1x" style="color:#FACC2E;"></i> (${acmd.acmd_star })</c:if>
+    		<c:if test="${acmd.acmd_star == 5}"><p><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i> (${acmd.acmd_star })</p></c:if>
+    	    </p>
     <div align="left"><br>
 	<c:if test="${empty user_id }">
-			<button class="btn btn-primary btn-sm" onclick="location.href='acmd.ac?pageNum=${pageNum}'">여행지 목록</button>
+			<button class="btn btn-primary btn-sm" onclick="location.href='acmd.ac?pageNum=${pageNum}'">숙박업소 목록</button>
 	</c:if>
     <c:if test="${not empty user_id }">
     	<c:if test="${user_id=='master' }">
     		<button class="btn btn-primary btn-sm" onclick="location.href='updateForm.ac?acmd_num=${acmd_num}&pageNum=${pageNum}'">수정</button>
 			<button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#myModal2">삭제</button>
-			<button class="btn btn-primary btn-sm" onclick="location.href='acmd.ac?pageNum=${pageNum}'">여행지 목록</button>
+			<button class="btn btn-primary btn-sm" onclick="location.href='acmd.ac?pageNum=${pageNum}'">숙박업소 목록</button>
     	</c:if>
     	<c:if test="${user_id!='master' }">
-			<button class="btn btn-primary btn-sm" onclick="location.href='acmd.ac?pageNum=${pageNum}'">여행지 목록</button>
+			<button class="btn btn-primary btn-sm" onclick="location.href='acmd.ac?pageNum=${pageNum}'">숙박업소 목록</button>
     	</c:if>
 	</c:if>
 	</div><br>

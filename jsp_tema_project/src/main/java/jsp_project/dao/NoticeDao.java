@@ -225,4 +225,37 @@ public class NoticeDao {
 		}
 		return total;
 	}
+	public List<Notice> newnotice() {
+		List<Notice> noticelist = new ArrayList<Notice>();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		Connection conn = getConnection();
+		String sql = "SELECT * FROM (SELECT * FROM notice ORDER BY notice_reg_date desc)"
+				+ " WHERE rownum <= 3";
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				Notice notice = new Notice();
+				notice.setNotice_num(rs.getInt("notice_num"));
+				notice.setNotice_title(rs.getString("notice_title"));
+				notice.setNotice_content(rs.getString("notice_content"));
+				notice.setNotice_writer(rs.getString("notice_writer"));
+				notice.setNotice_readcount(rs.getInt("notice_readcount"));
+				notice.setNotice_reg_date(rs.getDate("notice_reg_date"));
+				notice.setNotice_del(rs.getString("notice_del"));
+				
+				noticelist.add(notice);
+			}
+		}catch (Exception e) {
+			System.out.println(e.getMessage());
+		}finally {
+			try {
+				if (rs != null) rs.close();
+				if (pstmt != null) pstmt.close();
+				if (conn != null)  conn.close();
+			}catch (Exception e) {		}
+		}
+		return noticelist;
+	}
 }

@@ -80,27 +80,27 @@
     </div>
     <div style="height: 105px;"></div><!--여백용-->
     <div class="list_menu">
-        <div class="total_menu"><a href="#"><i class="fas fa-bars"></i> 전체메뉴</a></div><!--onclick로 전체메뉴 켜고끄기-->
+        <div class="total_menu"><a href="#"></a></div><!--onclick로 전체메뉴 켜고끄기-->
         <div class="total_sub_menu"><a href="main.do">메인</a></div>
-        <div class="total_sub_menu" id="travle"><a href="#">여행지</a></div>
-        <div class="total_sub_menu" id="sleep"><a href="#">숙박</a></div>
+        <div class="total_sub_menu" id="travle"><a href="travel.to">여행지</a></div>
+        <div class="total_sub_menu" id="sleep"><a href="acmd.ac">숙박</a></div>
         <div class="total_sub_menu"><a href="qna.qo">QnA</a></div>
         <div class="total_sub_menu"><a href="notice.no">공지사항</a></div>
     </div>
     <div class="drop_bar" id="travle_menu">
-        <div class="drop_menu"><a href="cul1.aa">문화</a></div>
-        <div class="drop_menu"><a href="camp1.aa">캠핑</a></div>
-        <div class="drop_menu"><a href="beach.aa">바다-해수욕장</a></div>
-        <div class="drop_menu"><a href="view.aa">바다-해안가</a></div>
-        <div class="drop_menu"><a href="top1.aa">산-정상</a></div>
-        <div class="drop_menu"><a href="cirroad.aa">산-둘레길</a></div>
+        <div class="drop_menu"><a href="search.to?travel_q3=테마여행">문화</a></div>
+        <div class="drop_menu"><a href="search.to?travel_q3=캠핑">캠핑</a></div>
+        <div class="drop_menu"><a href="search.to?travel_q3=바다-해수욕장">해수욕장</a></div>
+        <div class="drop_menu"><a href="search.to?travel_q3=바다-해변">해안가</a></div>
+        <div class="drop_menu"><a href="search.to?travel_q3=산-정상">등산</a></div>
+        <div class="drop_menu"><a href="search.to?travel_q3=산-둘레길">둘레길</a></div>
     </div>
     <div class="drop_bar" id="sleep_menu">
-        <div class="drop_menu"><a href="#">호텔</a></div>
-        <div class="drop_menu"><a href="#">풀빌라</a></div>
-        <div class="drop_menu"><a href="#">글램핑</a></div>
-        <div class="drop_menu"><a href="#">게스트하우스</a></div>
-        <div class="drop_menu"><a href="#">펜션</a></div>
+        <div class="drop_menu"><a href="search.ac?acmd_q=호텔">호텔</a></div>
+        <div class="drop_menu"><a href="search.ac?acmd_q=풀빌라">풀빌라</a></div>
+        <div class="drop_menu"><a href="search.ac?acmd_q=글램핑">글램핑</a></div>
+        <div class="drop_menu"><a href="search.ac?acmd_q=게스트하우스">게스트하우스</a></div>
+        <div class="drop_menu"><a href="search.ac?acmd_q=펜션">펜션</a></div>
     </div>
 	<div>
 		<br>
@@ -310,7 +310,7 @@
 			<button class="btn btn-default btn-xs" onclick="location.href='myreview.do?pageNum=${ endPage + 1}'">다음</button>
 		</c:if>
 		</div>
-		</c:if>
+		
 		<br><br><br>
 		<div class="jumbotron">
 			<h3>&nbsp;&nbsp;&nbsp;&nbsp;Review</h3>
@@ -336,7 +336,7 @@
 				<c:forEach var="review" items="${list1 }">
 				<tr>
 					<td>${review.review_id }</td>
-					<td>${review.review_travel }</td>
+					<td>${review.review_acmd }</td>
 					<td title="${review.review_title }">
 					<a style="cursor:pointer;"data-toggle="modal" data-target="#myModal11${review.review_num }">${review.review_title }</a></td>
 					<c:choose>
@@ -514,7 +514,7 @@
 			<button class="btn btn-default btn-xs" onclick="location.href='myreview.do?pageNum1=${ endPage + 1}'">다음</button>
 		</c:if>
 		</div>
-		
+		</c:if>
 		<!-- 관리자아닐때 -->
 		<c:if test="${user_id!='master' }">
 		<div class="jumbotron">

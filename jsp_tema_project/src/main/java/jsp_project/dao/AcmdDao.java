@@ -54,6 +54,7 @@ public class AcmdDao {
 				acmd.setAcmd_mini(rs.getString("acmd_mini"));
 				acmd.setAcmd_travel(rs.getString("acmd_travel"));
 				acmd.setAcmd_q(rs.getString("acmd_q"));
+				acmd.setAcmd_star(rs.getFloat("acmd_star"));
 				
 				list.add(acmd);
 			}
@@ -74,7 +75,7 @@ public class AcmdDao {
 		PreparedStatement pstmt = null;
 		Connection conn = getConnection();
 		ResultSet rs = null;
-		String sql = "insert into acmd values(?,?,?,?,?,?,?,?)";
+		String sql = "insert into acmd values(?,?,?,?,?,?,?,?,0)";
 		String sql2 = "select nvl(max(acmd_num),0) + 1 from acmd";
 		try {
 			pstmt = conn.prepareStatement(sql2);
@@ -124,7 +125,8 @@ public class AcmdDao {
 				acmd.setAcmd_content(rs.getString("acmd_content"));
 				acmd.setAcmd_mini(rs.getString("acmd_mini"));
 				acmd.setAcmd_travel(rs.getString("acmd_travel"));
-				acmd.setAcmd_q(rs.getString("acmd_q1"));
+				acmd.setAcmd_q(rs.getString("acmd_q"));
+				acmd.setAcmd_star(rs.getFloat("acmd_star"));
 			}
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
@@ -240,6 +242,7 @@ public class AcmdDao {
 				acmd.setAcmd_mini(rs.getString("acmd_mini"));
 				acmd.setAcmd_travel(rs.getString("acmd_travel"));
 				acmd.setAcmd_q(rs.getString("acmd_q"));
+				acmd.setAcmd_star(rs.getFloat("acmd_star"));
 
 				list.add(acmd);
 			}
@@ -277,5 +280,40 @@ public class AcmdDao {
 			}catch (Exception e) {		}
 		}
 		return total;
+	}
+	public List<Acmd> searchname(String travel_name) {
+		List<Acmd> acmdlist = new ArrayList<Acmd>();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		Connection conn = getConnection();
+		String sql = "select * from acmd where acmd_travel=?";
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, travel_name);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				Acmd acmd = new Acmd();
+				acmd.setAcmd_num(rs.getInt("acmd_num"));
+				acmd.setAcmd_name(rs.getString("acmd_name"));
+				acmd.setAcmd_img(rs.getString("acmd_img"));
+				acmd.setAcmd_local(rs.getString("acmd_local"));
+				acmd.setAcmd_content(rs.getString("acmd_content"));
+				acmd.setAcmd_mini(rs.getString("acmd_mini"));
+				acmd.setAcmd_travel(rs.getString("acmd_travel"));
+				acmd.setAcmd_q(rs.getString("acmd_q"));
+				acmd.setAcmd_star(rs.getFloat("acmd_star"));
+
+				acmdlist.add(acmd);
+			}
+		}catch (Exception e) {
+			System.out.println(e.getMessage());
+		}finally {
+			try {
+				if (rs != null) rs.close();
+				if (pstmt != null) pstmt.close();
+				if (conn != null)  conn.close();
+			}catch (Exception e) {		}
+		}
+		return acmdlist;
 	}
 }

@@ -297,4 +297,59 @@ public class Review1Dao {
 		}
 		return list;
 	}
+	public void starupdate(Review1 review) {
+		PreparedStatement pstmt = null;
+		Connection conn = getConnection();
+		String sql = "update acmd set acmd_star=(select round(avg(review_star),2) from review1"
+				+ "group by review_acmd"
+				+ "having review_acmd=?) where acmd.acmd_name=?"; 
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, review.getReview_acmd());
+			pstmt.setString(2, review.getReview_acmd());
+			pstmt.executeUpdate();
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}finally {
+			try {
+				if(pstmt!=null) pstmt.close();
+				if(conn!=null) conn.close();
+			} catch (Exception e2) {
+				System.out.println(e2.getMessage());
+			}
+		}
+		return;
+	}
+	public Review1 select(int review_num) {
+		Review1 review = new Review1();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		Connection conn = getConnection();
+		String sql = "select * from review1 where review_num=?";
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, review_num);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				review.setReview_num(rs.getInt("review_num"));
+				review.setReview_id(rs.getString("review_id"));
+				review.setReview_acmd(rs.getString("review_acmd"));
+				review.setReview_title(rs.getString("review_title"));
+				review.setReview_content(rs.getString("review_content"));
+				review.setReview_star(rs.getInt("review_star"));
+				review.setReview_reg_date(rs.getDate("review_reg_date"));
+			}
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}finally {
+			try {
+				if(rs!=null) rs.close();
+				if(pstmt!=null) pstmt.close();
+				if(conn!=null) conn.close();
+			} catch (Exception e2) {
+				System.out.println(e2.getMessage());
+			}
+		}
+		return review;
+	}
 }

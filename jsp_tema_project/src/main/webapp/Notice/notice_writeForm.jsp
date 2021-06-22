@@ -77,27 +77,27 @@
     </div>
     <div style="height: 105px;"></div><!--여백용-->
     <div class="list_menu">
-        <div class="total_menu"><a href="#"><i class="fas fa-bars"></i> 전체메뉴</a></div><!--onclick로 전체메뉴 켜고끄기-->
+        <div class="total_menu"><a href="#"></a></div><!--onclick로 전체메뉴 켜고끄기-->
         <div class="total_sub_menu"><a href="main.do">메인</a></div>
-        <div class="total_sub_menu" id="travle"><a href="#">여행지</a></div>
-        <div class="total_sub_menu" id="sleep"><a href="#">숙박</a></div>
+        <div class="total_sub_menu" id="travle"><a href="travel.to">여행지</a></div>
+        <div class="total_sub_menu" id="sleep"><a href="acmd.ac">숙박</a></div>
         <div class="total_sub_menu"><a href="qna.qo">QnA</a></div>
         <div class="total_sub_menu"><a href="notice.no">공지사항</a></div>
     </div>
     <div class="drop_bar" id="travle_menu">
-        <div class="drop_menu"><a href="#">문화</a></div>
-        <div class="drop_menu"><a href="#">캠핑</a></div>
-        <div class="drop_menu"><a href="#">바다-해수욕장</a></div>
-        <div class="drop_menu"><a href="#">바다-해안가</a></div>
-        <div class="drop_menu"><a href="#">산-정상</a></div>
-        <div class="drop_menu"><a href="#">산-둘레길</a></div>
+        <div class="drop_menu"><a href="search.to?travel_q3=테마여행">문화</a></div>
+        <div class="drop_menu"><a href="search.to?travel_q3=캠핑">캠핑</a></div>
+        <div class="drop_menu"><a href="search.to?travel_q3=바다-해수욕장">해수욕장</a></div>
+        <div class="drop_menu"><a href="search.to?travel_q3=바다-해변">해안가</a></div>
+        <div class="drop_menu"><a href="search.to?travel_q3=산-정상">등산</a></div>
+        <div class="drop_menu"><a href="search.to?travel_q3=산-둘레길">둘레길</a></div>
     </div>
     <div class="drop_bar" id="sleep_menu">
-        <div class="drop_menu"><a href="#">호텔</a></div>
-        <div class="drop_menu"><a href="#">풀빌라</a></div>
-        <div class="drop_menu"><a href="#">글램핑</a></div>
-        <div class="drop_menu"><a href="#">게스트하우스</a></div>
-        <div class="drop_menu"><a href="#">펜션</a></div>
+        <div class="drop_menu"><a href="search.ac?acmd_q=호텔">호텔</a></div>
+        <div class="drop_menu"><a href="search.ac?acmd_q=풀빌라">풀빌라</a></div>
+        <div class="drop_menu"><a href="search.ac?acmd_q=글램핑">글램핑</a></div>
+        <div class="drop_menu"><a href="search.ac?acmd_q=게스트하우스">게스트하우스</a></div>
+        <div class="drop_menu"><a href="search.ac?acmd_q=펜션">펜션</a></div>
     </div>
     <div><!-- 메인내용 -->
     <form action="writeAction.no" method="post">

@@ -11,6 +11,7 @@ public class Travel {
 	private String travel_q2;
 	private String travel_q3;
 	private String travel_q4;
+	private Float travel_star;
 	public int getTravel_num() {
 		return travel_num;
 	}
@@ -71,4 +72,11 @@ public class Travel {
 	public void setTravel_q4(String travel_q4) {
 		this.travel_q4 = travel_q4;
 	}
+	public float getTravel_star() {
+		return travel_star;
+	}
+	public void setTravel_star(float travel_star) {
+		this.travel_star = travel_star;
+	}
+	
 }

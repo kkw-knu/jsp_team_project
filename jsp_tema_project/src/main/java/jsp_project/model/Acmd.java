@@ -9,6 +9,7 @@ public class Acmd {
 	private String acmd_mini;
 	private String acmd_travel;
 	private String acmd_q;
+	private Float acmd_star;
 	public int getAcmd_num() {
 		return acmd_num;
 	}
@@ -57,5 +58,10 @@ public class Acmd {
 	public void setAcmd_q(String acmd_q) {
 		this.acmd_q = acmd_q;
 	}
-	
+	public float getAcmd_star() {
+		return acmd_star;
+	}
+	public void setAcmd_star(float acmd_star) {
+		this.acmd_star = acmd_star;
+	}
 }

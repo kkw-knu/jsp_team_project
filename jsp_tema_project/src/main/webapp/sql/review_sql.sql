@@ -20,6 +20,7 @@ review_reg_date DATE NOT NULL --∏Æ∫‰ ¿€º∫¿œ
 
 alter table REVIEW_TABLE modify review_place varchar2(50);
 
-drop table REVIEW_TABLE;
+drop table review;
+drop table review1;
 
 select * from REVIEW_TABLE;

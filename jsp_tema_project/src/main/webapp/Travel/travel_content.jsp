@@ -77,27 +77,27 @@
     </div>
     <div style="height: 105px;"></div><!--여백용-->
     <div class="list_menu">
-        <div class="total_menu"><a href="#"><i class="fas fa-bars"></i> 전체메뉴</a></div><!--onclick로 전체메뉴 켜고끄기-->
+        <div class="total_menu"><a href="#"></a></div><!--onclick로 전체메뉴 켜고끄기-->
         <div class="total_sub_menu"><a href="main.do">메인</a></div>
         <div class="total_sub_menu" id="travle"><a href="travel.to">여행지</a></div>
-        <div class="total_sub_menu" id="sleep"><a href="#">숙박</a></div>
+        <div class="total_sub_menu" id="sleep"><a href="acmd.ac">숙박</a></div>
         <div class="total_sub_menu"><a href="qna.qo">QnA</a></div>
         <div class="total_sub_menu"><a href="notice.no">공지사항</a></div>
     </div>
     <div class="drop_bar" id="travle_menu">
-        <div class="drop_menu"><a href="culture.to">문화</a></div>
-        <div class="drop_menu"><a href="camp.to">캠핑</a></div>
-        <div class="drop_menu"><a href="beach.to">바다-해수욕장</a></div>
-        <div class="drop_menu"><a href="view.to">바다-해안가</a></div>
-        <div class="drop_menu"><a href="top.to">산-정상</a></div>
-        <div class="drop_menu"><a href="cirroad.to">산-둘레길</a></div>
+        <div class="drop_menu"><a href="search.to?travel_q3=테마여행">문화</a></div>
+        <div class="drop_menu"><a href="search.to?travel_q3=캠핑">캠핑</a></div>
+        <div class="drop_menu"><a href="search.to?travel_q3=바다-해수욕장">해수욕장</a></div>
+        <div class="drop_menu"><a href="search.to?travel_q3=바다-해변">해안가</a></div>
+        <div class="drop_menu"><a href="search.to?travel_q3=산-정상">등산</a></div>
+        <div class="drop_menu"><a href="search.to?travel_q3=산-둘레길">둘레길</a></div>
     </div>
     <div class="drop_bar" id="sleep_menu">
-        <div class="drop_menu"><a href="#">호텔</a></div>
-        <div class="drop_menu"><a href="#">풀빌라</a></div>
-        <div class="drop_menu"><a href="#">글램핑</a></div>
-        <div class="drop_menu"><a href="#">게스트하우스</a></div>
-        <div class="drop_menu"><a href="#">펜션</a></div>
+        <div class="drop_menu"><a href="search.ac?acmd_q=호텔">호텔</a></div>
+        <div class="drop_menu"><a href="search.ac?acmd_q=풀빌라">풀빌라</a></div>
+        <div class="drop_menu"><a href="search.ac?acmd_q=글램핑">글램핑</a></div>
+        <div class="drop_menu"><a href="search.ac?acmd_q=게스트하우스">게스트하우스</a></div>
+        <div class="drop_menu"><a href="search.ac?acmd_q=펜션">펜션</a></div>
     </div>
     <div>
     <br><h1 style="text-align:center; font-size:40px;">${travel.travel_name }</h1><br>
@@ -105,6 +105,19 @@
     style="border-radius: 8px; max-height: 400px; object-fit: cover;">
     <h5>여행지 지역 : ${travel.travel_local }</h5>
     <p>여행지 내용 : ${travel.travel_content}</p>
+    <p align="center">
+    		<c:if test="${travel.travel_star >= 0 && travel.travel_star<0.5}"><i class="far fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i> (${travel.travel_star })</c:if>
+    		<c:if test="${travel.travel_star >= 0.5 && travel.travel_star<1}"><i class="fas fa-star-half-alt fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i> (${travel.travel_star }</c:if>
+    		<c:if test="${travel.travel_star >= 1 && travel.travel_star<1.5}"><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i> (${travel.travel_star })</c:if>
+    		<c:if test="${travel.travel_star >= 1.5 && travel.travel_star<2}"><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="fas fa-star-half-alt fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i> (${travel.travel_star })</c:if>
+    		<c:if test="${travel.travel_star >= 2 && travel.travel_star<2.5}"><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i> (${travel.travel_star })</c:if>
+    		<c:if test="${travel.travel_star >= 2.5 && travel.travel_star<3}"><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="fas fa-star-half-alt fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i> (${travel.travel_star })</c:if>
+    		<c:if test="${travel.travel_star >= 3 && travel.travel_star<3.5}"><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i> (${travel.travel_star })</c:if>
+    		<c:if test="${travel.travel_star >= 3.5 && travel.travel_star<4}"><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="fas fa-star-half-alt fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i> (${travel.travel_star })</c:if>
+    		<c:if test="${travel.travel_star >= 4 && travel.travel_star<4.5}"><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i> (${travel.travel_star })</c:if>
+    		<c:if test="${travel.travel_star >= 4.5 && travel.travel_star<5}"><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="fas fa-star-half-alt fa-1x" style="color:#FACC2E;"></i> (${travel.travel_star })</c:if>
+    		<c:if test="${travel.travel_star == 5}"><p><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i> (${travel.travel_star })</p></c:if>
+    	    </p>
     <div align="left"><br>
 	<c:if test="${empty user_id }">
 			<button class="btn btn-primary btn-sm" onclick="location.href='travel.to?pageNum=${pageNum}'">여행지 목록</button>
@@ -119,8 +132,36 @@
 			<button class="btn btn-primary btn-sm" onclick="location.href='travel.to?pageNum=${pageNum}'">여행지 목록</button>
     	</c:if>
 	</c:if>
-	</div><br>
+	</div><br><br>
 	<!-- 여기에 추천숙박 -->
+	<h4>&nbsp;&nbsp;&nbsp;&nbsp;추천 숙박업소</h4>
+	<div class="travelbox">
+		<c:if test="${empty acmdlist }">
+			<p>&nbsp;&nbsp;&nbsp;&nbsp;아쉽게도 현재 등록된 숙박업소가 없습니다</p>
+		</c:if>
+		<c:if test="${not empty acmdlist }">
+    	<c:forEach var="acmd" items="${acmdlist }">
+    	<article class="imagebox" onclick="location.href='content.ac?acmd_num=${acmd.acmd_num}&pageNum=1'">
+    		<img src="<%=path%>/filesave/${acmd.acmd_img}" alt="숙박업소이미지">
+    		<h2 align="center">${acmd.acmd_name }</h2>
+    		<p align="center">${acmd.acmd_mini }</p>
+    		<p align="center">
+    		<c:if test="${acmd.acmd_star >= 0 && acmd.acmd_star<0.5}"><i class="far fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i> (${acmd.acmd_star })</c:if>
+    		<c:if test="${acmd.acmd_star >= 0.5 && acmd.acmd_star<1}"><i class="fas fa-star-half-alt fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i> (${acmd.acmd_star }</c:if>
+    		<c:if test="${acmd.acmd_star >= 1 && acmd.acmd_star<1.5}"><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i> (${acmd.acmd_star })</c:if>
+    		<c:if test="${acmd.acmd_star >= 1.5 && acmd.acmd_star<2}"><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="fas fa-star-half-alt fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i> (${acmd.acmd_star })</c:if>
+    		<c:if test="${acmd.acmd_star >= 2 && acmd.acmd_star<2.5}"><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i> (${acmd.acmd_star })</c:if>
+    		<c:if test="${acmd.acmd_star >= 2.5 && acmd.acmd_star<3}"><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="fas fa-star-half-alt fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i> (${acmd.acmd_star })</c:if>
+    		<c:if test="${acmd.acmd_star >= 3 && acmd.acmd_star<3.5}"><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i> (${acmd.acmd_star })</c:if>
+    		<c:if test="${acmd.acmd_star >= 3.5 && acmd.acmd_star<4}"><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="fas fa-star-half-alt fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i> (${acmd.acmd_star })</c:if>
+    		<c:if test="${acmd.acmd_star >= 4 && acmd.acmd_star<4.5}"><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i> (${acmd.acmd_star })</c:if>
+    		<c:if test="${acmd.acmd_star >= 4.5 && acmd.acmd_star<5}"><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="fas fa-star-half-alt fa-1x" style="color:#FACC2E;"></i> (${acmd.acmd_star })</c:if>
+    		<c:if test="${acmd.acmd_star == 5}"><p><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i> (${acmd.acmd_star })</p></c:if>
+    	    </p>
+    	</article>
+    	</c:forEach>
+    </c:if>
+	</div><br><br><br>
 	<!-- 여기에 리뷰 -->
 	<div class="jumbotron">
 		<h3>&nbsp;&nbsp;&nbsp;&nbsp;Review</h3>

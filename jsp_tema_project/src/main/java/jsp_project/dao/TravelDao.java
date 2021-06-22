@@ -56,6 +56,7 @@ public class TravelDao {
 				travel.setTravel_q1(rs.getString("travel_q2"));
 				travel.setTravel_q1(rs.getString("travel_q3"));
 				travel.setTravel_q1(rs.getString("travel_q4"));
+				travel.setTravel_star(rs.getFloat("travel_star"));
 				
 				list.add(travel);
 			}
@@ -140,6 +141,7 @@ public class TravelDao {
 				travel.setTravel_q1(rs.getString("travel_q2"));
 				travel.setTravel_q1(rs.getString("travel_q3"));
 				travel.setTravel_q1(rs.getString("travel_q4"));
+				travel.setTravel_star(rs.getFloat("travel_star"));
 			}
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
@@ -160,7 +162,7 @@ public class TravelDao {
 		PreparedStatement pstmt = null;
 		Connection conn = getConnection();
 		ResultSet rs = null;
-		String sql = "insert into travel values(?,?,?,?,?,?,?,?,?,?)";
+		String sql = "insert into travel values(?,?,?,?,?,?,?,?,?,?,0)";
 		String sql2 = "select nvl(max(travel_num),0) + 1 from travel";
 		try {
 			pstmt = conn.prepareStatement(sql2);
@@ -210,7 +212,7 @@ public class TravelDao {
 			pstmt.setString(7, travel.getTravel_q2());
 			pstmt.setString(8, travel.getTravel_q3());
 			pstmt.setString(9, travel.getTravel_q4());
-			pstmt.setInt(10, travel.getTravel_num());
+			pstmt.setFloat(10, travel.getTravel_num());
 			result = pstmt.executeUpdate();
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
@@ -272,6 +274,7 @@ public class TravelDao {
 				travel.setTravel_q1(rs.getString("travel_q2"));
 				travel.setTravel_q1(rs.getString("travel_q3"));
 				travel.setTravel_q1(rs.getString("travel_q4"));
+				travel.setTravel_star(rs.getFloat("travel_star"));
 				
 				list.add(travel);
 			}

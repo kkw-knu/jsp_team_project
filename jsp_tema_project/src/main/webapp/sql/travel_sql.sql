@@ -8,7 +8,8 @@ create table travel(
 	travel_q1 varchar2(50) not null,
 	travel_q2 varchar2(50) not null,
 	travel_q3 varchar2(50) not null,
-	travel_q4 varchar2(50) not null
+	travel_q4 varchar2(50) not null,
+	travel_star number not null --별점 총합
 );
 /*필요한것 질문내용 이미지경로 제목 내용 지역 */
 /*

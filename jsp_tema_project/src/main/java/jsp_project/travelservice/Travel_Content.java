@@ -5,8 +5,10 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import jsp_project.dao.AcmdDao;
 import jsp_project.dao.ReviewDao;
 import jsp_project.dao.TravelDao;
+import jsp_project.model.Acmd;
 import jsp_project.model.Review;
 import jsp_project.model.Travel;
 import jsp_project.service.CommandProcess;
@@ -40,11 +42,14 @@ public class Travel_Content implements CommandProcess {
 		int endPage1 = startPage1 + PAGE_PER_BLOCK - 1;
 		// 총 페이지보다 큰 endPage나올 수 없다
 		if (endPage1 > totalPage1) endPage1 = totalPage1;
+		AcmdDao ad = AcmdDao.getInstance();
+		List<Acmd> acmdlist = ad.searchname(travel.getTravel_name());
 		
 		request.setAttribute("currentPage1", currentPage1);
 		request.setAttribute("PAGE_PER_BLOCK", PAGE_PER_BLOCK);
 		request.setAttribute("number1", number1);
 		request.setAttribute("list", list);
+		request.setAttribute("acmdlist", acmdlist);
 		request.setAttribute("startPage1", startPage1);
 		request.setAttribute("endPage1", endPage1);
 		request.setAttribute("totalPage1", totalPage1);
