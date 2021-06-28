@@ -101,10 +101,12 @@
     </div>
     <div>
     <br><h1 style="text-align:center; font-size:40px;">${acmd.acmd_name }</h1><br>
+    <div style="text-align:center;">
     <img src="<%=path%>/filesave/${acmd.acmd_img}" alt="숙박업소 이미지" 
     style="border-radius: 8px; max-height: 400px; object-fit: cover;">
-    <h5>숙박 지역 : ${acmd.acmd_local }</h5>
-    <p>숙박업소 내용 : ${acmd.acmd_content}</p>
+    </div>
+    <h5 align="center">숙박 지역 : ${acmd.acmd_local }</h5>
+    <p align="center">숙박업소 내용 : ${acmd.acmd_content}</p>
     <p align="center">
     		<c:if test="${acmd.acmd_star >= 0 && acmd.acmd_star<0.5}"><i class="far fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i> (${acmd.acmd_star })</c:if>
     		<c:if test="${acmd.acmd_star >= 0.5 && acmd.acmd_star<1}"><i class="fas fa-star-half-alt fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i> (${acmd.acmd_star }</c:if>

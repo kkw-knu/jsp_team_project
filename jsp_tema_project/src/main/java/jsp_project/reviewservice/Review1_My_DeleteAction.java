@@ -17,7 +17,7 @@ public class Review1_My_DeleteAction implements CommandProcess {
 		Review1Dao rd = Review1Dao.getInstance();
 		Review1 review = rd.select(review_num);
 		int result = rd.delete(review_num);
-		rd.starupdate(review);
+		rd.starupdate(review.getReview_acmd());
 		
 		request.setAttribute("pageNum", pageNum);
 		request.setAttribute("result", result);

@@ -101,10 +101,12 @@
     </div>
     <div>
     <br><h1 style="text-align:center; font-size:40px;">${travel.travel_name }</h1><br>
+    <div style="text-align:center;">
     <img src="<%=path%>/filesave/${travel.travel_img}" alt="여행이미지" 
     style="border-radius: 8px; max-height: 400px; object-fit: cover;">
-    <h5>여행지 지역 : ${travel.travel_local }</h5>
-    <p>여행지 내용 : ${travel.travel_content}</p>
+    </div>
+    <h5 align="center">여행지 지역 : ${travel.travel_local }</h5>
+    <p align="center">여행지 내용 : ${travel.travel_content}</p>
     <p align="center">
     		<c:if test="${travel.travel_star >= 0 && travel.travel_star<0.5}"><i class="far fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i> (${travel.travel_star })</c:if>
     		<c:if test="${travel.travel_star >= 0.5 && travel.travel_star<1}"><i class="fas fa-star-half-alt fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i> (${travel.travel_star }</c:if>
@@ -118,7 +120,7 @@
     		<c:if test="${travel.travel_star >= 4.5 && travel.travel_star<5}"><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="fas fa-star-half-alt fa-1x" style="color:#FACC2E;"></i> (${travel.travel_star })</c:if>
     		<c:if test="${travel.travel_star == 5}"><p><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i> (${travel.travel_star })</p></c:if>
     	    </p>
-    <div align="left"><br>
+    <div align="center"><br>
 	<c:if test="${empty user_id }">
 			<button class="btn btn-primary btn-sm" onclick="location.href='travel.to?pageNum=${pageNum}'">여행지 목록</button>
 	</c:if>

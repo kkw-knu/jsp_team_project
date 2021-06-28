@@ -4,6 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import jsp_project.dao.Review1Dao;
+import jsp_project.model.Review;
 import jsp_project.model.Review1;
 import jsp_project.service.CommandProcess;
 
@@ -29,8 +30,9 @@ public class Review1_My_UpdateAction implements CommandProcess {
 		review.setReview_title(review_title);
 		
 		Review1Dao rd = Review1Dao.getInstance();
+		Review1 review1 = rd.select(review_num);
 		int result = rd.update(review);
-		rd.starupdate(review);
+		rd.starupdate(review1.getReview_acmd());
 		
 		request.setAttribute("pageNum", pageNum);
 		request.setAttribute("result", result);

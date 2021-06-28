@@ -297,16 +297,14 @@ public class Review1Dao {
 		}
 		return list;
 	}
-	public void starupdate(Review1 review) {
+	public void starupdate(String review_acmd) {
 		PreparedStatement pstmt = null;
 		Connection conn = getConnection();
-		String sql = "update acmd set acmd_star=(select round(avg(review_star),2) from review1"
-				+ "group by review_acmd"
-				+ "having review_acmd=?) where acmd.acmd_name=?"; 
+		String sql = "update acmd set acmd_star=(select round(avg(review_star),2) from review1 group by review_acmd having review_acmd=?) where acmd.acmd_name=?";
 		try {
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, review.getReview_acmd());
-			pstmt.setString(2, review.getReview_acmd());
+			pstmt.setString(1, review_acmd);
+			pstmt.setString(2, review_acmd);
 			pstmt.executeUpdate();
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
