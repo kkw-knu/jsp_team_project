@@ -11,7 +11,7 @@
 </c:if>
 <c:if test="${result == 0 }">
 	<script type="text/javascript">
-		alert("리뷰삭제에 실패하였습니다.");
+		alert("리뷰삭제에 실패하였습니다!.");
 		history.back();
 	</script>
 </c:if>
