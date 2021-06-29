@@ -124,6 +124,9 @@
 		</c:if>
 		</tbody>
 		</table>
+		<div></div><!-- 별점높은순4개 -->
+		<div></div><!-- 찾기 -->
+		<div></div><!-- 이벤트 -->
     </div><!--메인 div-->
     <div class="footer">
         <div class="fl">
