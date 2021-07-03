@@ -289,5 +289,85 @@ public class TravelDao {
 		}
 		return list;
 	}
-
+	
+	public List<Travel> besttravel(){
+		List<Travel> travellist = new ArrayList<Travel>();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		Connection conn = getConnection();
+		String sql = "SELECT * FROM (SELECT * FROM travel ORDER BY travel_star desc)"
+				+ " WHERE rownum <= 4";//추천순으로 높은거 4개뽑아옴
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				Travel travel = new Travel();
+				travel.setTravel_num(rs.getInt("travel_num"));
+				travel.setTravel_name(rs.getString("travel_name"));
+				travel.setTravel_img(rs.getString("travel_img"));
+				travel.setTravel_local(rs.getString("travel_local"));
+				travel.setTravel_content(rs.getString("travel_content"));
+				travel.setTravel_mini(rs.getString("travel_mini"));
+				travel.setTravel_q1(rs.getString("travel_q1"));
+				travel.setTravel_q1(rs.getString("travel_q2"));
+				travel.setTravel_q1(rs.getString("travel_q3"));
+				travel.setTravel_q1(rs.getString("travel_q4"));
+				travel.setTravel_star(rs.getFloat("travel_star"));
+				
+				travellist.add(travel);
+			}
+		}catch (Exception e) {
+			System.out.println(e.getMessage());
+		}finally {
+			try {
+				if (rs != null) rs.close();
+				if (pstmt != null) pstmt.close();
+				if (conn != null)  conn.close();
+			}catch (Exception e) {		}
+		}
+		
+		return travellist;
+	}
+	
+	public List<Travel> travel_q(String travel_q1, String travel_q2, String travel_q3, String travel_q4){
+		List<Travel> travellist = new ArrayList<Travel>();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		Connection conn = getConnection();
+		String sql = "SELECT * FROM travel where travel_q1=? and travel_q2=? and travel_q3=? and travel_q4=?";
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, travel_q1);
+			pstmt.setString(2, travel_q2);
+			pstmt.setString(3, travel_q3);
+			pstmt.setString(4, travel_q4);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				Travel travel = new Travel();
+				travel.setTravel_num(rs.getInt("travel_num"));
+				travel.setTravel_name(rs.getString("travel_name"));
+				travel.setTravel_img(rs.getString("travel_img"));
+				travel.setTravel_local(rs.getString("travel_local"));
+				travel.setTravel_content(rs.getString("travel_content"));
+				travel.setTravel_mini(rs.getString("travel_mini"));
+				travel.setTravel_q1(rs.getString("travel_q1"));
+				travel.setTravel_q1(rs.getString("travel_q2"));
+				travel.setTravel_q1(rs.getString("travel_q3"));
+				travel.setTravel_q1(rs.getString("travel_q4"));
+				travel.setTravel_star(rs.getFloat("travel_star"));
+				
+				travellist.add(travel);
+			}
+		}catch (Exception e) {
+			System.out.println(e.getMessage());
+		}finally {
+			try {
+				if (rs != null) rs.close();
+				if (pstmt != null) pstmt.close();
+				if (conn != null)  conn.close();
+			}catch (Exception e) {		}
+		}
+		
+		return travellist;
+	}
 }

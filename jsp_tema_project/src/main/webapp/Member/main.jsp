@@ -4,6 +4,7 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
+	<% String path = request.getContextPath();%>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="Description" content="관광지를 한눈에 찾아보고 숙박시스템까지 연계가 가능한 웹페이지.">
@@ -99,6 +100,7 @@
         <div class="drop_menu"><a href="search.ac?acmd_q=펜션">펜션</a></div>
     </div>
     <div><br><br>
+    <!-- 최근 공지사항 -->
     <table class="table"><caption><i class="far fa-smile-beam"></i> 최근 공지사항 목록 <i class="far fa-smile-beam"></i></caption>
     <thead>
 	<tr><th width="15%;">번호</th><th width="40%;">제목</th><th width="15%;">작성자</th><th width="15%;">작성일</th><th width="15%;">조회수</th></tr></thead><tbody>
@@ -123,10 +125,139 @@
 			</c:forEach>
 		</c:if>
 		</tbody>
-		</table>
-		<div>별점높은순5개</div><!-- 별점높은순4개 -->
-		<div>검색으로 찾기</div><!-- 찾기 -->
-		<div>유형검사후 자신에게 맞는거</div><!-- 이벤트 -->
+	</table><br><br>
+	<!-- 별점높은순 4개 여행지 추천 -->
+	<div class="jumbotron">
+		<h3>&nbsp;&nbsp;&nbsp;&nbsp;유저들이 추천하는 여행지</h3><br>
+		<div class="travelbox">
+		<c:if test="${empty travellist }">
+			<h2 align="center">현재 등록된 여행지가 없습니다.</h2>
+		</c:if>
+		 <c:if test="${not empty travellist }">
+	    	<c:forEach var="travel" items="${travellist }">
+	    	<article class="imagebox" onclick="location.href='content.to?travel_num=${travel.travel_num}&pageNum=${currentPage}'">
+	    		<img src="<%=path%>/filesave/${travel.travel_img}" alt="여행이미지">
+	    		<h2 align="center">${travel.travel_name }</h2>
+	    		<p align="center">${travel.travel_mini }</p>
+	    		<p align="center">
+	    		<c:if test="${travel.travel_star >= 0 && travel.travel_star<0.5}"><i class="far fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i> (${travel.travel_star })</c:if>
+	    		<c:if test="${travel.travel_star >= 0.5 && travel.travel_star<1}"><i class="fas fa-star-half-alt fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i> (${travel.travel_star }</c:if>
+	    		<c:if test="${travel.travel_star >= 1 && travel.travel_star<1.5}"><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i> (${travel.travel_star })</c:if>
+	    		<c:if test="${travel.travel_star >= 1.5 && travel.travel_star<2}"><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="fas fa-star-half-alt fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i> (${travel.travel_star })</c:if>
+	    		<c:if test="${travel.travel_star >= 2 && travel.travel_star<2.5}"><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i> (${travel.travel_star })</c:if>
+	    		<c:if test="${travel.travel_star >= 2.5 && travel.travel_star<3}"><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="fas fa-star-half-alt fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i> (${travel.travel_star })</c:if>
+	    		<c:if test="${travel.travel_star >= 3 && travel.travel_star<3.5}"><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i> (${travel.travel_star })</c:if>
+	    		<c:if test="${travel.travel_star >= 3.5 && travel.travel_star<4}"><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="fas fa-star-half-alt fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i> (${travel.travel_star })</c:if>
+	    		<c:if test="${travel.travel_star >= 4 && travel.travel_star<4.5}"><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i> (${travel.travel_star })</c:if>
+	    		<c:if test="${travel.travel_star >= 4.5 && travel.travel_star<5}"><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="fas fa-star-half-alt fa-1x" style="color:#FACC2E;"></i> (${travel.travel_star })</c:if>
+	    		<c:if test="${travel.travel_star == 5}"><p><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i> (${travel.travel_star })</p></c:if>
+	    	    </p>
+	    	</article>
+	    	</c:forEach>
+	    </c:if>
+		</div>
+	</div><br><br>
+	<!-- 별점높은순 4개 숙박추천 -->
+	<div class="jumbotron">
+		<h3>&nbsp;&nbsp;&nbsp;&nbsp;유저들이 추천하는 숙박업소</h3><br>
+		<div class="travelbox">
+		    <c:if test="${empty acmdlist }">
+		    	<h2 align="center">등록된 숙박업소가 없습니다.</h2>
+		    </c:if>
+		    <c:if test="${not empty acmdlist }">
+		    	<c:forEach var="acmd" items="${acmdlist }">
+		    	<article class="imagebox" onclick="location.href='content.ac?acmd_num=${acmd.acmd_num}&pageNum=${currentPage}'">
+		    		<img src="<%=path%>/filesave/${acmd.acmd_img}" alt="숙박업소 이미지">
+		    		<h2 align="center">${acmd.acmd_name }</h2>
+		    		<p align="center">${acmd.acmd_mini }</p>
+		    		<p align="center">
+		    		<c:if test="${acmd.acmd_star >= 0 && acmd.acmd_star<0.5}"><i class="far fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i> (${acmd.acmd_star })</c:if>
+		    		<c:if test="${acmd.acmd_star >= 0.5 && acmd.acmd_star<1}"><i class="fas fa-star-half-alt fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i> (${acmd.acmd_star }</c:if>
+		    		<c:if test="${acmd.acmd_star >= 1 && acmd.acmd_star<1.5}"><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i> (${acmd.acmd_star })</c:if>
+		    		<c:if test="${acmd.acmd_star >= 1.5 && acmd.acmd_star<2}"><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="fas fa-star-half-alt fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i> (${acmd.acmd_star })</c:if>
+		    		<c:if test="${acmd.acmd_star >= 2 && acmd.acmd_star<2.5}"><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i> (${acmd.acmd_star })</c:if>
+		    		<c:if test="${acmd.acmd_star >= 2.5 && acmd.acmd_star<3}"><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="fas fa-star-half-alt fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i> (${acmd.acmd_star })</c:if>
+		    		<c:if test="${acmd.acmd_star >= 3 && acmd.acmd_star<3.5}"><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i> (${acmd.acmd_star })</c:if>
+		    		<c:if test="${acmd.acmd_star >= 3.5 && acmd.acmd_star<4}"><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="fas fa-star-half-alt fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i> (${acmd.acmd_star })</c:if>
+		    		<c:if test="${acmd.acmd_star >= 4 && acmd.acmd_star<4.5}"><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="far fa-star fa-1x" style="color:#FACC2E;"></i> (${acmd.acmd_star })</c:if>
+		    		<c:if test="${acmd.acmd_star >= 4.5 && acmd.acmd_star<5}"><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="fas fa-star-half-alt fa-1x" style="color:#FACC2E;"></i> (${acmd.acmd_star })</c:if>
+		    		<c:if test="${acmd.acmd_star == 5}"><p><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i><i class="fas fa-star fa-1x" style="color:#FACC2E;"></i> (${acmd.acmd_star })</p></c:if>
+		    	    </p>
+		    	</article>
+		    	</c:forEach>
+		    </c:if>
+	    </div>
+	</div>
+	<!-- 유형검사후 맞는거 -->
+	<div>
+		<h4>본인한테 알맞는 여행지를 찾고 싶으시다면? ↓↓↓↓click</h4>
+		<button type="button" class="btn btn-success btn-ms" data-toggle="modal" data-target="#myModal">검사하기</button>
+		<!-- 검사 모달 -->
+		<div class="modal fade" id="myModal" role="dialog">
+			<div class="modal-dialog modal-lg">
+				<!-- Modal content-->
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+					</div>
+					<div class="modal-body">
+						<div class="panel-group">
+							<div class="panel panel-success" style="margin-top: 10px;">
+								<div class="panel-heading">자신한테 맞는 여행지를 찾아보세요</div>
+								<div class="panel-body">
+									<%-- form --%>
+									<form class="form-horizontal" role="form" action="search.do" method="post">
+										<div class="form-group">
+											<div class="col-sm-offset-2 col-sm-10">
+												<div class="radio">
+													<h5>질문1</h5>
+													<label class="radio-inline"><input type="radio" name="travel_q1" id="travel_q1" value="당일치기" checked="checked">당일치기</label>
+													<label class="radio-inline"><input type="radio" name="travel_q1" id="travel_q1" value="1박2일">1박2일</label>
+													<label class="radio-inline"><input type="radio" name="travel_q1" id="travel_q1" value="3박4일">3박4일</label>
+													<label class="radio-inline"><input type="radio" name="travel_q1" id="travel_q1" value="장기여행">장기여행</label>
+												</div>
+												<div class="radio">
+													<h5>질문2</h5>
+													<label class="radio-inline"><input type="radio" name="travel_q2" id="travel_q2" value="봄" checked="checked">봄</label>
+													<label class="radio-inline"><input type="radio" name="travel_q2" id="travel_q2" value="여름">여름</label>
+													<label class="radio-inline"><input type="radio" name="travel_q2" id="travel_q2" value="가을">가을</label>
+													<label class="radio-inline"><input type="radio" name="travel_q2" id="travel_q2" value="겨울">겨울</label>
+												</div>
+												<div class="radio">
+													<h5>질문3</h5>
+													<label class="radio-inline"><input type="radio" name="travel_q3" id="travel_q3" value="산-정상" checked="checked">산-정상</label>
+													<label class="radio-inline"><input type="radio" name="travel_q3" id="travel_q3" value="산-둘레길">산-둘레길</label>
+													<label class="radio-inline"><input type="radio" name="travel_q3" id="travel_q3" value="바다-해수욕장">바다-해수욕장</label>
+													<label class="radio-inline"><input type="radio" name="travel_q3" id="travel_q3" value="바다-해변">바다-해변</label>
+													<label class="radio-inline"><input type="radio" name="travel_q3" id="travel_q3" value="캠핑">캠핑</label>
+													<label class="radio-inline"><input type="radio" name="travel_q3" id="travel_q3" value="테마여행">테마여행</label>
+												</div>
+												<div class="radio">
+													<h5>질문4</h5>
+													<label class="radio-inline"><input type="radio" name="travel_q4" id="travel_q4" value="솔로" checked="checked">솔로</label>
+													<label class="radio-inline"><input type="radio" name="travel_q4" id="travel_q4" value="가족">가족</label>
+													<label class="radio-inline"><input type="radio" name="travel_q4" id="travel_q4" value="커플">커플</label>
+												</div>
+											</div>
+										</div>
+										<div class="form-group">
+											<div class="col-sm-offset-2 col-sm-10">
+												<button type="submit" class="btn btn-success">제출하기</button>
+												<button type="reset" class="btn btn-danger">초기화</button>
+											</div>
+										</div>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
     </div><!--메인 div-->
     <div class="footer">
         <div class="fl">

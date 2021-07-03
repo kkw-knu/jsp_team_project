@@ -316,4 +316,40 @@ public class AcmdDao {
 		}
 		return acmdlist;
 	}
+	
+	public List<Acmd> bestacmd(){
+		List<Acmd> acmdlist = new ArrayList<Acmd>();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		Connection conn = getConnection();
+		String sql = "SELECT * FROM (SELECT * FROM acmd ORDER BY acmd_star desc)"
+				+ " WHERE rownum <= 4";//추천순으로 높은거 4개뽑아옴
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				Acmd acmd = new Acmd();
+				acmd.setAcmd_num(rs.getInt("acmd_num"));
+				acmd.setAcmd_name(rs.getString("acmd_name"));
+				acmd.setAcmd_img(rs.getString("acmd_img"));
+				acmd.setAcmd_local(rs.getString("acmd_local"));
+				acmd.setAcmd_content(rs.getString("acmd_content"));
+				acmd.setAcmd_mini(rs.getString("acmd_mini"));
+				acmd.setAcmd_travel(rs.getString("acmd_travel"));
+				acmd.setAcmd_q(rs.getString("acmd_q"));
+				acmd.setAcmd_star(rs.getFloat("acmd_star"));
+
+				acmdlist.add(acmd);
+			}
+		}catch (Exception e) {
+			System.out.println(e.getMessage());
+		}finally {
+			try {
+				if (rs != null) rs.close();
+				if (pstmt != null) pstmt.close();
+				if (conn != null)  conn.close();
+			}catch (Exception e) {		}
+		}
+		return acmdlist;
+	}
 }
